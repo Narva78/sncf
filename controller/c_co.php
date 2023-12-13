@@ -34,6 +34,7 @@ case 'valideConnexion':{
         }
         else{
             ajouterErreur("Login ou mot de passe incorrect");
+            echo "<script>alert('Login ou mot de passe incorrect. Veuillez réessayer.');</script>";
             include("views/co.php");
         }
     }
