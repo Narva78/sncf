@@ -1,18 +1,47 @@
-h1 {
-    text-align: center;
-  }
 
-  th.sortable.active {
-    background-color: rgb(11, 56, 107);
-  }
-  
-  .icloud.zero,
-  .code-dev.zero {
-    background-color: red;
-  }
-  
-  .moyenne {
-    border: 1px solid black;
-    padding: 10px;
-  }
-  
+body{
+    background-color:#273746 ;
+}
+.card {
+   display: flex;
+   justify-content: center;
+   margin: 10%;
+   margin-top: 15%;  
+}
+
+.card__container{
+        width: 426px;
+        height: 437px;
+        border: 1px #404040 solid;
+        border-radius: 50px;
+        background: #405A73;
+        text-align: center;
+        color: white;
+    }
+
+.card__container__login {
+    margin: 3.5%;
+    height: 45px;
+    width: 60%;
+    border-radius: 10%;
+    color: #fff;
+    background: #405A73;
+}
+
+.card__container__login:focus {
+    outline:none;
+}
+
+.btn{
+    margin: 3.5%;
+    height: 50px;
+    width: 30%;
+    border-radius: 7%;
+    background: #3389C2;
+    color: #fff;
+}
+.btn input:hover{
+    transition: .5s;
+    color: #000;
+    background: rgb(177, 24, 156);
+}
