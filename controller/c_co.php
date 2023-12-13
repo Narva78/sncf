@@ -16,7 +16,6 @@ switch($action){
     // Vérification des identifiants
     // Vérification des identifiants
 case 'valideConnexion':{
-    var_dump($_POST);
     // Récupération des données du formulaire
     // On vérifie que les champs ne sont pas vides
     if (isset($_POST['valider']) && !empty($_POST['login']) && !empty($_POST['mdp'])) {

@@ -25,14 +25,14 @@ body{
     width: 60%;
     border-radius: 10%;
     color: #fff;
-    background: #405A73;
+    background: #F9F9F933;
 }
 
 .card__container__login:focus {
     outline:none;
 }
 
-.btn{
+.card__container__login__btn input{
     margin: 3.5%;
     height: 50px;
     width: 30%;
@@ -40,7 +40,7 @@ body{
     background: #3389C2;
     color: #fff;
 }
-.btn input:hover{
+.card__container__login__btn input:hover{
     transition: .5s;
     color: #000;
     background: rgb(177, 24, 156);
