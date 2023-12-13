@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        body{
+            background-color:#273746 ;
+        }
+        .card {
+           display: flex;
+           justify-content: center;
+           margin: 10%;
+           margin-top: 15%;  
+        }
+        .card-container{
+            width: 426px;
+            height: 437px;
+            border: 1px #404040 solid;
+            border-radius: 15px;
+            background: #405A73;
+            text-align: center;
+            color: white;
+        }
+        .card-login input{
+            margin: 3.5%;
+            height: 45px;
+            width: 60%;
+            border-radius: 5%;
+            color: #fff;
+          
+        }
+        .card-pass input{
+            margin: 3.5%;
+            color: #fff;
+            border-radius: 5%;
+            height: 45px;
+            width: 60%;
+        }
+        
+       
+        .btn input{
+            margin: 3.5%;
+            height: 50px;
+            width: 30%;
+            border-radius: 7%;
+            background: #3389C2;
+            color: #fff;
+        }
+        .btn input:hover{
+            transition: .5s;
+            color: #000;
+            background: rgb(177, 24, 156);
+        }
+       
+
+        
+    </style>
+</head>
+<body>
+    <section class="card">
+        <div class="card-container">
+            <h2>Gestion Ipad</h2>
+            <form method="post" action="index.php?uc=connexion&action=valideConnexion">
+                <div class="card-login">
+                    <label for="login"></label>
+                    <input type="login" class="form-control"  name="login" id="login" placeholder=" Username">
+                <div class="card-pass">
+                    <label for="mdp"></label>
+                    <input type="password" class="form-control" name="mdp" id="mdp" placeholder="password">
+                </div>
+                <div class="btn">
+                    <input type="submit" value="Login" name="Validez">
+                </div>
+            </form>
+        </div>
+
+    </section>
+    
+</body>
+</html>

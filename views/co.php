@@ -1,36 +1,24 @@
 <!-- Description: Page de connexion -->
 
 
-	<title>Page de connexion</title>
-
-
-<style>
-
-</style>
-
-
-
-
-
+<title>Page de connexion</title>
 
 <body>
-<section class="card">
-        <div class="card-container">
+    <section class="card">
+        <div class="card__container">
             <h2>Gestion Ipad</h2>
-            <form action="index.php?uc=connexion&action=valideConnexion" method="post">
-                <div class="card-login">
-                    <label for="login"></label>
-                    <input type="login" name="login" id="login" placeholder="Username">
-                </div>
-                <div class="card-pass">
+            <form method="post" action="index.php?uc=connexion&action=valideConnexion">
+                    <div>
+					<label for="login"></label>
+                    <input type="login" class="card__container__login"  name="login" id="login" placeholder=" Username">
+                
                     <label for="mdp"></label>
-                    <input type="password" name="mdp" id="mdp" placeholder="password">
+                    <input type="password" class="card__container__login" name="mdp" id="mdp" placeholder="password">
                 </div>
-
-                <input type="submit" value="Login" name="Validez">
+                <div class="card__container__login__btn">
+                    <input type="submit" value="Login" name="valider">
+                </div>
             </form>
         </div>
 
     </section>
-</body>
-

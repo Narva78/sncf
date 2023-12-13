@@ -8,30 +8,6 @@
         <link rel="stylesheet" type="text/css" href="style/style.css">
 
         <!-- lié au bootstrap -->
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-        <script src="../js/script.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	    <script type="text/javascript" src="../js/jquery-3.6.4.min.js"></script>
-
-        <!-- jQuery UI -->
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
-        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-	    <link rel="stylesheet" href="../jquery/jquery-ui.css"/>
-        <link rel="stylesheet" href="../jquery/jquery-ui.min.css"/>
-        <link rel="stylesheet" href="../jquery/jquery-ui.structure.css"/>
-        <link rel="stylesheet" href="../jquery/jquery-ui.structure.min.css"/>
-        <link rel="stylesheet" href="../jquery/jquery-ui.theme.css"/>
-        <link rel="stylesheet" href="../jquery/jquery-ui.theme.min.css"/>
-	    <script type="text/javascript" src="../jquery/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="../jquery/jquery-ui.js"></script>
-
     </head>
 
 
