@@ -18,34 +18,47 @@
         font-family: 'poppins', sans-serif;
     }
     
-    .menu ul li a{
-        font-size: 15px;
+    .menu ul{
+        display: flex;
+        justify-content:space-around;
+        padding: 30px;
+        margin: 0;
+        list-style: none;
+        background:#405A73 ;
+       }
+      
+      .menu ul li a{
         color: #fff;
         text-decoration: none;
         transition: color 0.3 ease;
-    }
-    .menu ul li a:hover{
-        color: gold;
-    }
-    .menu ul{
-       display: flex;
-       justify-content:space-around;
-       background:#405A73 ;
-       padding: 30px;
-       margin: 0;
-       list-style: none;
-    }
-    .menu ul li {
+        justify-content: center;
+        padding: 10px;
+      }
+      .menu li:hover{
+        background: #273746;
+        border-radius: 10px;
+      }
+      
+      .menu ul li {
         margin-right: 20px;
-        
-    }
+        font-size: 1.5em;
+      }
+      @media screen and (max-width:700px){
+        .menu ul{
+            flex-direction: column;
+            padding: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        .menu ul li{
+            font-size: 1em;
+            margin-bottom: 10px;
+
+        }
+      }
          
    
-     i{
-        color: #000;
-        font-size: 2em;
-        
-     }
+    
      
     body{
         background-color: #273746;
@@ -54,7 +67,7 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav >
             <div class="menu">
                 <ul>
                         <li>
@@ -70,13 +83,15 @@
                             <a href="views/exportation.php">Exploration</a>
                         </li>
                         <li>
-                            <a href="index.php?action=deconnexion"><i class='bx bxs-door-open' ></i></a>
+                            <a href="index.php?action=deconnexion" style = "color:red;">Se déconnecter</a>
                         </li>
                 </ul>
             </div>             
 
         </nav>
     </header>
+    
+
     
 </body>
 </html>
