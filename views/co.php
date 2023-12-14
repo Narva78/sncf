@@ -5,16 +5,19 @@
         <div class="container__card">
             <h2>Gestion Ipad</h2>
             <form method="post" action="index.php?uc=connexion&action=valideConnexion">
-                <div class="input-icone">
-                    <label for="login"></label>
-                    <input type="login" class="container__card__login" name="login" id="login" placeholder=" Username">
-					<i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+                <div class="container__card__input">
+                    <div class="input-icone">
+                        <label for="login"></label>
+                        <input type="login" class="container__card__login" name="login" id="login" placeholder=" Username">
+                        <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+                    </div>
+                    <div class="input-icone">
+                        <label for="mdp"></label>
+                        <input type="password" class="container__card__login" name="mdp" id="mdp" placeholder=" Password">
+                        <i class="fa fa-lock fa-lg fa-fw" aria-hidden="true"></i>               
+                    <div>
                 </div>
-                <div class="input-icone">
-                    <label for="mdp"></label>
-                    <input type="password" class="container__card__login" name="mdp" id="mdp" placeholder="password">
-					<i class="fa fa-lock fa-lg fa-fw" aria-hidden="true"></i>                </div>
-                <div>
+                
                     <input type="submit" class="container__card__login__btn" value="Login" name="valider">
                 </div>
             </form>
