@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    
+    <title>navbar</title>
+
+<style>
+    
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'poppins', sans-serif;
+    }
+    
+    .menu ul li a{
+        font-size: 15px;
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3 ease;
+    }
+    .menu ul li a:hover{
+        color: gold;
+    }
+    .menu ul{
+       display: flex;
+       justify-content:space-around;
+       background:#405A73 ;
+       padding: 30px;
+       margin: 0;
+       list-style: none;
+    }
+    .menu ul li {
+        margin-right: 20px;
+        
+    }
+         
+   
+     i{
+        color: #000;
+        font-size: 2em;
+        
+     }
+     
+    body{
+        background-color: #273746;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="menu">
+                <ul>
+                        <li>
+                            <a href="index.php?uc=historique" style="margin-left: 5px;">Historique</a>
+                        </li>
+                        <li>
+                            <a href="index.php?uc=profil">Profil</a>
+                        </li>
+                        <li>
+                            <a href="index.php?uc=stat">Statistiques</a>
+                        </li>
+                        <li>
+                            <a href="views/exportation.php">Exploration</a>
+                        </li>
+                        <li>
+                            <a href="index.php?action=deconnexion"><i class='bx bxs-door-open' ></i></a>
+                        </li>
+                </ul>
+            </div>             
+
+        </nav>
+    </header>
+    
+</body>
+</html>
