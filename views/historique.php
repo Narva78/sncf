@@ -3,34 +3,63 @@
 <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
-  th.sortable.active {
-    background-color: #f8f9fa;
- }   
-    th.sortable {
-  cursor: pointer;
-  padding: 8px 8px;
-  background-color: #fff;
-  border: 1px solid #ddd;
+
+.search{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+h1{
+  text-align: center;
+  padding:90px;
+  color:#FFF;
+  font-size: 3rem;
+}
+.checkbox ul{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      list-style: none;
+      margin: 30px;
+      border:1px solid #fff;
+      width: 30%;
+      background: #FFF;
+      margin-left: 35%;
+      border-radius: 10px;
+    }
+p{
+    border-right: solid 1px black;
+    padding:10px;
+    text-align: center;
 
 }
-th.sortable:hover {
-  background-color: #f8f9fa;
-} 
+.checkbox input {
+    border-right: solid 1px black;
+    text-align:center
+    padding:10px;
+    margin-top:12px;
+}
+.info{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 20px;
+    margin: 30px;
+    border:1px solid #fff;
+    width: 30%;
+    background: #FFF;
+    margin-left: 35%;
+    border-radius: 10px;
+}
+.info li{
+        border-right: solid 1px black;
 
-.icloud.zero,
-.code-dev.zero {
-  background-color: red;
-}
-.icloud.one,
-.code-dev.one {
-  background-color: green;
 }
 
-.nonRep.one {
-    background-color: red;
-}
-.nonRep.zero{
-    background-color: green;
+input{
+    padding:10px;
+    border-radius:10px;
+    font-size:1em;
 }
 </style>
 
@@ -110,85 +139,74 @@ $(function() {
       filterTable($(this).val());
   });
 
-})
+});
 
 
-</script>
+    </script>
+     <h1>Historique</h1>
 
-<div class="card container cover w-100">
-    <br>
-    <h1 class="mb-4">Informations iPad</h1>
+    <div class="search">
+    
+        <div class="search__btn__ferme">
+            <input type="button" value="x">
+        </div>
+        <div class="search__cp">
+            <input type="text" name="text" id="tags" placeholder="CP...">
+        </div>
+        <div class="search__btn__icloud">
+            <input type="button" value="icloud">
+        </div>
+        <div class="search__btn__Code Dev">
+            <input type="button" value="Code Dev">
+        </div>
+        <div class="search__btn__Reportable">
+            <input type="button" value="Reportable">
+        </div>
+        <div class="search__btn__moins">
+            <input type="button" value="-">
+        </div>
+        <div class="search__btn__plus">
+            <input type="button" value="+">
+        </div>
 
-    <br><br>
-    <table class="search">
-        <tbody>
-            <div class="form-group row">
-                <!-- Formulaire de sélection du nombre d'iPad à afficher -->
-                <div class="col-md-4">
-                    <form action="index.php?uc=historique&action=historique" method="POST" id="ipp-form">
-                        <select class="form-control w-auto" name="ipp" onchange="document.getElementById('ipp-form').submit()">
-                            <option value="5" <?= ($ipp == 5) ? "selected" : "" ?>>5</option>
-                            <option value="10" <?= ($ipp == 10) ? "selected" : "" ?>>10</option>
-                            <option value="20" <?= ($ipp == 20) ? "selected" : "" ?>>20</option>
-                            <option value="50" <?= ($ipp == 50) ? "selected" : "" ?>>50</option>
-                            <option value="100" <?= ($ipp == 100) ? "selected" : "" ?>>100</option>
-                        </select>
-                    </form>
-                </div>
+    </div>
 
-                <!-- Formulaire de recherche par cp dynamique -->
-                <div class="col-md-4">
-                    <input id="tags" type="text" name="text" class="form-control" placeholder="CP...">
-                </div>
+    <section class="checkbox">
+        <ul>
+            <li>
+                <input type="checkbox" id="check-all">  
+            </li>
 
-                <!-- Bouton d'ajout d'un iPad -->
-                <div class="col-md-4 d-flex justify-content-end">
-                    <a href="index.php?uc=historique&action=ajouterIpad" class="btn btn-primary">Ajouter un IPad</a>
-                </div>
-            </div>
-        </tbody>
-    </table>
+            <li>
+                <p style="border-left:1px solid black;">CP</p>
+            </li>
+            <li>
+                <p> icloud</p>
+            </li>
+            <li>
+                <p>Code dev</p>
+            </li>
+            <li>
+                <p style="border-right:none;">Date récap</p>
+            </li>
+        </ul> 
 
-    <!-- Tableau des iPads -->
-    <form action="index.php?uc=historique&action=supprimerIpad" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer les iPad sélectionnés ?');">   
-        <table id="maTable" class="table list_treatment table-striped">
-            <thead>
-                <tr>
-                    <th><input type="checkbox" id="check-all"></th>
-                    <th class="sortable">CP</th>
-                    <th class="sortable">Affectation</th>
-                    <th class="sortable icloud">Compte ICloud</th>
-                    <th class="sortable code-dev">Code de Dévérouillage</th>
-                    <th class="sortable">Date Réception</th>
-                    <th class="sortable">Date Attribution</th>
-                    <th class="sortable">Début Réparation</th>
-                    <th class="sortable">Fin Réparation</th>
-                    <th class="sortable nonRep">Non Réparable</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($lesIpad as $ipad):?>
-                    <tr>
-                        <!-- Checkbox pour sélectionner les iPad à supprimer -->
-                        <td><input type="checkbox" class="check-ipad" name="idsIpad[]" value="<?= $ipad['id_ipad'] ?>"></td>
-                        <td class="cp_Agent"><?= $ipad['cp_Agent'] ?></td>
-                        <td><?= $ipad['affectation'] ?></td>
-                        <td class="<?php echo $ipad['Icloud'] == 0 ? 'icloud zero' : 'icloud one'; ?>"><?php echo $ipad['Icloud']; ?></td>
-                        <td class="<?php echo $ipad['CodeDev'] == 0 ? 'code-dev zero' : 'code-dev one'; ?>"><?php echo $ipad['CodeDev']; ?></td>
-                        <td><?= $ipad['date_Reception'] ?></td>
-                        <td><?= $ipad['date_Attribution'] ?></td>
-                        <td><?= $ipad['debut_Rep'] ?></td>
-                        <td><?= $ipad['fin_Rep'] ?></td>
-                        <td class="<?php echo $ipad['non_reparable'] == 0 ? 'nonRep zero' : 'nonRep one'; ?>"><?= $ipad['non_reparable'] ?></td>
-                        <!-- bouton qui permet de modifier l'information de l'ipad et assimiler ceci à un logo -->
-                        <td><a href="index.php?uc=historique&action=modifierIpad&id=<?= $ipad['id_ipad'] ?>" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a></td>
-                    </tr>
+        <?php foreach ($lesIpad as $ipad):?>
+            <div class="info">
+                <li class="cp_Agent"><?=$ipad['cp_Agent']?></li>
+                <li class="<?php echo $ipad['Icloud'] == 0 ? 'icloud zero' : 'icloud one'; ?>"><?php echo $ipad['Icloud']; ?></li>
+                <li class="<?php echo $ipad['CodeDev'] == 0 ? 'code-dev zero' : 'code-dev one'; ?>"><?php echo $ipad['CodeDev']; ?></li>
+                <li><?= $ipad['date_Reception'] ?></li>
+        </div>
+        <?php endforeach; ?>
+
+
+
+    </section>
+
+               
             
 
-                <?php endforeach; ?>
-            </tbody>
-        </table>
         <script>
             // Cocher/décocher toutes les checkbox, JS vanilla
             const checkAll = document.querySelector('#check-all');
@@ -198,40 +216,5 @@ $(function() {
             });
         </script>
             
-        <!-- Bouton de suppression des iPad sélectionnés -->
-        <div class="d-flex justify-content-end">
-            <input type="submit" class="btn btn-danger" name="supprimer" value="Supprimer">
-        </div>
-    </form>
-
-    <!-- Pagination -->
-    <!-- Ici, nous utilisons http_build_query() pour générer une chaîne de requête à partir de la combinaison des paramètres GET actuels avec le nouveau paramètre page. 
-    Cela permet de conserver les autres paramètres GET (par exemple, uc=historique et action=historique) lors de la navigation entre les pages.
-    Le array_merge() est utilisé pour ajouter le nouveau paramètre page à la liste des paramètres GET existants, en écrasant la valeur de page s'il est déjà présent. -->
-    <nav>
-        <ul class="pagination justify-content-center">
-            <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
-            <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
-                <a href="./?<?= http_build_query(array_merge($_GET, array("page" => $currentPage - 1))) ?>" class="page-link">Précédente</a>
-            </li>
-
-            <?php for ($page = 1; $page <= $pages; $page++): ?>
-                <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
-                <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
-                    <a href="./?<?= http_build_query(array_merge($_GET, array("page" => $page))) ?>" class="page-link"><?= $page ?></a>
-                </li>
-            <?php endfor ?>
-
-
-            <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
-            <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
-                <a href="./?<?= http_build_query(array_merge($_GET, array("page" => min($currentPage + 1, $pages)))) ?>" class="page-link">Suivante</a>
-            </li>
-
-
-        </ul>
-    </nav>
-</div>
-
        
-
+  
