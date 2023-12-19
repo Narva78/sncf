@@ -180,7 +180,7 @@
 
 	});
 </script>
-<h1>Historique</h1>
+<h1>Historique Ecran</h1>
 
 <div class="search">
 
