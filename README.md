@@ -3,21 +3,25 @@ https://wubijacq.com/rwd/icone-input.php
 <<<<<<< HEAD
 
 
-config prettierrc:
+config settings.json:
 
 {
-  "overrides": [
-    {
-      "files": "*.php",  
-      "options": {
-        "parser": "php",
-        "semi": false,
-        "singleQuote": true,
-        "tabWidth": 2,
-        "trailingComma": "all"   
-      }
-    }
-  ]
+  "workbench.colorTheme": "Default Dark Modern",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2
+  },
+  "editor.formatOnSave": true,
+  "prettier.requireConfig": true,
 }
 =======
 Ecran / PC : 
