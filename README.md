@@ -31,4 +31,5 @@ Ecran / PC :
 - controleur gestionEcran / gestionPC
 - vue gestionEcran / gestionPC
 - ajout du controleur dans index.php
+- faire les case affichage/ajout/modifications/suppression
 >>>>>>> fa782592eddd89d8b29954d19048a12f73f394cb
