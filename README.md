@@ -7,7 +7,7 @@ config prettierrc:
 {
   "overrides": [
     {
-      "files": "*.php",
+      "files": "*.php",  
       "options": {
         "parser": "php",
         "semi": false,
