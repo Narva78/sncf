@@ -35,7 +35,7 @@ p{
 }
 .checkbox input {
     border-right: solid 1px black;
-    text-align:center
+    text-align:center;
     padding:10px;
     margin-top:12px;
 }
@@ -50,11 +50,36 @@ p{
     background: #FFF;
     margin-left: 35%;
     border-radius: 10px;
-}
-.info li{
-        border-right: solid 1px black;
 
 }
+.info li{
+    border-right: solid 1px black;
+}
+.info input{
+    align-items:center;
+}
+.search__btn__plus input{
+    background:green;
+    color: #fff;
+}
+
+.search__btn__moins input{
+    background:red;
+    color: #fff;
+}
+.search__btn__Reportable input{
+    background:#76448A;
+    color: #fff;
+}
+.search__btn__Code__Dev input{
+    background:#405A73;
+    color: #fff;
+}
+.search__btn__icloud input{
+    background:#3389C2;
+    color: #fff;
+}
+
 
 input{
     padding:10px;
@@ -147,16 +172,13 @@ $(function() {
 
     <div class="search">
     
-        <div class="search__btn__ferme">
-            <input type="button" value="x">
-        </div>
         <div class="search__cp">
             <input type="text" name="text" id="tags" placeholder="CP...">
         </div>
         <div class="search__btn__icloud">
             <input type="button" value="icloud">
         </div>
-        <div class="search__btn__Code Dev">
+        <div class="search__btn__Code__Dev">
             <input type="button" value="Code Dev">
         </div>
         <div class="search__btn__Reportable">
@@ -193,6 +215,7 @@ $(function() {
 
         <?php foreach ($lesIpad as $ipad):?>
             <div class="info">
+                <li><input type="checkbox" class="check-ipad" name="idsIpad[]" value="<?= $ipad['id_ipad'] ?>"></li>
                 <li class="cp_Agent"><?=$ipad['cp_Agent']?></li>
                 <li class="<?php echo $ipad['Icloud'] == 0 ? 'icloud zero' : 'icloud one'; ?>"><?php echo $ipad['Icloud']; ?></li>
                 <li class="<?php echo $ipad['CodeDev'] == 0 ? 'code-dev zero' : 'code-dev one'; ?>"><?php echo $ipad['CodeDev']; ?></li>

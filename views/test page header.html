@@ -17,32 +17,53 @@
         box-sizing: border-box;
         font-family: 'poppins', sans-serif;
     }
-    
-    .menu ul{
+   
+    .menu ul {
         display: flex;
         justify-content:space-around;
         padding: 30px;
         margin: 0;
         list-style: none;
         background:#405A73 ;
-       }
-      
-      .menu ul li a{
-        color: #fff;
-        text-decoration: none;
-        transition: color 0.3 ease;
-        justify-content: center;
-        padding: 10px;
-      }
-      .menu li:hover{
-        background: #273746;
+    }
+    .menu li:hover{
+        background:#273746 ;
         border-radius: 10px;
-      }
-      
-      .menu ul li {
+    }
+    
+    .menu ul li {
+        display: inline-block;
+        position: relative;
         margin-right: 20px;
         font-size: 1.5em;
-      }
+    }
+    
+    .menu ul li a {
+        text-decoration: none;
+        color: white; /* Couleur du texte des liens */
+        padding: 10px; /* Espacement interne des liens */
+        display: block;
+    }
+    
+    .menu ul li ul {
+        display: none;
+        position: absolute;
+        min-width: 100px;
+        font-size: 0.5em;
+
+    }
+    
+    .menu ul li:hover ul {
+        display: block;
+        left: 0;
+
+    }
+    
+  
+    
+    
+    
+    
       @media screen and (max-width:700px){
         .menu ul{
             flex-direction: column;
@@ -66,27 +87,34 @@
 </head>
 <body>
     <header>
-        <nav >
+        <nav>
             <div class="menu">
                 <ul>
-                        <li>
-                            <a href="index.php?uc=historique" style="margin-left: 5px;">Historique</a>
-                        </li>
-                        <li>
-                            <a href="index.php?uc=profil">Profil</a>
-                        </li>
-                        <li>
-                            <a href="index.php?uc=stat">Statistiques</a>
-                        </li>
-                        <li>
-                            <a href="views/exportation.php">Exploration</a>
-                        </li>
-                        <li>
-                            <a href="index.php?action=deconnexion" style = "color:red;">Se déconnecter</a>
-                        </li>
+                    <li>                      
+                        <a href="index.php?uc=historique" style="margin-left: 5px;">Historique</a>
+                        <ul>
+                            <li>
+                                <a href="#">PC</a>
+                            </li>
+                            <li>
+                                <a href="#">Ecran</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="index.php?uc=profil">Profil</a>
+                    </li>
+                    <li>
+                        <a href="index.php?uc=stat">Statistiques</a>
+                    </li>
+                    <li>
+                        <a href="views/exportation.php">Exploration</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=deconnexion" style="color:red;">Se déconnecter</a>
+                    </li>
                 </ul>
             </div>             
-
         </nav>
     </header>
 
