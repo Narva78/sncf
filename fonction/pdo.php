@@ -124,6 +124,14 @@ class PdoIpad
 		return $lesLignes;
 	}
 
+	public function getInfosEcran()
+	{
+		$req = "SELECT * FROM ecran ORDER BY marque ASC";
+		$res = PdoIpad::$monPdo->query($req);
+		$lesLignes = $res->fetchall();
+		return $lesLignes;
+	}
+
 	// Fonction getInfosIpadById($id) qui permet de récupérer les informations de la Table ipad en fonction de l'id
 	public function getInfosIpadById($id)
 	{
@@ -171,7 +179,8 @@ class PdoIpad
 	//Fonction qui permet d'ajouter un ipad dans la table ipad en fonction des paramètres
 	public function ajouterIpad($cp, $nom, $prenom, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable)
 	{
-		$req = "INSERT INTO ipad (cp_Agent, nom, prenom, affectation, Icloud, CodeDev, date_Reception, date_Attribution, debut_Rep, fin_Rep, non_reparable) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$req = "INSERT INTO ipad (cp_Agent, nom, prenom, affectation, Icloud, CodeDev, date_Reception, date_Attribution, debut_Rep, fin_Rep, non_reparable) 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		$stmt = PdoIpad::$monPdo->prepare($req);
 		$stmt->execute([$cp, $nom, $prenom, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable]);
 		$nombreLignesAffectees = $stmt->rowCount();

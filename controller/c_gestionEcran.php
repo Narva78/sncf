@@ -11,6 +11,9 @@ $action = $_REQUEST['action'];
 switch ($action) {
 	case 'gestionEcran':
 
+		$lesEcrans = $pdo->getInfosEcran();
+
+
 
 		// Inclusion de la vue
 		include("views/gestionEcran.php");
@@ -106,8 +109,8 @@ switch ($action) {
 		} else {
 			// Affichage de la page de modification de l'iPad
 			$id = $_GET['id'];
-			$lesEcran = $pdo->getInfosEcranById($id);
-			foreach ($lesEcran as $unEcran) {
+			$lesEcrans = $pdo->getInfosEcranById($id);
+			foreach ($lesEcrans as $unEcran) {
 				$id_true = $unEcran['id_ecran'];
 				$taille = $unEcran['taille'];
 				$quantite = $unEcran['quantite'];
