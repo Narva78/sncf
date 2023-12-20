@@ -46,6 +46,8 @@ En-tête cliquable qui filtre le 'tableau' lorsque l'on clique dessus
 
 semaine du 25 --- 29 décembre : 
 PC (idem que pour écran)
+=> champs en question : marque/n° série/modèle
+
 Controleur => affichage/modification/suppression/ajout
 Vue => Modif/Ajout => Même Formulaire avec juste les champs pré remplis pour la modif
 SQL => requête
