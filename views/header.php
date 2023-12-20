@@ -6,7 +6,7 @@
 					<a href="index.php?uc=historique" style="margin-left: 5px;">Historique</a>
 					<ul>
 						<li>
-							<a href="#">PC</a>
+							<a href="index.php?uc=gestionPC">PC</a>
 						</li>
 						<li>
 							<a href="index.php?uc=gestionEcran">Ecran</a>

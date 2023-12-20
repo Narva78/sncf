@@ -228,7 +228,7 @@
 	<?php foreach ($lesIpad as $ipad) : ?>
 		<div class="info">
 			<li><input type="checkbox" class="check-ipad" name="idsIpad[]" value="<?= $ipad['id_ipad'] ?>"></li>
-			<li><?= $ipad['cp_Agent'] ?></li>
+			<li class="cp_Agent"><?= $ipad['cp_Agent'] ?></li>
 			<li><?php echo $ipad['Icloud']; ?></li>
 			<li><?php echo $ipad['CodeDev']; ?></li>
 			<li><?= $ipad['date_Reception'] ?></li>
