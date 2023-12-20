@@ -116,9 +116,9 @@ class PdoIpad
 
 
 	//fonction qui permet de récupérer les informations de la Table ipad en fonction de la premiere ligne et du nombre de ligne par page
-	public function getInfosIpad($premier, $parpage)
+	public function getInfosIpad()
 	{
-		$req = "SELECT * FROM ipad ORDER BY date_Attribution DESC LIMIT $premier, $parpage";
+		$req = "SELECT * FROM ipad ORDER BY date_Attribution DESC";
 		$res = PdoIpad::$monPdo->query($req);
 		$lesLignes = $res->fetchall();
 		return $lesLignes;
@@ -128,6 +128,14 @@ class PdoIpad
 	public function getInfosIpadById($id)
 	{
 		$req = "SELECT * FROM ipad WHERE id_ipad = '$id'";
+		$res = PdoIpad::$monPdo->query($req);
+		$lesLignes = $res->fetchall();
+		return $lesLignes;
+	}
+
+	public function getInfosEcranById($id)
+	{
+		$req = "SELECT * FROM ecran WHERE id_ecran = '$id'";
 		$res = PdoIpad::$monPdo->query($req);
 		$lesLignes = $res->fetchall();
 		return $lesLignes;
@@ -174,6 +182,19 @@ class PdoIpad
 		}
 	}
 
+	public function ajouterEcran($taille, $marque, $types, $quantite)
+	{
+		$req = "INSERT INTO ecran (taille, marque, types, quantite) VALUES (?, ?, ?, ?)";
+		$stmt = PdoIpad::$monPdo->prepare($req);
+		$stmt->execute([$taille, $marque, $types, $quantite]);
+		$nombreLignesAffectees = $stmt->rowCount();
+		if ($nombreLignesAffectees > 0) {
+			echo "L'insertion a été effectuée avec succès.";
+		} else {
+			echo "Échec de l'insertion.";
+		}
+	}
+
 	//Fonction qui permet de modifier un ipad dans la table ipad en fonction des paramètres
 	//modifierIpad($cp, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable)
 	public function modifierIpad($cp, $nom, $prenom, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable, $id)
@@ -182,6 +203,15 @@ class PdoIpad
         WHERE id_ipad = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
 		$stmt->execute([$cp, $nom, $prenom, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable, $id]);
+	}
+
+
+	public function modifierEcran($taille, $marque, $types, $quantite, $id)
+	{
+		$req = "UPDATE ecran SET taille = ?, marque = ?, types = ?,quantite = ? 
+        WHERE id_ecran = ?";
+		$stmt = PdoIpad::$monPdo->prepare($req);
+		$stmt->execute([$taille, $marque, $types, $quantite, $id]);
 	}
 
 

@@ -12,9 +12,8 @@ switch ($action) {
 	case 'historique':
 
 
-
 		// Récupération de la liste des iPads
-		$lesIpad = $pdo->getInfosIpad($premier, $parPage);
+		$lesIpad = $pdo->getInfosIpad();
 
 		// Inclusion de la vue
 		include("views/historique.php");

@@ -185,16 +185,16 @@
 <div class="search">
 
 	<div class="search__cp">
-		<input type="text" name="text" id="tags" placeholder="CP...">
+		<input type="text" name="text" id="tags" placeholder="Ecran...">
 	</div>
 	<div class="search__btn__icloud">
-		<input type="button" value="icloud">
+		<input type="button" value="Marque">
 	</div>
 	<div class="search__btn__Code__Dev">
-		<input type="button" value="Code Dev">
+		<input type="button" value="Types">
 	</div>
 	<div class="search__btn__Reportable">
-		<input type="button" value="Reportable">
+		<input type="button" value="Quantite">
 	</div>
 	<div class="search__btn__moins">
 		<input type="button" value="-">
@@ -212,16 +212,16 @@
 		</li>
 
 		<li>
-			<p style="border-left:1px solid black;">CP</p>
+			<p style="border-left:1px solid black;">Taille</p>
 		</li>
 		<li>
-			<p> icloud</p>
+			<p> Marque</p>
 		</li>
 		<li>
-			<p>Code dev</p>
+			<p>Types</p>
 		</li>
 		<li>
-			<p style="border-right:none;">Date récap</p>
+			<p style="border-right:none;">Quantite</p>
 		</li>
 	</ul>
 
@@ -234,8 +234,9 @@
 		<div class="info">
 			<li><input type="checkbox" class="check-ipad" name="idsEcran[]" value="<?= $ecran['id_ecran'] ?>"></li>
 			<li class="taille"><?= $ecran['taille'] ?></li>
-			>
 			<li><?= $ecran['marque'] ?></li>
+			<li><?= $ecran['types'] ?></li>
+			<li><?= $ecran['quantite'] ?></li>
 		</div>
 	<?php endforeach; ?>
 
