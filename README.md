@@ -29,7 +29,28 @@ Ecran / PC :
 - Table BDD + Donnée Factice
 - lien NavBar (Header)
 - controleur gestionEcran / gestionPC
-- vue gestionEcran / gestionPC
+- vue gestionEcran / gestionPCc
 - ajout du controleur dans index.php
 - faire les case affichage/ajout/modifications/suppression
->>>>>>> fa782592eddd89d8b29954d19048a12f73f394cb
+
+
+Jeudi 21 --- Vendredi 22 : 
+ECRAN
+Controleur => affichage/modification/suppression/ajout
+Vue => Modif/Ajout => Même Formulaire avec juste les champs pré remplis pour la modif
+SQL => requête
+En-tête cliquable qui filtre le 'tableau' lorsque l'on clique dessus
+
+=> POINT vendredi matin
+
+
+semaine du 25 --- 29 décembre : 
+PC (idem que pour écran)
+Controleur => affichage/modification/suppression/ajout
+Vue => Modif/Ajout => Même Formulaire avec juste les champs pré remplis pour la modif
+SQL => requête
+En-tête cliquable qui filtre le 'tableau' lorsque l'on clique dessus
++ Champs de recherche qui cherche par numéro de série
+
+=> POINT vendredi 29 décembre
+
