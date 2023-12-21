@@ -21,10 +21,8 @@ body {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   display: block;
   justify-content: center;
-  
- 
 }
-.container__card__input{
+.container__card__input {
   padding-top: 30px;
 }
 
@@ -47,7 +45,7 @@ body {
   opacity: 0.5;
 }
 
-.container__card__login::placeholder{
+.container__card__login::placeholder {
   color: black;
 }
 
@@ -71,97 +69,38 @@ body {
 .container__card__login__btn:hover {
   background-color: #215f91;
 }
-input[type=login],input[type=password] {
-  width:100%; 
-  max-width:250px;
-  border-radius:4px;
-  margin:8px 80px;
-  outline:none;
-  padding:30px;
-  box-sizing:border-box;
+input[type="login"],
+input[type="password"] {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 4px;
+  margin: 8px 80px;
+  outline: none;
+  padding: 30px;
+  box-sizing: border-box;
 }
-input[type=login],input[type=password]{
-  height:35px 
+input[type="login"],
+input[type="password"] {
+  height: 35px;
 }
-  .input-icone input[type=login] ,input[type=password]{
-  padding-left:35px; 
+.input-icone input[type="login"],
+input[type="password"] {
+  padding-left: 35px;
 }
-.input-icone{
-  position:relative; 
+.input-icone {
+  position: relative;
 }
-.input-icone i{
-  position:absolute;
-   left: 80px;; 
-   top:10px; 
-   /*gestion du placement des icones*/
-   padding: 10px 8px; 
-   color:#fff;
+.input-icone i {
+  position: absolute;
+  left: 80px;
+  top: 10px;
+  /*gestion du placement des icones*/
+  padding: 10px 8px;
+  color: #fff;
 }
-input[type=login]:hover{
-  background: #f2f2f2; 
-}
-.input[type=password]:hover{
+input[type="login"]:hover {
   background: #f2f2f2;
 }
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'poppins', sans-serif;
+.input[type="password"]:hover {
+  background: #f2f2f2;
 }
-
-.menu ul {
-  display: flex;
-  justify-content:space-around;
-  padding: 30px;
-  margin: 0;
-  list-style: none;
-  background:#405A73 ;
-}
-.menu li:hover{
-  background:#273746 ;
-  border-radius: 10px;
-}
-
-.menu ul li {
-  display: inline-block;
-  position: relative;
-  margin-right: 20px;
-  font-size: 1.5em;
-}
-
-.menu ul li a {
-  text-decoration: none;
-  color: white; /* Couleur du texte des liens */
-  padding: 10px; /* Espacement interne des liens */
-  display: block;
-}
-
-.menu ul li ul {
-  display: none;
-  position: absolute;
-  min-width: 100px;
-  font-size: 0.5em;
-
-}
-
-.menu ul li:hover ul {
-  display: block;
-  left: 0;
-}
-@media screen and (max-width:768px){
-  .menu ul{
-      flex-direction: column;
-      padding: 10px;
-      justify-content: center;
-      align-items: center;
-  }
-  .menu ul li{
-      font-size: 1em;
-      margin-bottom: 10px;
-
-  }
-}
-
-
