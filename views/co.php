@@ -6,6 +6,7 @@
 <style>
 	body {
 		background-color: #273746;
+		font-family: 'poppins', sans-serif;
 	}
 
 	.container {
@@ -25,14 +26,6 @@
 		text-align: center;
 		color: white;
 		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-		display: block;
-		justify-content: center;
-
-
-	}
-
-	.container__card__input {
-		padding-top: 30px;
 	}
 
 	.container__card h2 {
@@ -41,10 +34,9 @@
 	}
 
 	.container__card__login {
-		display: block;
-		box-sizing: border-box;
+		width: 100%;
 		max-width: 300px;
-		margin: 0 auto 20px auto;
+		margin: 8px auto;
 		padding: 10px 15px;
 		border: none;
 		border-radius: 5px;
@@ -54,17 +46,13 @@
 		opacity: 0.5;
 	}
 
-	.container__card__login::placeholder {
-		color: black;
-	}
-
 	.container__card__login:focus {
 		outline: none;
+		opacity: 1;
 	}
 
 	.container__card__login__btn {
 		margin-top: 50px;
-		margin-bottom: 20px;
 		padding: 10px 40px;
 		border: none;
 		border-radius: 5px;
@@ -79,54 +67,43 @@
 		background-color: #215f91;
 	}
 
-	input[type=login],
-	input[type=password] {
-		width: 100%;
-		max-width: 250px;
-		border-radius: 4px;
-		margin: 8px 80px;
-		outline: none;
-		padding: 30px;
-		box-sizing: border-box;
-	}
-
-	input[type=login],
-	input[type=password] {
-		height: 35px
-	}
-
-	.input-icone input[type=login],
-	input[type=password] {
-		padding-left: 35px;
-	}
-
 	.input-icone {
 		position: relative;
+		margin-bottom: 20px;
 	}
 
 	.input-icone i {
 		position: absolute;
-		left: 80px;
-		;
-		top: 10px;
-		/*gestion du placement des icones*/
-		padding: 10px 8px;
+		left: 75px;
+		top: 2%;
 		color: #fff;
+		padding: 10px 8px;
+		transition: color 0.3s;
 	}
 
-	input[type=login]:hover {
-		background: #f2f2f2;
-	}
-
-	.input[type=password]:hover {
-		background: #f2f2f2;
-	}
-
-	* {
-		margin: 0;
-		padding: 0;
+	/* Styles d'input */
+	input[type=text],
+	input[type=password] {
+		width: 100%;
+		max-width: 250px;
+		border-radius: 4px;
+		margin: 8px auto;
+		outline: none;
+		padding: 10px 35px;
+		/* Padding l'icône */
 		box-sizing: border-box;
-		font-family: 'poppins', sans-serif;
+	}
+
+	input[type=text]:focus+i,
+	input[type=password]:focus+i {
+		color: #3389c2;
+		/* couleur icônes au focus */
+	}
+
+	/* Hover inputs */
+	input[type=text]:hover,
+	input[type=password]:hover {
+		background: #ebebeb;
 	}
 </style>
 
@@ -137,19 +114,15 @@
 			<form method="post" action="index.php?uc=connexion&action=valideConnexion">
 				<div class="container__card__input">
 					<div class="input-icone">
-						<label for="login"></label>
-						<input type="login" class="container__card__login" name="login" id="login" placeholder=" Username">
+						<input type="text" class="container__card__login" name="login" id="login" placeholder="Username">
 						<i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
 					</div>
 					<div class="input-icone">
-						<label for="mdp"></label>
-						<input type="password" class="container__card__login" name="mdp" id="mdp" placeholder=" Password">
+						<input type="password" class="container__card__login" name="mdp" id="mdp" placeholder="Password">
 						<i class="fa fa-lock fa-lg fa-fw" aria-hidden="true"></i>
-						<div>
-						</div>
-
-						<input type="submit" class="container__card__login__btn" value="Login" name="valider">
 					</div>
+					<input type="submit" class="container__card__login__btn" value="Login" name="valider">
+				</div>
 			</form>
 		</div>
 	</div>
