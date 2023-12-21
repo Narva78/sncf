@@ -34,27 +34,25 @@ switch ($action) {
 					$pdo->supprimerEcran($id);
 				}
 			}
-			// Redirection vers la page d'historique
-			header('Location: index.php?uc=gestionEcran&action=gestionEcran');
-			exit;
 		}
 		// Redirection vers la page historique
 		header("Location: index.php?uc=gestionEcran&action=gestionEcran");
 		ob_end_flush();
 		break;
 
-	case 'ajouterIpad':
+	case 'ajouterEcran':
 		// Vérification de la présence des données du formulaire dans la requête
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajouter'])) {
 
 			//Récupération des données du formulaire
 			$taille = $_POST['taille']; // Récupère la valeur du champ cp		
 			$marque = $_POST['marque'];
-			$qunatite = $_POST['quantite'];
+			$types = $_POST['types'];
+			$quantite = $_POST['quantite'];
 
 
 			// Ajout de l'iPad
-			$pdo->ajouterIpad($taille, $marque, $quantite);
+			$pdo->ajouterEcran($taille, $marque, $types, $quantite);
 
 			//Affichage de la notification popup avec SweetAlert2
 			//Pop-up de notification d'ajout
@@ -63,33 +61,34 @@ switch ($action) {
                 <script>
                     Swal.fire({
                         title: 'Succès',
-                        text: 'Ipad ajouté avec succès. taille: $taille, marque: $marque, quantité: $quantite',
+                        text: 'Ecran ajouté avec succès. taille: $taille, marque: $marque, quantité: $quantite',
                         icon: 'success',
                         showConfirmButton: false,
                         timer: 3000
                     }).then(() => {
-                        window.location.href = 'index.php?uc=historique&action=historique';
+                        window.location.href = 'index.php?uc=gestionEcran&action=gestionEcran';
                     });
                 </script>";
 
 			exit;
 		} else {
 			// Formulaire non envoyé : affichage de la page d'ajout d'iPad
-			include("views/ajoutIpad.php");
+			include("views/ajoutEcran.php");
 			exit;
 		}
 		break;
 
-	case 'modifierIpad':
+	case 'modifierEcran':
 		if (isset($_POST['modifier'])) {
 			// Récupération des données du formulaire
 			$id_form = $_POST['id'];
 			$taille = $_POST['taille'];
-			$quantite = $_POST['quantite'];
 			$marque = $_POST['marque'];
+			$types = $_POST["types"];
+			$quantite = $_POST['quantite'];
 
 
-			$pdo->modifierIpad($taille, $marque, $quantite, $id_form);
+			$pdo->modifierEcran($taille, $marque, $quantite, $id_form);
 
 			//pop-up de confirmation de modification
 			echo "
@@ -97,12 +96,12 @@ switch ($action) {
                     <script>
                         Swal.fire({
                             title: 'Succès',
-                            text: 'Ipad ajouté avec succès. CP: $taille, Nom: $marque, Prenom: $quantite',
+                            text: 'Ecran ajouté avec succès. Taille: $taille, Marque: $marque, Type: $types, Quantité: $quantite',
                             icon: 'success',
                             showConfirmButton: false,
                             timer: 3000
                         }).then(() => {
-                            window.location.href = 'index.php?uc=historique&action=historique';
+                            window.location.href = 'index.php?uc=gestionEcran&action=gestionEcran';
                         });
                     </script>";
 			exit;
@@ -116,7 +115,7 @@ switch ($action) {
 				$quantite = $unEcran['quantite'];
 				$marque = $unEcran['marque'];
 			}
-			include("views/modifierIpad.php");
+			include("views/modifierEcran.php");
 			exit;
 		}
 		break;

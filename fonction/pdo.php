@@ -193,9 +193,14 @@ class PdoIpad
 
 	public function ajouterEcran($taille, $marque, $types, $quantite)
 	{
-		$req = "INSERT INTO ecran (taille, marque, types, quantite) VALUES (?, ?, ?, ?)";
+		$req = "INSERT INTO ecran (taille, marque, types, quantite) VALUES (:taille, :marque, :types, :quantite)";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$taille, $marque, $types, $quantite]);
+		$stmt->bindParam(':taille', $taille);
+		$stmt->bindParam(':marque', $marque);
+		$stmt->bindParam(':types', $types);
+		$stmt->bindParam(':quantite', $quantite);
+		$stmt->execute();
+
 		$nombreLignesAffectees = $stmt->rowCount();
 		if ($nombreLignesAffectees > 0) {
 			echo "L'insertion a été effectuée avec succès.";
@@ -215,9 +220,9 @@ class PdoIpad
 	}
 
 
-	public function modifierEcran($taille, $marque, $types, $quantite, $id)
+	public function modifierEcran($id, $taille, $marque, $types, $quantite)
 	{
-		$req = "UPDATE ecran SET taille = ?, marque = ?, types = ?,quantite = ? 
+		$req = "UPDATE ecran SET id = ? , taille = ?, marque = ?, types = ?,quantite = ? 
         WHERE id_ecran = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
 		$stmt->execute([$taille, $marque, $types, $quantite, $id]);
