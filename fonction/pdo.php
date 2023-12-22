@@ -220,13 +220,13 @@ class PdoIpad
 	}
 
 
-	public function modifierEcran($id, $taille, $marque, $types, $quantite)
+	public function modifierEcran($id_ecran, $taille, $marque, $types, $quantite)
 	{
-		$req = "UPDATE ecran SET id = ?, taille = ?, marque = ?, types = ?,quantite = ? 
-        WHERE id_ecran = ?";
+		$req = "UPDATE ecran SET taille = ?, marque = ?, types = ?, quantite = ? WHERE id_ecran = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$id, $taille, $marque, $types, $quantite]);
+		$stmt->execute([$taille, $marque, $types, $quantite, $id_ecran]);
 	}
+
 
 
 	// Fonction qui permet de récupérer les informations de la Table ipad en fonction du cp de l'agent
