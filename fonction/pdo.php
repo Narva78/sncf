@@ -222,10 +222,10 @@ class PdoIpad
 
 	public function modifierEcran($id, $taille, $marque, $types, $quantite)
 	{
-		$req = "UPDATE ecran SET id = ? , taille = ?, marque = ?, types = ?,quantite = ? 
+		$req = "UPDATE ecran SET id = ?, taille = ?, marque = ?, types = ?,quantite = ? 
         WHERE id_ecran = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$taille, $marque, $types, $quantite, $id]);
+		$stmt->execute([$id, $taille, $marque, $types, $quantite]);
 	}
 
 

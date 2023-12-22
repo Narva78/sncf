@@ -175,8 +175,12 @@
 							<li><?= $ecran['marque'] ?></li>
 							<li><?= $ecran['types'] ?></li>
 							<li><input type="number" value="<?= $ecran['quantite'] ?>"></li>
+							<a href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>">Modifier</a>
+
 						</ul>
+
 					</div>
+
 				<?php endforeach; ?>
 			</section>
 
@@ -191,4 +195,5 @@
 	});
 </script>
 <input type="submit" name="supprimer" value="Supprimer">
+
 </form>

@@ -88,7 +88,7 @@ switch ($action) {
 			$quantite = $_POST['quantite'];
 
 
-			$pdo->modifierEcran($taille, $marque, $quantite, $id_form);
+			$pdo->modifierEcran($id_form, $taille, $marque, $types, $quantite);
 
 			//pop-up de confirmation de modification
 			echo "
@@ -112,6 +112,7 @@ switch ($action) {
 			foreach ($lesEcrans as $unEcran) {
 				$id_true = $unEcran['id_ecran'];
 				$taille = $unEcran['taille'];
+				$types = $unEcran['types'];
 				$quantite = $unEcran['quantite'];
 				$marque = $unEcran['marque'];
 			}
