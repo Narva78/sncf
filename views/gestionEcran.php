@@ -121,13 +121,13 @@
 	<div class="reunion">
 		<div class="search">
 			<div class="search__btn__icloud">
-				<input type="button" value="Marque" onclick="sortItems('Marque')" />
+				<input type="button" value="Marque" />
 			</div>
 			<div class="search__btn__Code__Dev">
-				<input type="button" value="Types" onclick="sortItems('Types')" />
+				<input type="button" value="Types" />
 			</div>
 			<div class="search__btn__Reportable">
-				<input type="button" value="Quantite" onclick="sortItems('Quantite')" />
+				<input type="button" value="Quantite" />
 			</div>
 
 			<div class="search__btn__moins">
@@ -137,6 +137,9 @@
 				<a href="index.php?uc=gestionEcran&action=ajouterEcran"><input type="button" value="+" /></a>
 			</div>
 		</div>
+
+
+
 		<form action="index.php?uc=gestionEcran&action=supprimerEcran" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer les Ecrans sélectionnés ?');">
 
 			<section class="checkbox">
@@ -146,19 +149,48 @@
 							<input type="checkbox" id="check-all" />
 						</li>
 						<li>
-							<span>Taille</span>
+							<span class="entete" data-sort="taille">Taille</span>
 						</li>
 						<li>
-							<span>Marque</span>
+							<span class="entete" data-sort="marque">Marque</span>
 						</li>
 						<li>
-							<span>Types</span>
+							<span class="entete" data-sort="types">Types</span>
 						</li>
 						<li>
-							<span style="border-right: none">Quantite</span>
+							<span style="border-right: none" class="entete" data-sort="quantite">Quantite</span>
 						</li>
 					</ul>
 				</div>
+
+
+				<SCRipt>
+					function sortTable(attribute) {
+						const table = document.querySelector('.checkbox__ligne');
+						const rows = Array.from(table.querySelectorAll('ul'));
+
+						const sortedRows = rows.slice(1).sort((rowA, rowB) => {
+							const valueA = rowA.querySelector(`li:nth-child(${attribute + 1})`).textContent;
+							const valueB = rowB.querySelector(`li:nth-child(${attribute + 1})`).textContent;
+							return valueA.localeCompare(valueB, {
+								numeric: true
+							});
+						});
+
+						table.innerHTML = '';
+						table.appendChild(rows[0]); // Ajouter à nouveau l'en-tête
+						sortedRows.forEach(row => table.appendChild(row));
+					}
+
+					const headers = document.querySelectorAll('.entete');
+					headers.forEach(header => {
+						header.addEventListener('click', () => {
+							const attribute = header.dataset.sort;
+							sortTable(attribute);
+						});
+					});
+				</SCRipt>
+
 
 				<?php
 				if (!isset($lesEcrans) || empty($lesEcrans))
@@ -175,13 +207,13 @@
 							<li><?= $ecran['marque'] ?></li>
 							<li><?= $ecran['types'] ?></li>
 							<li><input type="number" value="<?= $ecran['quantite'] ?>"></li>
-							<a href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>">Modifier</a>
-
 						</ul>
 
 					</div>
 
 				<?php endforeach; ?>
+				<a href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>"><input type="button" value="Modifier" name="modifier"></a>
+
 			</section>
 
 	</div>
