@@ -1,5 +1,7 @@
 <title>Informations iPad</title>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
 	body {
 		background-color: #273746;
@@ -78,9 +80,20 @@
 		color: #fff;
 	}
 
+	.search__btn__plus input:hover {
+		background: #006102;
+		transition: .7s;
+
+	}
+
 	.search__btn__moins input {
 		background: red;
 		color: #fff;
+	}
+
+	.search__btn__moins input:hover {
+		background: #A00C00;
+		transition: .7s;
 	}
 
 	.search__btn__Reportable input {
@@ -88,14 +101,30 @@
 		color: #fff;
 	}
 
+	.search__btn__Reportable input:hover {
+		background: #670070;
+		transition: .7s;
+	}
+
 	.search__btn__Code__Dev input {
 		background: #405a73;
 		color: #fff;
 	}
 
+	.search__btn__Code__Dev input:hover {
+		background: #395066;
+		transition: .7s;
+
+	}
+
 	.search__btn__icloud input {
 		background: #3389c2;
 		color: #fff;
+	}
+
+	.search__btn__icloud input:hover {
+		background: #266894;
+		transition: .7s;
 	}
 
 	.search__btn__modif input {
@@ -116,31 +145,36 @@
 
 
 <body>
-
-	<h1>Historique Ecran</h1>
-	<div class="reunion">
-		<div class="search">
-			<div class="search__btn__icloud">
-				<input type="button" value="Marque" />
-			</div>
-			<div class="search__btn__Code__Dev">
-				<input type="button" value="Types" />
-			</div>
-			<div class="search__btn__Reportable">
-				<input type="button" value="Quantite" />
-			</div>
-
-			<div class="search__btn__moins">
-				<input type="button" value="-" />
-			</div>
-			<div class="search__btn__plus">
-				<a href="index.php?uc=gestionEcran&action=ajouterEcran"><input type="button" value="+" /></a>
-			</div>
-		</div>
+	<form action="index.php?uc=gestionEcran&action=supprimerEcran" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer les Ecrans sélectionnés ?');">
 
 
+		<h1>Historique Ecran</h1>
+		<div class="reunion">
+			<div class="search">
+				<div class="search__btn__icloud">
+					<input type="button" value="Marque" />
+				</div>
+				<div class="search__btn__Code__Dev">
+					<input type="button" value="Types" />
+				</div>
+				<div class="search__btn__Reportable">
+					<input type="button" value="Quantite" />
+				</div>
 
-		<form action="index.php?uc=gestionEcran&action=supprimerEcran" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer les Ecrans sélectionnés ?');">
+				<div class="search__btn__moins">
+					<input type="submit" name="supprimer" value="Supprimer">
+				</div>
+				<div class="search__btn__plus">
+					<a href="index.php?uc=gestionEcran&action=ajouterEcran"><input type="button" value="+" /></a>
+				</div>
+				<div class="search__btn__modif">
+					<a href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>"><input type="button" value="Modifier" name="modifier"></a>
+
+				</div>
+			</div>
+
+
+
 
 			<section class="checkbox">
 				<div class="checkbox__ligne">
@@ -163,34 +197,16 @@
 					</ul>
 				</div>
 
-
-				<SCRipt>
-					function sortTable(attribute) {
-						const table = document.querySelector('.checkbox__ligne');
-						const rows = Array.from(table.querySelectorAll('ul'));
-
-						const sortedRows = rows.slice(1).sort((rowA, rowB) => {
-							const valueA = rowA.querySelector(`li:nth-child(${attribute + 1})`).textContent;
-							const valueB = rowB.querySelector(`li:nth-child(${attribute + 1})`).textContent;
-							return valueA.localeCompare(valueB, {
-								numeric: true
-							});
-						});
-
-						table.innerHTML = '';
-						table.appendChild(rows[0]); // Ajouter à nouveau l'en-tête
-						sortedRows.forEach(row => table.appendChild(row));
-					}
-
-					const headers = document.querySelectorAll('.entete');
-					headers.forEach(header => {
-						header.addEventListener('click', () => {
-							const attribute = header.dataset.sort;
-							sortTable(attribute);
+				<script>
+					$(document).ready(function() {
+						// Rend chaque en-tête de colonne cliquable
+						$('.search .entete').click(function() {
+							// Code à exécuter lorsqu'un en-tête de colonne est cliqué
+							console.log("En-tête de colonne cliqué !");
+							// Tu peux ajouter ici le code pour trier la colonne ou effectuer d'autres actions
 						});
 					});
-				</SCRipt>
-
+				</script>
 
 				<?php
 				if (!isset($lesEcrans) || empty($lesEcrans))
@@ -203,20 +219,19 @@
 							<li>
 								<input type="checkbox" class="check-ipad" name="idsEcran[]" value="<?= $ecran['id_ecran'] ?>" />
 							</li>
-							<li><?= $ecran['taille'] ?> cm</li>
+							<li><?= $ecran['taille'] ?></li>
 							<li><?= $ecran['marque'] ?></li>
 							<li><?= $ecran['types'] ?></li>
-							<li><input type="number" value="<?= $ecran['quantite'] ?>"></li>
+							<li><?= $ecran['quantite'] ?></li>
 						</ul>
 
 					</div>
 
 				<?php endforeach; ?>
-				<a href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>"><input type="button" value="Modifier" name="modifier"></a>
 
 			</section>
 
-	</div>
+		</div>
 </body>
 <script>
 	// Cocher/décocher toutes les checkbox, JS vanilla
@@ -226,6 +241,5 @@
 		checkIpad.forEach((check) => (check.checked = checkAll.checked));
 	});
 </script>
-<input type="submit" name="supprimer" value="Supprimer">
 
 </form>
