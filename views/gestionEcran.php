@@ -185,7 +185,7 @@
 							<span class="entete" data-sort="taille">Taille</span>
 						</li>
 						<li>
-							<span class="entete" data-sort="marque" onclick="getInfosEcran();">Marque</span>
+							<span class="entete" data-sort="marque">Marque</span>
 						</li>
 						<li>
 							<span class="entete" data-sort="types">Types</span>
@@ -193,6 +193,7 @@
 						<li>
 							<span style="border-right: none" class="entete" data-sort="quantite">Quantite</span>
 						</li>
+
 					</ul>
 				</div>
 

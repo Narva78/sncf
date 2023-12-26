@@ -86,6 +86,14 @@ class PdoIpad
 		return $lesLignes;
 	}
 
+	public function getAllPC()
+	{
+		$req = "SELECT * FROM pc";
+		$res = PdoIpad::$monPdo->query($req);
+		$lesLignes = $res->fetchall();
+		return $lesLignes;
+	}
+
 
 	//Fonction qui permet de récupérer tous les CP de la table Ipad
 	public function getAllCp()
@@ -99,6 +107,14 @@ class PdoIpad
 	public function getAlltaille()
 	{
 		$req = "SELECT DISTINCT taille FROM ecran";
+		$res = PdoIpad::$monPdo->query($req);
+		$lesLignes = $res->fetchall();
+		return $lesLignes;
+	}
+
+	public function getSerie()
+	{
+		$req = "SELECT DISTINCT n°serie FROM pc";
 		$res = PdoIpad::$monPdo->query($req);
 		$lesLignes = $res->fetchall();
 		return $lesLignes;
@@ -132,6 +148,14 @@ class PdoIpad
 		return $lesLignes;
 	}
 
+	public function getInfosPC()
+	{
+		$req = "SELECT * FROM pc ORDER BY n°serie ASC";
+		$res = PdoIpad::$monPdo->query($req);
+		$lesLignes = $res->fetchall();
+		return $lesLignes;
+	}
+
 	// Fonction getInfosIpadById($id) qui permet de récupérer les informations de la Table ipad en fonction de l'id
 	public function getInfosIpadById($id)
 	{
@@ -148,6 +172,15 @@ class PdoIpad
 		$lesLignes = $res->fetchall();
 		return $lesLignes;
 	}
+
+	public function getInfosPCById($id)
+	{
+		$req = "SELECT * FROM pc WHERE id_pc = '$id'";
+		$res = PdoIpad::$monPdo->query($req);
+		$lesLignes = $res->fetchall();
+		return $lesLignes;
+	}
+
 
 
 	//Fonction qui permet de savoir le nombre total d'ipad dans la table ipad
@@ -172,6 +205,13 @@ class PdoIpad
 	public function supprimerEcran($id)
 	{
 		$req = "DELETE FROM ecran WHERE id_ecran = ?";
+		$stmt = PdoIpad::$monPdo->prepare($req);
+		$stmt->execute([$id]);
+	}
+
+	public function supprimerPC($id)
+	{
+		$req = "DELETE FROM pc WHERE id_pc = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
 		$stmt->execute([$id]);
 	}
@@ -209,6 +249,24 @@ class PdoIpad
 		}
 	}
 
+	public function ajouterPC($n°serie, $marque, $types, $quantite)
+	{
+		$req = "INSERT INTO pc (n°serie, marque, modele, quantite) VALUES (:n°serie, :marque, :modele, :quantite)";
+		$stmt = PdoIpad::$monPdo->prepare($req);
+		$stmt->bindParam(':n°serie', $n°serie);
+		$stmt->bindParam(':marque', $marque);
+		$stmt->bindParam(':modele', $modele);
+		$stmt->bindParam(':quantite', $quantite);
+		$stmt->execute();
+
+		$nombreLignesAffectees = $stmt->rowCount();
+		if ($nombreLignesAffectees > 0) {
+			echo "L'insertion a été effectuée avec succès.";
+		} else {
+			echo "Échec de l'insertion.";
+		}
+	}
+
 	//Fonction qui permet de modifier un ipad dans la table ipad en fonction des paramètres
 	//modifierIpad($cp, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable)
 	public function modifierIpad($cp, $nom, $prenom, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable, $id)
@@ -225,6 +283,13 @@ class PdoIpad
 		$req = "UPDATE ecran SET taille = ?, marque = ?, types = ?, quantite = ? WHERE id_ecran = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
 		$stmt->execute([$taille, $marque, $types, $quantite, $id_ecran]);
+	}
+
+	public function modifierPC($id_ecran, $n°serie, $marque, $modele, $quantite)
+	{
+		$req = "UPDATE pc SET n°serie = ?, marque = ?, modele = ?, quantite = ? WHERE id_ecran = ?";
+		$stmt = PdoIpad::$monPdo->prepare($req);
+		$stmt->execute([$n°serie, $marque, $modele, $quantite, $id_ecran]);
 	}
 
 

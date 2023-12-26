@@ -11,50 +11,50 @@ $action = $_REQUEST['action'];
 switch ($action) {
 	case 'gestionPC':
 
-		$lesEcrans = $pdo->getInfosEcran();
+		$lesPC = $pdo->getInfosPC();
 
 
 
 		// Inclusion de la vue
-		include("views/gestionEcran.php");
+		include("views/gestionPC.php");
 		break;
 
 
-	case 'supprimerEcran':
+	case 'supprimerPC':
 		ob_start();
 		// Vérification de la présence des données du formulaire dans la requête
 		//Si Methode POST, si le bouton supprimer est cliqué et si les id des iPads sont présents 
-		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer']) && isset($_POST['idsEcran'])) {
+		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supprimer']) && isset($_POST['idsPC'])) {
 			// Récupération des identifiants des iPad à supprimer
-			$idsEcran = $_POST['idsEcran'];
+			$idsPC = $_POST['idsPC'];
 
-			if (is_array($idsEcran)) {
+			if (is_array($idsPC)) {
 				// Suppression des iPad dans la base de données
-				foreach ($idsEcran as $id) {
-					$pdo->supprimerEcran($id);
+				foreach ($idsPC as $id) {
+					$pdo->supprimerPC($id);
 				}
 			}
 			// Redirection vers la page d'historique
-			header('Location: index.php?uc=gestionEcran&action=gestionEcran');
+			header('Location: index.php?uc=gestionEcran&action=gestionPC');
 			exit;
 		}
 		// Redirection vers la page historique
-		header("Location: index.php?uc=gestionEcran&action=gestionEcran");
+		header("Location: index.php?uc=gestionEcran&action=gestionPC");
 		ob_end_flush();
 		break;
 
-	case 'ajouterIpad':
+	case 'ajouterPC':
 		// Vérification de la présence des données du formulaire dans la requête
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajouter'])) {
 
 			//Récupération des données du formulaire
-			$taille = $_POST['taille']; // Récupère la valeur du champ cp		
-			$marque = $_POST['marque'];
-			$qunatite = $_POST['quantite'];
+			$marque = $_POST['marque']; // Récupère la valeur du champ cp		
+			$n°serie = $_POST['n°serie'];
+			$modele = $_POST['modele'];
 
 
 			// Ajout de l'iPad
-			$pdo->ajouterIpad($taille, $marque, $quantite);
+			$pdo->ajouterPC($n°serie, $marque, $modele);
 
 			//Affichage de la notification popup avec SweetAlert2
 			//Pop-up de notification d'ajout
@@ -63,7 +63,7 @@ switch ($action) {
                 <script>
                     Swal.fire({
                         title: 'Succès',
-                        text: 'Ipad ajouté avec succès. taille: $taille, marque: $marque, quantité: $quantite',
+                        text: 'Ipad ajouté avec succès. taille: $n°serie, marque: $marque, quantité: $modele',
                         icon: 'success',
                         showConfirmButton: false,
                         timer: 3000
@@ -75,21 +75,21 @@ switch ($action) {
 			exit;
 		} else {
 			// Formulaire non envoyé : affichage de la page d'ajout d'iPad
-			include("views/ajoutIpad.php");
+			include("views/ajoutPC.php");
 			exit;
 		}
 		break;
 
-	case 'modifierIpad':
+	case 'modifierPC':
 		if (isset($_POST['modifier'])) {
 			// Récupération des données du formulaire
 			$id_form = $_POST['id'];
-			$taille = $_POST['taille'];
-			$quantite = $_POST['quantite'];
+			$n°serie = $_POST['n°serie'];
+			$modele = $_POST['modele'];
 			$marque = $_POST['marque'];
 
 
-			$pdo->modifierIpad($taille, $marque, $quantite, $id_form);
+			$pdo->modifierPC($n°serie, $marque, $modele, $id_form);
 
 			//pop-up de confirmation de modification
 			echo "
@@ -97,26 +97,26 @@ switch ($action) {
                     <script>
                         Swal.fire({
                             title: 'Succès',
-                            text: 'Ipad ajouté avec succès. CP: $taille, Nom: $marque, Prenom: $quantite',
+                            text: 'Ipad ajouté avec succès. CP: $n°serie, Nom: $marque, Prenom: $modele',
                             icon: 'success',
                             showConfirmButton: false,
                             timer: 3000
                         }).then(() => {
-                            window.location.href = 'index.php?uc=historique&action=historique';
+                            window.location.href = 'index.php?uc=gestionPC&action=gestionPC';
                         });
                     </script>";
 			exit;
 		} else {
 			// Affichage de la page de modification de l'iPad
 			$id = $_GET['id'];
-			$lesEcrans = $pdo->getInfosEcranById($id);
-			foreach ($lesEcrans as $unEcran) {
-				$id_true = $unEcran['id_ecran'];
-				$taille = $unEcran['taille'];
-				$quantite = $unEcran['quantite'];
-				$marque = $unEcran['marque'];
+			$lesPC = $pdo->getInfosEcranById($id);
+			foreach ($lesPC as $unPC) {
+				$id_true = $unPC['id_PC'];
+				$taille = $unPC['n°serie'];
+				$quantite = $unPC['modele'];
+				$marque = $unPC['marque'];
 			}
-			include("views/modifierIpad.php");
+			include("views/modifierPC.php");
 			exit;
 		}
 		break;
