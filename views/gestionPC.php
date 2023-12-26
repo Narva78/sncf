@@ -145,7 +145,7 @@
 
 
 <body>
-	<form action="index.php?uc=gestionEcran&action=supprimerPC" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer les PC sélectionnés ?');">
+	<form action="index.php?uc=gestionPC&action=supprimerPC" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer les PC sélectionnés ?');">
 
 
 		<h1>Historique PC</h1>

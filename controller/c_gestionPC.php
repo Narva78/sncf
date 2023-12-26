@@ -35,11 +35,11 @@ switch ($action) {
 				}
 			}
 			// Redirection vers la page d'historique
-			header('Location: index.php?uc=gestionEcran&action=gestionPC');
+			header('Location: index.php?uc=gestionPC&action=gestionPC');
 			exit;
 		}
 		// Redirection vers la page historique
-		header("Location: index.php?uc=gestionEcran&action=gestionPC");
+		header("Location: index.php?uc=gestionPC&action=gestionPC");
 		ob_end_flush();
 		break;
 
