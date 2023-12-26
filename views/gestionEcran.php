@@ -47,7 +47,7 @@
 
 	.checkbox ul {
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
+		grid-template-columns: repeat(6, 1fr);
 		gap: 20px;
 		list-style: none;
 		margin-bottom: 10px;
@@ -168,7 +168,6 @@
 					<a href="index.php?uc=gestionEcran&action=ajouterEcran"><input type="button" value="+" /></a>
 				</div>
 				<div class="search__btn__modif">
-					<a href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>"><input type="button" value="Modifier" name="modifier"></a>
 
 				</div>
 			</div>
@@ -186,7 +185,7 @@
 							<span class="entete" data-sort="taille">Taille</span>
 						</li>
 						<li>
-							<span class="entete" data-sort="marque">Marque</span>
+							<span class="entete" data-sort="marque" onclick="getInfosEcran();">Marque</span>
 						</li>
 						<li>
 							<span class="entete" data-sort="types">Types</span>
@@ -223,6 +222,8 @@
 							<li><?= $ecran['marque'] ?></li>
 							<li><?= $ecran['types'] ?></li>
 							<li><?= $ecran['quantite'] ?></li>
+							<a href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>"><input type="button" value="Modifier" name="modifier"></a>
+
 						</ul>
 
 					</div>
