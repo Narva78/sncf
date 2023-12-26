@@ -151,6 +151,9 @@
 		<h1>Historique PC</h1>
 		<div class="reunion">
 			<div class="search">
+				<div class="search__cp">
+					<input type="text" name="text" id="tags" placeholder="n°serie...">
+				</div>
 				<div class="search__btn__icloud">
 					<input type="button" value="Marque" />
 				</div>
