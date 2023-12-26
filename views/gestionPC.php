@@ -148,7 +148,7 @@
 	<form action="index.php?uc=gestionEcran&action=supprimerPC" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer les PC sélectionnés ?');">
 
 
-		<h1>Historique Ecran</h1>
+		<h1>Historique PC</h1>
 		<div class="reunion">
 			<div class="search">
 				<div class="search__btn__icloud">
@@ -217,13 +217,13 @@
 					<div class="checkbox__ligne">
 						<ul>
 							<li>
-								<input type="checkbox" class="check-ipad" name="idsPC[]" value="<?= $PC['id_PC'] ?>" />
+								<input type="checkbox" class="check-ipad" name="idsPC[]" value="<?= $PC['id_pc'] ?>" />
 							</li>
 							<li><?= $PC['n°serie'] ?></li>
 							<li><?= $PC['marque'] ?></li>
 							<li><?= $PC['modele'] ?></li>
 							<li><?= $PC['quantite'] ?></li>
-							<a href="index.php?uc=gestionEcran&action=modifierPC&id=<?= $PC['id_PC'] ?>"><input type="button" value="Modifier" name="modifier"></a>
+							<a href="index.php?uc=gestionEcran&action=modifierPC&id=<?= $PC['id_pc'] ?>"><input type="button" value="Modifier" name="modifier"></a>
 
 						</ul>
 

@@ -111,7 +111,7 @@ switch ($action) {
 			$id = $_GET['id'];
 			$lesPC = $pdo->getInfosEcranById($id);
 			foreach ($lesPC as $unPC) {
-				$id_true = $unPC['id_PC'];
+				$id_true = $unPC['id_pc'];
 				$taille = $unPC['n°serie'];
 				$quantite = $unPC['modele'];
 				$marque = $unPC['marque'];
