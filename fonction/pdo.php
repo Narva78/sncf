@@ -114,7 +114,7 @@ class PdoIpad
 
 	public function getSerie()
 	{
-		$req = "SELECT DISTINCT n°serie FROM pc";
+		$req = "SELECT DISTINCT nSerie FROM pc";
 		$res = PdoIpad::$monPdo->query($req);
 		$lesLignes = $res->fetchall();
 		return $lesLignes;
@@ -150,7 +150,7 @@ class PdoIpad
 
 	public function getInfosPC()
 	{
-		$req = "SELECT * FROM pc ORDER BY n°serie ASC";
+		$req = "SELECT * FROM pc ORDER BY nSerie ASC";
 		$res = PdoIpad::$monPdo->query($req);
 		$lesLignes = $res->fetchall();
 		return $lesLignes;
@@ -249,11 +249,11 @@ class PdoIpad
 		}
 	}
 
-	public function ajouterPC($n°serie, $marque, $types, $quantite)
+	public function ajouterPC($nSerie, $marque, $modele, $quantite)
 	{
-		$req = "INSERT INTO pc (n°serie, marque, modele, quantite) VALUES (:n°serie, :marque, :modele, :quantite)";
+		$req = "INSERT INTO pc (nSerie, marque, modele, quantite) VALUES (:nSerie, :marque, :modele, :quantite)";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->bindParam(':n°serie', $n°serie);
+		$stmt->bindParam(':nSerie', $nSerie);
 		$stmt->bindParam(':marque', $marque);
 		$stmt->bindParam(':modele', $modele);
 		$stmt->bindParam(':quantite', $quantite);
@@ -285,11 +285,11 @@ class PdoIpad
 		$stmt->execute([$taille, $marque, $types, $quantite, $id_ecran]);
 	}
 
-	public function modifierPC($id_ecran, $n°serie, $marque, $modele, $quantite)
+	public function modifierPC($id_pc, $nSerie, $marque, $modele, $quantite)
 	{
-		$req = "UPDATE pc SET n°serie = ?, marque = ?, modele = ?, quantite = ? WHERE id_ecran = ?";
+		$req = "UPDATE pc SET nSerie = ?, marque = ?, modele = ?, quantite = ? WHERE id_pc = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$n°serie, $marque, $modele, $quantite, $id_ecran]);
+		$stmt->execute([$nSerie, $marque, $modele, $quantite, $id_pc]);
 	}
 
 

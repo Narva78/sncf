@@ -61,8 +61,8 @@
 <div class="container">
 	<div class="container__card">
 		<div class="ajout__ecran">
-			<form action="index.php?uc=gestionEcran&action=ajouterEcran" method="POST">
-				<input type="text" name="taille" required placeholder="Taille">
+			<form action="index.php?uc=gestionPC&action=ajouterPC" method="POST">
+				<input type="text" name="nSerie" required placeholder="nSerie">
 
 
 				<select name="marque" id="marque">
@@ -71,12 +71,9 @@
 				</select>
 
 
-				<select name="marque" id="marque">
-					<option value="plat">plat</option>
-					<option value="incurvé">incurvé</option>
-				</select>
+				<input type="text" name="modele" id="modele" placeholder="modele">
 
-				<input type="number" name="quantite" required placeholder="Quantité">
+				<input type="text" name="quantite" required placeholder="Quantité">
 
 				<input type="submit" name="ajouter" value="Ajouter">
 

@@ -47,8 +47,18 @@
 
 	.checkbox ul {
 		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		list-style: none;
+		margin-bottom: 10px;
+		border: 1px solid #fff;
+		background: #fff;
+		border-radius: 10px;
+		padding: 10px;
+		box-sizing: border-box;
+	}
+
+	.checkbox__ligne1 {
 		grid-template-columns: repeat(6, 1fr);
-		gap: 20px;
 		list-style: none;
 		margin-bottom: 10px;
 		border: 1px solid #fff;
@@ -78,58 +88,81 @@
 	.search__btn__plus input {
 		background: green;
 		color: #fff;
+		width: 170px;
 	}
 
 	.search__btn__plus input:hover {
 		background: #006102;
 		transition: .7s;
 
+
 	}
 
 	.search__btn__moins input {
 		background: red;
 		color: #fff;
+		width: 170px;
+
+
 	}
 
 	.search__btn__moins input:hover {
 		background: #A00C00;
 		transition: .7s;
+
 	}
 
 	.search__btn__Reportable input {
-		background: #76448a;
+		background: #582900;
 		color: #fff;
+		width: 170px;
+
+
 	}
 
 	.search__btn__Reportable input:hover {
-		background: #670070;
+		background: #591A00;
 		transition: .7s;
 	}
 
 	.search__btn__Code__Dev input {
-		background: #405a73;
+		background: #76448a;
 		color: #fff;
+		width: 170px;
+
+
 	}
 
 	.search__btn__Code__Dev input:hover {
-		background: #395066;
+		background: #670070;
 		transition: .7s;
 
 	}
 
 	.search__btn__icloud input {
-		background: #3389c2;
+		background: #405a73;
 		color: #fff;
+		width: 170px;
+
+
 	}
 
 	.search__btn__icloud input:hover {
-		background: #266894;
+		background: #395066;
 		transition: .7s;
 	}
 
-	.search__btn__modif input {
-		background: pink;
+	.search__btn__taille input {
+		background: #3389c2;
 		color: #fff;
+		width: 170px;
+
+
+	}
+
+	.search__btn__taille input:hover {
+		background: #266894;
+		transition: .7s;
 	}
 
 	input {
@@ -141,6 +174,20 @@
 	input {
 		cursor: pointer;
 	}
+
+	.checkbox__ligne ul a {
+		color: #3389c2;
+		text-align: center;
+		border-radius: 25px;
+		cursor: pointer;
+		background: #3389c2;
+		align-items: center;
+	}
+
+	.checkbox__ligne ul a:hover {
+		transition: .5s;
+		background: aqua;
+	}
 </style>
 
 
@@ -151,6 +198,10 @@
 		<h1>Historique Ecran</h1>
 		<div class="reunion">
 			<div class="search">
+				<div class="search__btn__taille">
+					<input type="button" value="Taille" />
+
+				</div>
 				<div class="search__btn__icloud">
 					<input type="button" value="Marque" />
 				</div>
@@ -160,15 +211,11 @@
 				<div class="search__btn__Reportable">
 					<input type="button" value="Quantite" />
 				</div>
-
+				<div class="search__btn__plus">
+					<a href="index.php?uc=gestionEcran&action=ajouterEcran"><input type="button" value="Ajouter" /></a>
+				</div>
 				<div class="search__btn__moins">
 					<input type="submit" name="supprimer" value="Supprimer">
-				</div>
-				<div class="search__btn__plus">
-					<a href="index.php?uc=gestionEcran&action=ajouterEcran"><input type="button" value="+" /></a>
-				</div>
-				<div class="search__btn__modif">
-
 				</div>
 			</div>
 
@@ -215,7 +262,7 @@
 
 				foreach ($lesEcrans as $ecran) : ?>
 					<div class="checkbox__ligne">
-						<ul>
+						<ul class="checkbox__ligne1">
 							<li>
 								<input type="checkbox" class="check-ipad" name="idsEcran[]" value="<?= $ecran['id_ecran'] ?>" />
 							</li>
@@ -223,7 +270,7 @@
 							<li><?= $ecran['marque'] ?></li>
 							<li><?= $ecran['types'] ?></li>
 							<li><?= $ecran['quantite'] ?></li>
-							<a href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>"><input type="button" value="Modifier" name="modifier"></a>
+							<a href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>"></a>
 
 						</ul>
 

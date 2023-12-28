@@ -49,12 +49,13 @@ switch ($action) {
 
 			//Récupération des données du formulaire
 			$marque = $_POST['marque']; // Récupère la valeur du champ cp		
-			$n°serie = $_POST['n°serie'];
+			$nSerie = $_POST['nSerie'];
 			$modele = $_POST['modele'];
+			$quantite = $_POST['quantite'];
 
 
 			// Ajout de l'iPad
-			$pdo->ajouterPC($n°serie, $marque, $modele);
+			$pdo->ajouterPC($nSerie, $marque, $modele, $quantite);
 
 			//Affichage de la notification popup avec SweetAlert2
 			//Pop-up de notification d'ajout
@@ -63,12 +64,12 @@ switch ($action) {
                 <script>
                     Swal.fire({
                         title: 'Succès',
-                        text: 'Ipad ajouté avec succès. taille: $n°serie, marque: $marque, quantité: $modele',
+                        text: 'Ipad ajouté avec succès. taille: $nSerie, marque: $marque, quantité: $modele',
                         icon: 'success',
                         showConfirmButton: false,
                         timer: 3000
                     }).then(() => {
-                        window.location.href = 'index.php?uc=historique&action=historique';
+                        window.location.href = 'index.php?uc=gestionPC&action=gestionPC';
                     });
                 </script>";
 
@@ -84,12 +85,13 @@ switch ($action) {
 		if (isset($_POST['modifier'])) {
 			// Récupération des données du formulaire
 			$id_form = $_POST['id'];
-			$n°serie = $_POST['n°serie'];
+			$nSerie = $_POST['nSerie'];
 			$modele = $_POST['modele'];
 			$marque = $_POST['marque'];
+			$quantite = $_POST['quantite'];
 
 
-			$pdo->modifierPC($n°serie, $marque, $modele, $id_form);
+			$pdo->modifierPC($nSerie, $marque, $modele, $quantite, $id_form);
 
 			//pop-up de confirmation de modification
 			echo "
@@ -97,7 +99,7 @@ switch ($action) {
                     <script>
                         Swal.fire({
                             title: 'Succès',
-                            text: 'Ipad ajouté avec succès. CP: $n°serie, Nom: $marque, Prenom: $modele',
+                            text: 'Ipad ajouté avec succès. CP: $nSerie, Nom: $marque, Prenom: $modele',
                             icon: 'success',
                             showConfirmButton: false,
                             timer: 3000
@@ -109,12 +111,13 @@ switch ($action) {
 		} else {
 			// Affichage de la page de modification de l'iPad
 			$id = $_GET['id'];
-			$lesPC = $pdo->getInfosEcranById($id);
+			$lesPC = $pdo->getInfosPCById($id);
 			foreach ($lesPC as $unPC) {
 				$id_true = $unPC['id_pc'];
-				$taille = $unPC['n°serie'];
-				$quantite = $unPC['modele'];
+				$nSerie = $unPC['nSerie'];
 				$marque = $unPC['marque'];
+				$modele = $unPC['modele'];
+				$quantite = $unPC['quantite'];
 			}
 			include("views/modifierPC.php");
 			exit;

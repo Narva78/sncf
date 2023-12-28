@@ -23,12 +23,12 @@
 		justify-content: center;
 		align-items: center;
 		gap: 30px;
-		margin-top: 45px;
+		margin-top: 20px;
 
 	}
 
 	.ajout__ecran form input {
-		height: 30px;
+		height: 40px;
 		width: 300px;
 		border-radius: 10px;
 	}
@@ -41,44 +41,44 @@
 
 	.ajout__ecran form input[type=submit]:hover {
 		background: #3564DB;
-		transition: .3s;
+		transition: .2s;
 	}
 
 	h2 {
 		text-align: center;
 		color: #fff;
 		margin-top: 50px;
-		font-size: 3rem;
 	}
 
 	select {
-		height: 30px;
+		height: 40px;
 		width: 300px;
 		border-radius: 10px;
 	}
 </style>
-<h2>AjoutEcran</h2>
+
+<h2>ModifierEcran</h2>
 <div class="container">
 	<div class="container__card">
 		<div class="ajout__ecran">
-			<form action="index.php?uc=gestionEcran&action=ajouterEcran" method="POST">
-				<input type="text" name="taille" required placeholder="Taille">
+			<form action="index.php?uc=gestionPC&action=modifierPC" method="post">
+				<input type="hidden" name="id" value="<?php echo '$id'; ?>"> <!-- Champ caché pour l'ID -->
+
+				<input type="text" name="nSerie" value="<?php echo $unPC['nSerie']; ?>">
 
 
 				<select name="marque" id="marque">
-					<option value="samsung">samsung</option>
-					<option value="dell">dell</option>
+					<option value="<?php echo $unPC['marque']; ?>">samsung</option>
+					<option value="<?php echo $unPC['marque']; ?>">dell</option>
 				</select>
 
 
-				<select name="marque" id="marque">
-					<option value="plat">plat</option>
-					<option value="incurvé">incurvé</option>
-				</select>
+				<input type="text" name="modele" id="modele" placeholder="modele" value="<?php echo $unPC['modele']; ?>">
 
-				<input type="number" name="quantite" required placeholder="Quantité">
 
-				<input type="submit" name="ajouter" value="Ajouter">
+				<input type="text" id="quantite" name="quantite" value="<?php echo $unPC['quantite']; ?>">
+
+				<input type="submit" name="modifier" value="Modifier">
 
 			</form>
 

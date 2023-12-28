@@ -151,14 +151,14 @@
 		<h1>Historique PC</h1>
 		<div class="reunion">
 			<div class="search">
-				<div class="search__cp">
-					<input type="text" name="text" id="tags" placeholder="n°serie...">
+				<div class="search__nSerie">
+					<input type="text" name="text" id="tags" placeholder="nSerie...">
 				</div>
 				<div class="search__btn__icloud">
 					<input type="button" value="Marque" />
 				</div>
 				<div class="search__btn__Code__Dev">
-					<input type="button" value="n°serie" />
+					<input type="button" value="nSerie" />
 				</div>
 				<div class="search__btn__Reportable">
 					<input type="button" value="modele" />
@@ -168,7 +168,7 @@
 					<input type="submit" name="supprimer" value="Supprimer">
 				</div>
 				<div class="search__btn__plus">
-					<a href="index.php?uc=gestionEcran&action=ajouterPC"><input type="button" value="+" /></a>
+					<a href="index.php?uc=gestionPC&action=ajouterPC"><input type="button" value="+" /></a>
 				</div>
 				<div class="search__btn__modif">
 
@@ -185,7 +185,7 @@
 							<input type="checkbox" id="check-all" />
 						</li>
 						<li>
-							<span class="entete" data-sort="n°serie">n°serie</span>
+							<span class="entete" data-sort="nSerie">nSerie</span>
 						</li>
 						<li>
 							<span class="entete" data-sort="marque">Marque</span>
@@ -218,15 +218,15 @@
 
 				foreach ($lesPC as $PC) : ?>
 					<div class="checkbox__ligne">
-						<ul>
+						<ul class="pcList">
 							<li>
 								<input type="checkbox" class="check-ipad" name="idsPC[]" value="<?= $PC['id_pc'] ?>" />
 							</li>
-							<li><?= $PC['n°serie'] ?></li>
+							<li><?= $PC['nSerie'] ?></li>
 							<li><?= $PC['marque'] ?></li>
 							<li><?= $PC['modele'] ?></li>
 							<li><?= $PC['quantite'] ?></li>
-							<a href="index.php?uc=gestionEcran&action=modifierPC&id=<?= $PC['id_pc'] ?>"><input type="button" value="Modifier" name="modifier"></a>
+							<a href="index.php?uc=gestionPC&action=modifierPC&id=<?= $PC['id_pc'] ?>"><input type="button" value="Modifier" name="modifier"></a>
 
 						</ul>
 
@@ -234,7 +234,32 @@
 
 				<?php endforeach; ?>
 
+
+
 			</section>
+			<script>
+				// JavaScript pour la recherche
+				document.addEventListener('DOMContentLoaded', function() {
+					const searchInput = document.getElementById('tags');
+					const pcList = document.querySelectorAll('.pcList');
+
+					searchInput.addEventListener('input', function(e) {
+						const searchString = e.target.value.toLowerCase();
+
+						pcList.forEach(pc => {
+							const nSerie = pc.children[1].innerText.toLowerCase();
+							const marque = pc.children[2].innerText.toLowerCase();
+							const modele = pc.children[3].innerText.toLowerCase();
+
+							if (nSerie.includes(searchString) || marque.includes(searchString) || modele.includes(searchString)) {
+								pc.style.display = 'block';
+							} else {
+								pc.style.display = 'none';
+							}
+						});
+					});
+				});
+			</script>
 
 		</div>
 </body>
