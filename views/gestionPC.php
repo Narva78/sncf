@@ -15,9 +15,14 @@
 
 	.search {
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: center;
 		gap: 20px;
 		margin-bottom: 20px;
+	}
+
+	.search input {
+		width: 170px;
 	}
 
 	h1 {
@@ -141,6 +146,39 @@
 	input {
 		cursor: pointer;
 	}
+
+	.checkbox__ligne ul a {
+		color: #3389c2;
+		text-align: center;
+		border-radius: 25px;
+		cursor: pointer;
+		background: #3389c2;
+	}
+
+	.checkbox__ligne ul a:hover {
+		transition: .5s;
+		background: aqua;
+	}
+
+	.checkbox__ligne1__modif {
+		background-color: blue;
+		width: 30px;
+		height: 30px;
+		border: none;
+		cursor: pointer;
+		transition: 0.3s;
+	}
+
+	.checkbox__ligne1 {
+		list-style: none;
+		margin-bottom: 10px;
+		border: 1px solid #fff;
+		background: #fff;
+		border-radius: 10px;
+		padding: 10px;
+		box-sizing: border-box;
+		align-items: center;
+	}
 </style>
 
 
@@ -168,7 +206,7 @@
 					<input type="submit" name="supprimer" value="Supprimer">
 				</div>
 				<div class="search__btn__plus">
-					<a href="index.php?uc=gestionPC&action=ajouterPC"><input type="button" value="+" /></a>
+					<a href="index.php?uc=gestionPC&action=ajouterPC"><input type="button" value="Ajouter" /></a>
 				</div>
 				<div class="search__btn__modif">
 
@@ -218,25 +256,24 @@
 
 				foreach ($lesPC as $PC) : ?>
 					<div class="checkbox__ligne">
-						<ul class="pcList">
-							<li>
-								<input type="checkbox" class="check-ipad" name="idsPC[]" value="<?= $PC['id_pc'] ?>" />
-							</li>
-							<li><?= $PC['nSerie'] ?></li>
-							<li><?= $PC['marque'] ?></li>
-							<li><?= $PC['modele'] ?></li>
-							<li><?= $PC['quantite'] ?></li>
-							<a href="index.php?uc=gestionPC&action=modifierPC&id=<?= $PC['id_pc'] ?>"><input type="button" value="Modifier" name="modifier"></a>
-
-						</ul>
-
+						<div class="checkbox_ligne1">
+							<ul class="pcList">
+								<li>
+									<input type="checkbox" class="check-ipad" name="idsPC[]" value="<?= $PC['id_pc'] ?>" />
+								</li>
+								<li><?= $PC['nSerie'] ?></li>
+								<li><?= $PC['marque'] ?></li>
+								<li><?= $PC['modele'] ?></li>
+								<li><?= $PC['quantite'] ?></li>
+								<li>
+									<a class="checkbox__ligne1__modif" href="index.php?uc=gestionPC&action=modifierPC&id=<?= $PC['id_pc'] ?>"></a>
+								</li>
+							</ul>
+						</div>
 					</div>
-
 				<?php endforeach; ?>
-
-
-
 			</section>
+
 			<script>
 				// JavaScript pour la recherche
 				document.addEventListener('DOMContentLoaded', function() {
@@ -263,6 +300,7 @@
 
 		</div>
 </body>
+
 <script>
 	// Cocher/décocher toutes les checkbox, JS vanilla
 	const checkAll = document.querySelector("#check-all");
