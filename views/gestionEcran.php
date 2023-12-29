@@ -172,6 +172,10 @@
 	}
 
 	input {
+		padding: 10px;
+		border-radius: 10px;
+		font-size: 1em;
+		border: none;
 		cursor: pointer;
 	}
 

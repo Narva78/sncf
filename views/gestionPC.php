@@ -144,6 +144,10 @@
 	}
 
 	input {
+		padding: 10px;
+		border-radius: 10px;
+		font-size: 1em;
+		border: none;
 		cursor: pointer;
 	}
 
@@ -289,7 +293,7 @@
 							const modele = pc.children[3].innerText.toLowerCase();
 
 							if (nSerie.includes(searchString) || marque.includes(searchString) || modele.includes(searchString)) {
-								pc.style.display = 'block';
+								pc.style.display = 'row';
 							} else {
 								pc.style.display = 'none';
 							}
