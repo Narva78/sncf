@@ -141,7 +141,12 @@
 		padding: 10px;
 		border-radius: 10px;
 		font-size: 1em;
+		border: none;
 		cursor: pointer;
+	}
+
+	.search-input {
+		cursor: initial;
 	}
 
 	.checkbox__ligne ul a {
@@ -235,17 +240,6 @@
 					</ul>
 				</div>
 
-				<script>
-					$(document).ready(function() {
-						// Rend chaque en-tête de colonne cliquable
-						$('.search .entete').click(function() {
-							// Code à exécuter lorsqu'un en-tête de colonne est cliqué
-							console.log("En-tête de colonne cliqué !");
-							// Tu peux ajouter ici le code pour trier la colonne ou effectuer d'autres actions
-						});
-					});
-				</script>
-
 				<?php
 				if (!isset($lesPC) || empty($lesPC))
 					// Définissez $lesPC ou gérez le cas où il n'est pas défini ou vide
@@ -286,7 +280,7 @@
 							const modele = pc.children[3].innerText.toLowerCase();
 
 							if (nSerie.includes(searchString) || marque.includes(searchString) || modele.includes(searchString)) {
-								pc.style.display = 'block';
+								pc.style.display = 'row';
 							} else {
 								pc.style.display = 'none';
 							}

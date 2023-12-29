@@ -15,6 +15,7 @@
 
 	.search {
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: center;
 		gap: 20px;
 		margin-bottom: 20px;
@@ -169,9 +170,7 @@
 		padding: 10px;
 		border-radius: 10px;
 		font-size: 1em;
-	}
-
-	input {
+		border: none;
 		cursor: pointer;
 	}
 
@@ -250,17 +249,6 @@
 						</li>
 					</ul>
 				</div>
-
-				<script>
-					$(document).ready(function() {
-						// Rend chaque en-tête de colonne cliquable
-						$('.search .entete').click(function() {
-							// Code à exécuter lorsqu'un en-tête de colonne est cliqué
-							console.log("En-tête de colonne cliqué !");
-							// Tu peux ajouter ici le code pour trier la colonne ou effectuer d'autres actions
-						});
-					});
-				</script>
 
 				<?php
 				if (!isset($lesEcrans) || empty($lesEcrans))
