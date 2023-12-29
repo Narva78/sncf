@@ -4,7 +4,6 @@
 // host = localhost
 // dbname = ipad
 // user = root
-// password = secret
 
 class PdoIpad
 {

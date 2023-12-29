@@ -47,7 +47,7 @@
 
 	.checkbox ul {
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
+		grid-template-columns: repeat(6, 1fr);
 		list-style: none;
 		margin-bottom: 10px;
 		border: 1px solid #fff;
@@ -58,7 +58,6 @@
 	}
 
 	.checkbox__ligne1 {
-		grid-template-columns: repeat(6, 1fr);
 		list-style: none;
 		margin-bottom: 10px;
 		border: 1px solid #fff;
@@ -66,6 +65,7 @@
 		border-radius: 10px;
 		padding: 10px;
 		box-sizing: border-box;
+		align-items: center;
 	}
 
 	.checkbox ul li {
@@ -181,12 +181,20 @@
 		border-radius: 25px;
 		cursor: pointer;
 		background: #3389c2;
-		align-items: center;
 	}
 
 	.checkbox__ligne ul a:hover {
 		transition: .5s;
 		background: aqua;
+	}
+
+	.checkbox__ligne1__modif {
+		background-color: blue;
+		width: 30px;
+		height: 30px;
+		border: none;
+		cursor: pointer;
+		transition: 0.3s;
 	}
 </style>
 
@@ -240,7 +248,6 @@
 						<li>
 							<span style="border-right: none" class="entete" data-sort="quantite">Quantite</span>
 						</li>
-
 					</ul>
 				</div>
 
@@ -270,8 +277,9 @@
 							<li><?= $ecran['marque'] ?></li>
 							<li><?= $ecran['types'] ?></li>
 							<li><?= $ecran['quantite'] ?></li>
-							<a href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>"></a>
-
+							<li>
+								<a class="checkbox__ligne1__modif" href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>"></a>
+							</li>
 						</ul>
 
 					</div>
