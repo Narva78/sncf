@@ -23,20 +23,24 @@
 		justify-content: center;
 		align-items: center;
 		gap: 30px;
-		margin-top: 45px;
-
+		margin-top: 40px;
 	}
 
 	.ajout__ecran form input {
-		height: 30px;
+		height: 50px;
 		width: 300px;
 		border-radius: 10px;
+		border: none;
+		font-size: 1.2rem;
 	}
 
 	.ajout__ecran form input[type=submit] {
+		height: 40px;
 		width: 150px;
 		background: #3498DB;
 		color: #fff;
+		border: none;
+		font-size: 1rem;
 	}
 
 	.ajout__ecran form input[type=submit]:hover {
@@ -52,9 +56,10 @@
 	}
 
 	select {
-		height: 30px;
+		height: 50px;
 		width: 300px;
 		border-radius: 10px;
+		font-size: 1.2rem;
 	}
 </style>
 <h2>AjoutEcran</h2>
@@ -62,18 +67,18 @@
 	<div class="container__card">
 		<div class="ajout__ecran">
 			<form action="index.php?uc=gestionPC&action=ajouterPC" method="POST">
-				<input type="text" name="nSerie" required placeholder="nSerie">
+				<input type="text" name="nSerie" required placeholder="  nSerie">
 
 
 				<select name="marque" id="marque">
-					<option value="samsung">samsung</option>
-					<option value="dell">dell</option>
+					<option value=" samsung"> samsung</option>
+					<option value=" dell"> dell</option>
 				</select>
 
 
-				<input type="text" name="modele" id="modele" placeholder="modele">
+				<input type="text" name="modele" id="modele" placeholder="  modele">
 
-				<input type="text" name="quantite" required placeholder="Quantité">
+				<input type="text" name="quantite" required placeholder="  Quantité">
 
 				<input type="submit" name="ajouter" value="Ajouter">
 

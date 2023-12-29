@@ -23,6 +23,7 @@
 
 	.search input {
 		width: 170px;
+		border: none;
 	}
 
 	h1 {
@@ -145,50 +146,50 @@
 		cursor: pointer;
 	}
 
-	<<<<<<< HEAD input {
+	input {
 		padding: 10px;
 		border-radius: 10px;
 		font-size: 1em;
 		border: none;
 		cursor: pointer;
+	}
 
-		=======.search-input {
-			cursor: initial;
-			>>>>>>>ba56d45ae5c6de5b46050b000882d4a0cfa44378
-		}
+	.search-input {
+		cursor: initial;
+	}
 
-		.checkbox__ligne ul a {
-			color: #3389c2;
-			text-align: center;
-			border-radius: 25px;
-			cursor: pointer;
-			background: #3389c2;
-		}
+	.checkbox__ligne ul a {
+		color: #3389c2;
+		text-align: center;
+		border-radius: 25px;
+		cursor: pointer;
+		background: #3389c2;
+	}
 
-		.checkbox__ligne ul a:hover {
-			transition: .5s;
-			background: aqua;
-		}
+	.checkbox__ligne ul a:hover {
+		transition: .5s;
+		background: aqua;
+	}
 
-		.checkbox__ligne1__modif {
-			background-color: blue;
-			width: 30px;
-			height: 30px;
-			border: none;
-			cursor: pointer;
-			transition: 0.3s;
-		}
+	.checkbox__ligne1__modif {
+		background-color: blue;
+		width: 30px;
+		height: 30px;
+		border: none;
+		cursor: pointer;
+		transition: 0.3s;
+	}
 
-		.checkbox__ligne1 {
-			list-style: none;
-			margin-bottom: 10px;
-			border: 1px solid #fff;
-			background: #fff;
-			border-radius: 10px;
-			padding: 10px;
-			box-sizing: border-box;
-			align-items: center;
-		}
+	.checkbox__ligne1 {
+		list-style: none;
+		margin-bottom: 10px;
+		border: 1px solid #fff;
+		background: #fff;
+		border-radius: 10px;
+		padding: 10px;
+		box-sizing: border-box;
+		align-items: center;
+	}
 </style>
 
 

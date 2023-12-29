@@ -23,20 +23,24 @@
 		justify-content: center;
 		align-items: center;
 		gap: 30px;
-		margin-top: 20px;
-
+		margin-top: 40px;
 	}
 
 	.ajout__ecran form input {
-		height: 40px;
+		height: 50px;
 		width: 300px;
 		border-radius: 10px;
+		border: none;
+		font-size: 1.2rem;
 	}
 
 	.ajout__ecran form input[type=submit] {
+		height: 40px;
 		width: 150px;
 		background: #3498DB;
 		color: #fff;
+		border: none;
+		font-size: 1rem;
 	}
 
 	.ajout__ecran form input[type=submit]:hover {
@@ -48,12 +52,14 @@
 		text-align: center;
 		color: #fff;
 		margin-top: 50px;
+		font-size: 3rem;
 	}
 
 	select {
-		height: 40px;
+		height: 50px;
 		width: 300px;
 		border-radius: 10px;
+		font-size: 1.2rem;
 	}
 </style>
 
@@ -64,19 +70,19 @@
 			<form action="index.php?uc=gestionPC&action=modifierPC" method="post">
 				<input type="hidden" name="id" value="<?php echo '$id'; ?>"> <!-- Champ caché pour l'ID -->
 
-				<input type="text" name="nSerie" value="<?php echo $unPC['nSerie']; ?>">
+				<input type="text" name="nSerie" value="  <?php echo $unPC['nSerie']; ?>">
 
 
 				<select name="marque" id="marque">
-					<option value="<?php echo $unPC['marque']; ?>">samsung</option>
-					<option value="<?php echo $unPC['marque']; ?>">dell</option>
+					<option value="samsung" <?php if ($marque == 'samsung') echo ' selected'; ?>> samsung</option>
+					<option value="dell" <?php if ($marque == 'dell') echo ' selected'; ?>> dell</option>
 				</select>
 
 
-				<input type="text" name="modele" id="modele" placeholder="modele" value="<?php echo $unPC['modele']; ?>">
+				<input type="text" name="modele" id="modele" placeholder="modele" value="  <?php echo $unPC['modele']; ?>">
 
 
-				<input type="text" id="quantite" name="quantite" value="<?php echo $unPC['quantite']; ?>">
+				<input type="text" id="quantite" name="quantite" value="  <?php echo $unPC['quantite']; ?>">
 
 				<input type="submit" name="modifier" value="Modifier">
 
