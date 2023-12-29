@@ -141,48 +141,54 @@
 		padding: 10px;
 		border-radius: 10px;
 		font-size: 1em;
+		border: none;
+		cursor: pointer;
 	}
 
-	input {
+	<<<<<<< HEAD input {
 		padding: 10px;
 		border-radius: 10px;
 		font-size: 1em;
 		border: none;
 		cursor: pointer;
-	}
 
-	.checkbox__ligne ul a {
-		color: #3389c2;
-		text-align: center;
-		border-radius: 25px;
-		cursor: pointer;
-		background: #3389c2;
-	}
+		=======.search-input {
+			cursor: initial;
+			>>>>>>>ba56d45ae5c6de5b46050b000882d4a0cfa44378
+		}
 
-	.checkbox__ligne ul a:hover {
-		transition: .5s;
-		background: aqua;
-	}
+		.checkbox__ligne ul a {
+			color: #3389c2;
+			text-align: center;
+			border-radius: 25px;
+			cursor: pointer;
+			background: #3389c2;
+		}
 
-	.checkbox__ligne1__modif {
-		background-color: blue;
-		width: 30px;
-		height: 30px;
-		border: none;
-		cursor: pointer;
-		transition: 0.3s;
-	}
+		.checkbox__ligne ul a:hover {
+			transition: .5s;
+			background: aqua;
+		}
 
-	.checkbox__ligne1 {
-		list-style: none;
-		margin-bottom: 10px;
-		border: 1px solid #fff;
-		background: #fff;
-		border-radius: 10px;
-		padding: 10px;
-		box-sizing: border-box;
-		align-items: center;
-	}
+		.checkbox__ligne1__modif {
+			background-color: blue;
+			width: 30px;
+			height: 30px;
+			border: none;
+			cursor: pointer;
+			transition: 0.3s;
+		}
+
+		.checkbox__ligne1 {
+			list-style: none;
+			margin-bottom: 10px;
+			border: 1px solid #fff;
+			background: #fff;
+			border-radius: 10px;
+			padding: 10px;
+			box-sizing: border-box;
+			align-items: center;
+		}
 </style>
 
 
@@ -194,7 +200,7 @@
 		<div class="reunion">
 			<div class="search">
 				<div class="search__nSerie">
-					<input type="text" name="text" id="tags" placeholder="nSerie...">
+					<input type="text" name="text" id="tags" class="search-input" placeholder="nSerie...">
 				</div>
 				<div class="search__btn__icloud">
 					<input type="button" value="Marque" />
@@ -241,17 +247,6 @@
 
 					</ul>
 				</div>
-
-				<script>
-					$(document).ready(function() {
-						// Rend chaque en-tête de colonne cliquable
-						$('.search .entete').click(function() {
-							// Code à exécuter lorsqu'un en-tête de colonne est cliqué
-							console.log("En-tête de colonne cliqué !");
-							// Tu peux ajouter ici le code pour trier la colonne ou effectuer d'autres actions
-						});
-					});
-				</script>
 
 				<?php
 				if (!isset($lesPC) || empty($lesPC))
