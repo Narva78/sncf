@@ -136,9 +136,6 @@
 		padding: 10px;
 		border-radius: 10px;
 		font-size: 1em;
-	}
-
-	input {
 		cursor: pointer;
 	}
 </style>
@@ -152,7 +149,7 @@
 		<div class="reunion">
 			<div class="search">
 				<div class="search__nSerie">
-					<input type="text" name="text" id="tags" placeholder="nSerie...">
+					<input type="text" name="text" id="tags" class="search-input" placeholder="nSerie...">
 				</div>
 				<div class="search__btn__icloud">
 					<input type="button" value="Marque" />
