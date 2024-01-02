@@ -6,6 +6,12 @@
 		margin: 2.5em;
 	}
 
+	input[type="text"],
+	input[type="number"],
+	select {
+		padding-left: 10px;
+	}
+
 	.container__card {
 		width: 400px;
 		height: 450px;
@@ -70,7 +76,7 @@
 			<form action="index.php?uc=gestionEcran&action=modifierEcran" method="post">
 				<input type="hidden" name="id" value="<?php echo $id; ?>"> <!-- Champ caché pour l'ID -->
 
-				<input type="text" id="taille" name="taille" value="  <?php echo $unEcran['taille']; ?>">
+				<input type="text" id="taille" name="taille" value="<?php echo $unEcran['taille']; ?>">
 
 
 				<select name="marque" id="marque">
@@ -84,7 +90,7 @@
 					<option value="incurvé" <?php if ($types == 'incurvé') echo ' selected'; ?>>incurvé</option>
 				</select>
 
-				<input type="number" id="quantite" name="quantite" value="  <?php echo $unEcran['quantite']; ?>">
+				<input type="number" id="quantite" name="quantite" value="<?php echo $unEcran['quantite']; ?>">
 
 				<input type="submit" name="modifier" value="Modifier">
 

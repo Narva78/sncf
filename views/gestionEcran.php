@@ -210,23 +210,20 @@
 
 <body>
 	<form action="index.php?uc=gestionEcran&action=supprimerEcran" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer les Ecrans sélectionnés ?');">
-
-
 		<h1>Historique Ecran</h1>
 		<div class="reunion">
 			<div class="search">
 				<div class="search__btn__taille">
-					<input type="button" value="Taille" />
-
+					<a href="index.php?uc=gestionEcran&action=gestionEcran&tri=taille&ordre=<?= ($tri === 'taille') ? $prochainOrdre : 'asc'; ?>"><input type="button" value="Taille" /></a>
 				</div>
 				<div class="search__btn__icloud">
-					<input type="button" value="Marque" />
+					<a href="index.php?uc=gestionEcran&action=gestionEcran&tri=marque&ordre=<?= ($tri === 'marque') ? $prochainOrdre : 'asc'; ?>"><input type="button" value="Marque" /></a>
 				</div>
 				<div class="search__btn__Code__Dev">
-					<input type="button" value="Types" />
+					<a href="index.php?uc=gestionEcran&action=gestionEcran&tri=types&ordre=<?= ($tri === 'types') ? $prochainOrdre : 'asc'; ?>"><input type="button" value="Types" /></a>
 				</div>
 				<div class="search__btn__Reportable">
-					<input type="button" value="Quantite" />
+					<a href="index.php?uc=gestionEcran&action=gestionEcran&tri=quantite&ordre=<?= ($tri === 'quantite') ? $prochainOrdre : 'asc'; ?>"><input type="button" value="Quantite" /></a>
 				</div>
 				<div class="search__btn__plus">
 					<a href="index.php?uc=gestionEcran&action=ajouterEcran"><input type="button" value="Ajouter" /></a>
@@ -235,8 +232,6 @@
 					<input type="submit" name="supprimer" value="Supprimer">
 				</div>
 			</div>
-
-
 
 
 			<section class="checkbox">
@@ -260,17 +255,6 @@
 					</ul>
 				</div>
 
-				<script>
-					$(document).ready(function() {
-						// Rend chaque en-tête de colonne cliquable
-						$('.search .entete').click(function() {
-							// Code à exécuter lorsqu'un en-tête de colonne est cliqué
-							console.log("En-tête de colonne cliqué !");
-							// Tu peux ajouter ici le code pour trier la colonne ou effectuer d'autres actions
-						});
-					});
-				</script>
-
 				<?php
 				if (!isset($lesEcrans) || empty($lesEcrans))
 					// Définissez $lesEcrans ou gérez le cas où il n'est pas défini ou vide
@@ -290,22 +274,17 @@
 								<a class="checkbox__ligne1__modif" href="index.php?uc=gestionEcran&action=modifierEcran&id=<?= $ecran['id_ecran'] ?>"></a>
 							</li>
 						</ul>
-
 					</div>
-
 				<?php endforeach; ?>
-
 			</section>
-
 		</div>
-</body>
-<script>
-	// Cocher/décocher toutes les checkbox, JS vanilla
-	const checkAll = document.querySelector("#check-all");
-	const checkIpad = document.querySelectorAll(".check-ipad");
-	checkAll.addEventListener("click", () => {
-		checkIpad.forEach((check) => (check.checked = checkAll.checked));
-	});
-</script>
+	</form>
 
-</form>
+	<script>
+		const checkAll = document.querySelector("#check-all");
+		const checkIpad = document.querySelectorAll(".check-ipad");
+		checkAll.addEventListener("click", () => {
+			checkIpad.forEach((check) => (check.checked = checkAll.checked));
+		});
+	</script>
+</body>

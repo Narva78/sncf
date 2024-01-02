@@ -10,15 +10,20 @@ $action = $_REQUEST['action'];
 
 switch ($action) {
 	case 'gestionEcran':
+		$tri = isset($_GET['tri']) ? $_GET['tri'] : '';
+		$ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
 
-		$lesEcrans = $pdo->getInfosEcran();
+		// Inverser l'ordre pour le prochain clic
+		$prochainOrdre = ($ordre === 'asc') ? 'desc' : 'asc';
 
+		if ($tri === 'taille' || $tri === 'marque' || $tri === 'types' || $tri === 'quantite') {
+			$lesEcrans = $pdo->getInfoEcranByVariable($tri, $ordre);
+		} else {
+			$lesEcrans = $pdo->getInfoEcranByVariable('', $ordre); // Ordre par défaut
+		}
 
-
-		// Inclusion de la vue
 		include("views/gestionEcran.php");
 		break;
-
 
 	case 'supprimerEcran':
 		ob_start();

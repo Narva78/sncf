@@ -11,7 +11,7 @@ class PdoIpad
 	private static $serveur = 'mysql:host=localhost';
 	private static $bdd = 'dbname=ipad';
 	private static $user = 'root';
-	private static $mdp = '';
+	private static $mdp = 'root';
 	private static $monPdo;
 	private static $monPdoIpad = null;
 
@@ -141,11 +141,38 @@ class PdoIpad
 
 	public function getInfosEcran()
 	{
-		$req = "SELECT * FROM ecran ORDER BY marque ASC";
+		$req = "SELECT * FROM ecran";
 		$res = PdoIpad::$monPdo->query($req);
 		$lesLignes = $res->fetchall();
 		return $lesLignes;
 	}
+
+	public function getInfoEcranByVariable($variable, $ordre)
+	{
+		$requete = "SELECT * FROM ecran";
+
+		switch ($variable) {
+			case 'taille':
+				$requete .= " ORDER BY taille $ordre";
+				break;
+			case 'marque':
+				$requete .= " ORDER BY marque $ordre";
+				break;
+			case 'types':
+				$requete .= " ORDER BY types $ordre";
+				break;
+			case 'quantite':
+				$requete .= " ORDER BY quantite $ordre";
+				break;
+			default:
+				break;
+		}
+
+		$res = PdoIpad::$monPdo->query($requete);
+		$lesLignes = $res->fetchAll();
+		return $lesLignes;
+	}
+
 
 	public function getInfosPC()
 	{
