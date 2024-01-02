@@ -101,7 +101,6 @@ switch ($action) {
 			$cp = $_POST['cp'];
 			$nom = $_POST['nom'];
 			$prenom = $_POST['prenom'];
-			$affectation = $_POST['affectation'];
 			$icloud = isset($_POST['Icloud']) ? 1 : 0;
 			$codeDev = isset($_POST['CodeDev']) ? 1 : 0;
 			$dateReception = $_POST['dateReception'];
@@ -110,7 +109,7 @@ switch ($action) {
 			$finRep = $_POST['finRep'];
 			$nonReparable = isset($_POST['nonReparable']) ? 1 : 0;
 
-			$pdo->modifierIpad($cp, $nom, $prenom, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable, $id_form);
+			$pdo->modifierIpad($cp, $nom, $prenom, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable, $id_form);
 
 			//pop-up de confirmation de modification
 			echo "

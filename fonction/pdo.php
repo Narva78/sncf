@@ -268,12 +268,12 @@ class PdoIpad
 
 	//Fonction qui permet de modifier un ipad dans la table ipad en fonction des paramètres
 	//modifierIpad($cp, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable)
-	public function modifierIpad($cp, $nom, $prenom, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable, $id)
+	public function modifierIpad($cp, $nom, $prenom, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable, $id)
 	{
-		$req = "UPDATE ipad SET cp_Agent = ?, nom = ?, prenom = ?,affectation = ?, Icloud = ?, CodeDev = ?, date_Reception = ?, date_Attribution = ?, debut_Rep = ?, fin_Rep = ?, non_reparable = ? 
+		$req = "UPDATE ipad SET cp_Agent = ?, nom = ?, prenom = ?, Icloud = ?, CodeDev = ?, date_Reception = ?, date_Attribution = ?, debut_Rep = ?, fin_Rep = ?, non_reparable = ? 
         WHERE id_ipad = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$cp, $nom, $prenom, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable, $id]);
+		$stmt->execute([$cp, $nom, $prenom, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable, $id]);
 	}
 
 
