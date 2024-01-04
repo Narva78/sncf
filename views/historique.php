@@ -435,7 +435,7 @@
 									<li class="cp_Agent"><?= $ipad['cp_Agent'] ?></li>
 									<li><?php echo $ipad['Icloud']; ?></li>
 									<li><?php echo $ipad['CodeDev']; ?></li>
-									<li><?= $ipad['date_Reception'] ?></li>
+									<li><?= $ipad['date_demande'] ?></li>
 								</ul>
 							</div>
 						</div>

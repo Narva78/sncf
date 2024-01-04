@@ -96,23 +96,36 @@
 		}
 	}
 </style>
+<?php
+if (isset($_SESSION['id'])) {
+	$userID = $pdo->getInfoUSerById($_SESSION['id']);
+	$is_admin = $userID['is_admin'] == 1;
+}
+?>
+
 <header>
-	<nav>
-		<div class="menu">
-			<ul class="menu__list">
-				<li class="menu__item">
-					<a class="menu__link" href="#">Historique</a>
-					<ul class="menu__sublist">
-						<li><a class="menu__link" href="index.php?uc=gestionEcran">Ecran</a></li>
-						<li><a class="menu__link" href="index.php?uc=historique">Ipad</a></li>
-						<li><a class="menu__link" href="index.php?uc=gestionPC">PC</a></li>
-					</ul>
-				</li>
-				<li class="menu__item"><a class="menu__link" href="index.php?uc=profil">Profil</a></li>
-				<li class="menu__item"><a class="menu__link" href="index.php?uc=stat">Statistiques</a></li>
-				<li class="menu__item"><a class="menu__link" href="views/exportation.php">Exportation</a></li>
-				<li class="menu__item menu__deco"><a class="menu__link" href="index.php?action=deconnexion">Se déconnecter</a></li>
-			</ul>
-		</div>
-	</nav>
+	<?php
+	if ($is_admin) {
+	?>
+		<nav>
+			<div class="menu">
+				<ul class="menu__list">
+					<li class="menu__item">
+						<a class="menu__link" href="index.php?uc=historique">Historique</a>
+						<ul class="menu__sublist">
+							<li><a class="menu__link" href="index.php?uc=gestionEcran">Ecran</a></li>
+							<li><a class="menu__link" href="index.php?uc=historique">Ipad</a></li>
+							<li><a class="menu__link" href="index.php?uc=gestionPC">PC</a></li>
+						</ul>
+					</li>
+					<li class="menu__item"><a class="menu__link" href="index.php?uc=profil">Profil</a></li>
+					<li class="menu__item"><a class="menu__link" href="index.php?uc=stat">Statistiques</a></li>
+					<li class="menu__item"><a class="menu__link" href="views/exportation.php">Exportation</a></li>
+					<li class="menu__item menu__deco"><a class="menu__link" href="index.php?uc=deconnexion">Se déconnecter</a></li>
+				</ul>
+			</div>
+		</nav>
+	<?php } else { ?>
+		<a class="menu__link" href="index.php?uc=deconnexion">Se déconnecter</a>
+	<?php } ?>
 </header>

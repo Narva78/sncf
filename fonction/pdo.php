@@ -11,7 +11,7 @@ class PdoIpad
 	private static $serveur = 'mysql:host=localhost';
 	private static $bdd = 'dbname=ipad';
 	private static $user = 'root';
-	private static $mdp = 'root';
+	private static $mdp = '';
 	private static $monPdo;
 	private static $monPdoIpad = null;
 
@@ -133,7 +133,7 @@ class PdoIpad
 	//fonction qui permet de récupérer les informations de la Table ipad en fonction de la premiere ligne et du nombre de ligne par page
 	public function getInfosIpad()
 	{
-		$req = "SELECT * FROM ipad ORDER BY date_Attribution DESC";
+		$req = "SELECT * FROM ipad";
 		$res = PdoIpad::$monPdo->query($req);
 		$lesLignes = $res->fetchall();
 		return $lesLignes;
@@ -243,12 +243,12 @@ class PdoIpad
 	}
 
 	//Fonction qui permet d'ajouter un ipad dans la table ipad en fonction des paramètres
-	public function ajouterIpad($cp, $nom, $prenom, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable)
+	public function ajouterIpad($cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev)
 	{
-		$req = "INSERT INTO ipad (cp_Agent, nom, prenom, affectation, Icloud, CodeDev, date_Reception, date_Attribution, debut_Rep, fin_Rep, non_reparable) 
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$req = "INSERT INTO ipad (cp_Agent, nom, inc, Code_RG, mytem, date_demande, type_demande, type_materiel, type_panne, observation,  icloud, codeDev) 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$cp, $nom, $prenom, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable]);
+		$stmt->execute([$cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev]);
 		$nombreLignesAffectees = $stmt->rowCount();
 		if ($nombreLignesAffectees > 0) {
 			echo "L'insertion a été effectuée avec succès.";
@@ -294,13 +294,13 @@ class PdoIpad
 	}
 
 	//Fonction qui permet de modifier un ipad dans la table ipad en fonction des paramètres
-	//modifierIpad($cp, $affectation, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable)
-	public function modifierIpad($cp, $nom, $prenom, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable, $id)
+	//modifierIpad($cp, $affectation, $icloud, $codeDev, $dateDemande, $dateAttribution, $debutRep, $finRep, $nonReparable)
+	public function modifierIpad($cp, $nom, $prenom, $icloud, $codeDev, $dateDemande, $dateAttribution, $debutRep, $finRep, $nonReparable, $id)
 	{
 		$req = "UPDATE ipad SET cp_Agent = ?, nom = ?, prenom = ?, Icloud = ?, CodeDev = ?, date_Reception = ?, date_Attribution = ?, debut_Rep = ?, fin_Rep = ?, non_reparable = ? 
         WHERE id_ipad = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$cp, $nom, $prenom, $icloud, $codeDev, $dateReception, $dateAttribution, $debutRep, $finRep, $nonReparable, $id]);
+		$stmt->execute([$cp, $nom, $prenom, $icloud, $codeDev, $dateDemande, $dateAttribution, $debutRep, $finRep, $nonReparable, $id]);
 	}
 
 

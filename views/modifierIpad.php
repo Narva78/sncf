@@ -122,41 +122,20 @@
 						</div>
 					</div>
 					<!-- Checkbox si l'Ipad est réparable -->
-					<div class="form-group form-check">
-						<input type="checkbox" class="form-check-input" id="reparable" name="reparable" <?php if ($nonReparable == 1) echo 'checked'; ?>>
-						<label class="form-check-label" for="nonReparable">Non réparable</label>
+
+
+
+
+					<!-- Date Reception (Obligatoire) et Date Attribution de l'Ipad -->
+					<div class=" row__1">
+						<label for="dateReception">Date demande :</label>
+						<input type="date" name="date_demade" value="<?php echo $dateDemande; ?>">
 					</div>
-				</div>
-
-
-
-				<!-- Date Reception (Obligatoire) et Date Attribution de l'Ipad -->
-				<div class=" row__1">
-					<div class="col-sm-6">
-						<label for="dateReception">Date de réception :</label>
-						<input type="date" class="form-control" id="dateReception" name="dateReception" value="<?php echo $dateReception; ?>">
-					</div>
-					<div class="col-sm-6">
-						<label for="dateAttribution">Date d'attribution :</label>
-						<input type="date" class="form-control" id="dateAttribution" name="dateAttribution" value="<?php echo $dateAttribution; ?>">
-					</div>
-				</div>
-				<!-- Date de début et de fin de réparation -->
-				<div class="row__2">
-					<div class="col-sm-6">
-						<label for="debutRep">Début de réparation :</label>
-						<input type="date" class="form-control" id="debutRep" name="debutRep" placeholder="jj/mm/aaaa" value="<?php echo $debutRep; ?>">
-					</div>
-					<div class="col-sm-6">
-						<label for="finRep">Fin de réparation :</label>
-						<input type="date" class="form-control" id="finRep" name="finRep" placeholder="jj/mm/aaaa" value="<?php echo $finRep; ?>">
-					</div>
-				</div>
 
 
 
 
-				<input type="submit" name="modifier" value="Modifier">
+					<input type="submit" name="modifier" value="Modifier">
 
 			</form>
 		</div>

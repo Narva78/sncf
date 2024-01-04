@@ -50,6 +50,10 @@ switch ($uc) {
 			include("controller/c_gestionPC.php");
 			break;
 		}
+	case 'deconnexion': {
+			include("controller/c_deconnexion.php");
+			break;
+		}
 	default: {
 			include("views/404.php"); // Page d'erreur 404
 			break;
