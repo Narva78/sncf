@@ -21,6 +21,11 @@
 		margin-bottom: 20px;
 	}
 
+	.checkbox__ligne li {
+		word-wrap: break-word;
+		word-break: break-all;
+	}
+
 	.search input {
 		border: none;
 	}

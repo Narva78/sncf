@@ -16,6 +16,72 @@
 		color: white;
 		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 	}
+
+
+
+	.container__card__info {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.container__card__description {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.container__card__description h3 {
+		background: purple;
+	}
+
+	.container__card__identification {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.container__card__identification h3 {
+		background: purple;
+	}
+
+	input[type=submit] {
+		height: 40px;
+		width: 130px;
+		background: #3498DB;
+		color: #fff;
+		border: none;
+		font-size: 1rem;
+		border-radius: 10px;
+		margin: 5px;
+
+	}
+
+	input[type=button] {
+		height: 40px;
+		width: 130px;
+		background: red;
+		color: #fff;
+		border: none;
+		font-size: 1rem;
+		border-radius: 10px;
+		margin: 5px;
+	}
+
+	.bouton {
+		margin: 30px;
+	}
+
+	input[type=text],
+	input[type=date],
+	select {
+		height: 30px;
+		width: 300px;
+		border-radius: 10px;
+	}
 </style>
 
 
@@ -92,6 +158,36 @@
 						<option value="autre Hors SAV xxx" <?php if ($typeD == 'autre Hors SAV xxx') echo ' selected'; ?>>Autre</option>
 
 					</select>
+
+					<div>
+						<label for="panne">Panne :</label>
+						<select id="panne" name="panne" required>
+
+							<option value="casse ecran" <?php if ($ifPanne == 'casse ecran') echo ' selected'; ?>>Casse écran</option> <!-- 0707 -->
+
+							<option value="oxydation" <?php if ($ifPanne == 'oxydation') echo ' selected'; ?>>Oxydation</option> <!-- 64 682 -->
+							<option value="casse vitre apparei photo" <?php if ($ifPanne == 'casse vitre apparei photo') echo ' selected'; ?>>Casse Vitre appreil Photo</option>
+							<option value="chassi abime" <?php if ($ifPanne == 'chassi abime') echo ' selected'; ?>>Chassi Abimé</option>
+							<option value="connecteur Hs" <?php if ($ifPanne == 'connecteur Hs') echo ' selected'; ?>>Connecteur HS</option>
+							<option value="connecteur jack Hs" <?php if ($ifPanne == 'connecteur jack Hs') echo ' selected'; ?>>Connecteur Jack Hs</option>
+							<option value="bug logiciel" <?php if ($ifPanne == 'bug logiciel') echo ' selected'; ?>>Bug Logiciel</option>
+							<option value="sim non reconnue" <?php if ($ifPanne == 'sim non reconnue') echo ' selected'; ?>>SIM non Reconnue</option>
+							<option value="panne reseau" <?php if ($ifPanne == 'panne reseau') echo ' selected'; ?>>Panne Réseau</option>
+							<option value="probleme connexion wifi" <?php if ($ifPanne == 'probleme connexion wifi') echo ' selected'; ?>>Problème Connection WIFI</option>
+							<option value="haut parleur HS" <?php if ($ifPanne == 'haut parleur HS') echo ' selected'; ?>>Haut Parleur HS</option>
+							<option value="Micro HS" <?php if ($ifPanne == 'Micro HS') echo ' selected'; ?>>Micro HS</option>
+							<option value="bouton Home HS" <?php if ($ifPanne == 'bouton Home HS') echo ' selected'; ?>>Bouton Home HS</option>
+							<option value="bouton power hs" <?php if ($ifPanne == 'bouton power hs') echo ' selected'; ?>>Bouton Power HS</option>
+							<option value="Bouton volume HS" <?php if ($ifPanne == 'Bouton volume HS') echo ' selected'; ?>>Bouton Volume HS</option>
+							<option value="ne chare plus" <?php if ($ifPanne == 'ne chare plus') echo ' selected'; ?>>Ne Charge Plus</option>
+							<option value="ne s'allume plus" <?php if ($ifPanne == "ne s'allume plus") echo ' selected'; ?>>Ne S'allume Plus</option>
+							<option value="autonomie faible" <?php if ($ifPanne == 'autonomie faible') echo ' selected'; ?>>Autonomie Faible</option>
+							<option value="Panne tactile" <?php if ($ifPanne == 'Panne tactile') echo ' selected'; ?>>Panne Tactile</option>
+							<option value="panne ecran" <?php if ($ifPanne == 'panne ecran') echo ' selected'; ?>>Panne Ecran</option>
+
+						</select>
+					</div>
+
 				</div>
 				<div>
 					<label for="typeMateriel">Type de matériel :</label>
@@ -100,34 +196,6 @@
 						<option value="Ipad2020" <?php if ($typeM == 'Ipad2020') echo ' selected'; ?>>Ipad 2020</option> <!-- 0707 -->
 
 						<option value="Ipad2017" <?php if ($typeM == 'Ipad2017') echo ' selected'; ?>>Ipad 2017</option> <!-- 64 682 -->
-
-					</select>
-				</div>
-				<div>
-					<label for="panne">Panne :</label>
-					<select id="panne" name="panne" required>
-
-						<option value="casse ecran" <?php if ($ifPanne == 'casse ecran') echo ' selected'; ?>>Casse écran</option> <!-- 0707 -->
-
-						<option value="oxydation" <?php if ($ifPanne == 'oxydation') echo ' selected'; ?>>Oxydation</option> <!-- 64 682 -->
-						<option value="casse vitre apparei photo" <?php if ($ifPanne == 'casse vitre apparei photo') echo ' selected'; ?>>Casse Vitre appreil Photo</option>
-						<option value="chassi abime" <?php if ($ifPanne == 'chassi abime') echo ' selected'; ?>>Chassi Abimé</option>
-						<option value="connecteur Hs" <?php if ($ifPanne == 'connecteur Hs') echo ' selected'; ?>>Connecteur HS</option>
-						<option value="connecteur jack Hs" <?php if ($ifPanne == 'connecteur jack Hs') echo ' selected'; ?>>Connecteur Jack Hs</option>
-						<option value="bug logiciel" <?php if ($ifPanne == 'bug logiciel') echo ' selected'; ?>>Bug Logiciel</option>
-						<option value="sim non reconnue" <?php if ($ifPanne == 'sim non reconnue') echo ' selected'; ?>>SIM non Reconnue</option>
-						<option value="panne reseau" <?php if ($ifPanne == 'panne reseau') echo ' selected'; ?>>Panne Réseau</option>
-						<option value="probleme connexion wifi" <?php if ($ifPanne == 'probleme connexion wifi') echo ' selected'; ?>>Problème Connection WIFI</option>
-						<option value="haut parleur HS" <?php if ($ifPanne == 'haut parleur HS') echo ' selected'; ?>>Haut Parleur HS</option>
-						<option value="Micro HS" <?php if ($ifPanne == 'Micro HS') echo ' selected'; ?>>Micro HS</option>
-						<option value="bouton Home HS" <?php if ($ifPanne == 'bouton Home HS') echo ' selected'; ?>>Bouton Home HS</option>
-						<option value="bouton power hs" <?php if ($ifPanne == 'bouton power hs') echo ' selected'; ?>>Bouton Power HS</option>
-						<option value="Bouton volume HS" <?php if ($ifPanne == 'Bouton volume HS') echo ' selected'; ?>>Bouton Volume HS</option>
-						<option value="ne chare plus" <?php if ($ifPanne == 'ne chare plus') echo ' selected'; ?>>Ne Charge Plus</option>
-						<option value="ne s'allume plus" <?php if ($ifPanne == "ne s'allume plus") echo ' selected'; ?>>Ne S'allume Plus</option>
-						<option value="autonomie faible" <?php if ($ifPanne == 'autonomie faible') echo ' selected'; ?>>Autonomie Faible</option>
-						<option value="Panne tactile" <?php if ($ifPanne == 'Panne tactile') echo ' selected'; ?>>Panne Tactile</option>
-						<option value="panne ecran" <?php if ($ifPanne == 'panne ecran') echo ' selected'; ?>>Panne Ecran</option>
 
 					</select>
 				</div>
@@ -157,6 +225,13 @@
 							Cochez si l'iPad possède un code de dévérouillage
 						</label>
 					</div>
+				</div>
+				<div>
+					<input type="text" name="imei_mat_defec" id="imei_mat_defec">
+				</div>
+				<div>
+					<input type="checkbox" id="imei">
+					<input type="text" name="imei_remp" id="imei_remp">
 				</div>
 			</div>
 			<div>

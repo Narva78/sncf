@@ -39,6 +39,11 @@
 		align-items: center;
 	}
 
+	.checkbox__ligne li {
+		word-wrap: break-word;
+		word-break: break-all;
+	}
+
 	.checkbox__enTete {
 		background-color: #405a73 !important;
 		color: #fff;

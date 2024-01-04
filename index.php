@@ -30,10 +30,7 @@ switch ($uc) {
 			include("controller/c_co.php");
 			break;
 		}
-	case 'profil': {
-			include("controller/c_profil.php");
-			break;
-		}
+
 	case 'historique': {
 			include("controller/c_historique.php");
 			break;

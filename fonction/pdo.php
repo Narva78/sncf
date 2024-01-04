@@ -59,15 +59,6 @@ class PdoIpad
 		return $laLigne;
 	}
 
-	//Fonction qui modifie le login et mdp
-	public function updateLogMdp($login, $mdp, $id)
-	{
-		$req = "UPDATE user 
-        SET login = ?, mdp = ?
-        WHERE id = ?";
-		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$login, $mdp, $id]);
-	}
 
 	//Fonction qui récupère toutes les infos de la table Ipad
 	public function getAllIpad()

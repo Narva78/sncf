@@ -2,13 +2,13 @@
 	.container {
 		display: flex;
 		flex-direction: column;
-		height: 80vh;
+		height: 120vh;
 		margin: 2.5em;
 	}
 
 	.container__card {
-		width: 520px;
-		height: 650px;
+		width: 620px;
+		height: 850px;
 		border: 1px solid #404040;
 		border-radius: 10px;
 		background: #405a73;
@@ -209,9 +209,9 @@
 				<h3>Identification du matériel</h3>
 				<div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" id="icloud" name="icloud">
-						<label class="form-check-label" for="icloud">
-							Cochez si l'iPad est lié à un compte iCloud
+						<input type="text" id="icloud" name="icloud">
+						<label for="icloud">
+							Icloud
 						</label>
 					</div>
 				</div>
@@ -219,19 +219,30 @@
 				<!-- Checkbox si l'Ipad possède un code de Déverouillage -->
 				<div>
 					<div>
-						<input type="checkbox" id="codeDev" name="codeDev">
-						<label for="codeDev">
-							Cochez si l'iPad possède un code de dévérouillage
+						<input type="text" id="codeDev" name="codeDev">
+						<label for="code Deverouillage">
+							code de dévérouillage
 						</label>
 					</div>
 				</div>
 			</div>
 
-		</form>
-		<div class="bouton">
-			<input type="submit" name="ajouter" value="Ajouter">
-			<a href="index.php?uc=historique"><input type="button" value="Retour"></a>
-		</div>
+			<div>
+				<input type="text" name="imei_mat_defec" id="imei_mat_defec">
+			</div>
+			<div>
+				<input type="checkbox" id="imei">
+				<input type="text" name="imei_remp" id="imei_remp">
+			</div>
 
+
+			<div class="bouton">
+				<input type="submit" name="ajouter" value="Ajouter">
+				<a href="index.php?uc=historique"><input type="button" value="Retour"></a>
+			</div>
+
+		</form>
+
+		<div>
+		</div>
 	</div>
-</div>

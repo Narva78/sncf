@@ -45,14 +45,20 @@
 	}
 
 	.checkbox__ligne {
-		width: 80%;
+		width: 90%;
 		margin-left: auto;
 		margin-right: auto;
+		font-size: 0.9rem;
+	}
+
+	.checkbox__ligne li {
+		word-wrap: break-word;
+		word-break: break-all;
 	}
 
 	.checkbox ul {
 		display: grid;
-		grid-template-columns: repeat(12, 1fr);
+		grid-template-columns: repeat(8, 1fr);
 		gap: 20px;
 		list-style: none;
 		margin-bottom: 10px;
@@ -224,9 +230,7 @@
 						<li>
 							<p>CP</p>
 						</li>
-						<li>
-							<p>Nom</p>
-						</li>
+
 						<li>
 							<p>INC</p>
 						</li>
@@ -242,16 +246,9 @@
 						<li>
 							<p>Type matériel</p>
 						</li>
-						<li>
-							<p>Type panne</p>
-						</li>
 
-						<li>
-							<p> icloud</p>
-						</li>
-						<li>
-							<p>Code dev</p>
-						</li>
+
+
 
 					</ul>
 				</div>
@@ -268,15 +265,12 @@
 							<ul class="pcList">
 								<li><input type="checkbox" class="check-ipad" name="idsIpad[]" value="<?= $ipad['id_ipad'] ?>"></li>
 								<li class="cp_Agent"><?= $ipad['cp_Agent'] ?></li>
-								<li><?php echo $ipad['nom']; ?></li>
 								<li><?php echo $ipad['inc']; ?></li>
 								<li><?php echo $ipad['Code_RG']; ?></li>
 								<li><?= $ipad['date_demande'] ?></li>
 								<li><?= $ipad['type_demande'] ?></li>
 								<li><?= $ipad['type_materiel'] ?></li>
-								<li><?= $ipad['type_panne'] ?></li>
-								<li><?php echo $ipad['Icloud']; ?></li>
-								<li><?php echo $ipad['CodeDev']; ?></li>
+
 								<li>
 									<a class="checkbox__ligne1__modif" href="index.php?uc=historique&action=modifierIpad&id=<?= $ipad['id_ipad'] ?>"></a>
 								</li>
