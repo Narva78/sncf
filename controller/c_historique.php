@@ -98,16 +98,30 @@ switch ($action) {
 
 	case 'modifierIpad':
 		if (isset($_POST['modifier'])) {
-			// Récupération des données du formulaire
-			$id_form = $_POST['id'];
-			$cp = $_POST['cp'];
-			$nom = $_POST['nom'];
-			$prenom = $_POST['prenom'];
-			$icloud = isset($_POST['Icloud']) ? 1 : 0;
-			$codeDev = isset($_POST['CodeDev']) ? 1 : 0;
+			$U = $pdo->getInfoUSerById($_SESSION['id']);
+			if ($U['is_admin'] == 1) {
+				$mytem = $_POST['mytem'];
+			} else {
+				$mytem = null;
+			}
+
+			//Récupération des données du formulaire
+			$cp = $_POST['cp_Agent']; // Récupère la valeur du champ cp
+			$nom = $_POST['nom']; // Récupère la valeur du champ nom
+			$inc = $_POST['inc'];
+			$Code_RG = $_POST['code_RG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
 			$dateDemande = $_POST['date_demande'];
 
-			$pdo->modifierIpad($cp, $nom, $prenom, $icloud, $codeDev, $dateDemande, $id_form);
+			$typeD = $_POST['type_demande'];
+			$typeM = $_POST['materiel'];
+			$ifPanne = $_POST['type_panne'];
+			$observation = $_POST['observation'] ? $_POST['observation'] : 0;
+
+
+			$icloud = isset($_POST['icloud']) ? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
+			$codeDev = isset($_POST['codeDev']) ? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
+
+			$pdo->modifierIpad($cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $id_form);
 
 			//pop-up de confirmation de modification
 			echo "
@@ -115,7 +129,7 @@ switch ($action) {
                     <script>
                         Swal.fire({
                             title: 'Succès',
-                            text: 'Ipad ajouté avec succès. CP: $cp, Nom: $nom, Prenom: $prenom',
+                            text: 'Ipad ajouté avec succès. CP: $cp, Nom: $nom',
                             icon: 'success',
                             showConfirmButton: false,
                             timer: 3000
@@ -130,13 +144,22 @@ switch ($action) {
 			$lesIpad = $pdo->getInfosIpadById($id);
 			foreach ($lesIpad as $unIpad) {
 				$id_true = $unIpad['id_ipad'];
-				$cp = $unIpad['cp_Agent'];
-				$nom = $unIpad['nom'];
-				$prenom = $unIpad['prenom'];
-				$code_RG = $unIpad['Code_RG'];
-				$icloud = isset($unIpad['Icloud']) ? 1 : 0;
-				$codeDev = isset($unIpad['CodeDev']) ? 1 : 0;
+				$cp = $unIpad['cp_Agent']; // Récupère la valeur du champ cp
+				$nom = $unIpad['nom']; // Récupère la valeur du champ nom
+				$inc = $unIpad['inc'];
+				$Code_RG = $unIpad['Code_RG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
+				$mytem = $unIpad['mytem'];
 				$dateDemande = $unIpad['date_demande'];
+
+				$typeD = $unIpad['type_demande'];
+				$typeM = $unIpad['type_materiel'];
+				$ifPanne = $unIpad['type_panne'];
+				$observation = $unIpad['observation'];
+
+
+				$icloud = isset($_POST['icloud']) ? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
+				$codeDev = isset($_POST['codeDev']) ? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
+
 			}
 			include("views/modifierIpad.php");
 			exit;

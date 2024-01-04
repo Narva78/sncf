@@ -40,18 +40,31 @@
 		font-size: 1.2rem;
 	}
 
-	.ajout__ecran form input[type=submit] {
+	input[type=submit] {
 		height: 40px;
-		width: 150px;
+		width: 130px;
 		background: #3498DB;
 		color: #fff;
 		border: none;
 		font-size: 1rem;
+		border-radius: 10px;
+		margin: 5px;
+
 	}
 
-	.ajout__ecran form input[type=submit]:hover {
-		background: #3564DB;
-		transition: .2s;
+	input[type=button] {
+		height: 40px;
+		width: 130px;
+		background: red;
+		color: #fff;
+		border: none;
+		font-size: 1rem;
+		border-radius: 10px;
+		margin: 5px;
+	}
+
+	.bouton {
+		margin: 30px;
 	}
 
 	h2 {
@@ -92,9 +105,15 @@
 
 				<input type="number" id="quantite" name="quantite" value="<?php echo $unEcran['quantite']; ?>">
 
-				<input type="submit" name="modifier" value="Modifier">
 
 			</form>
+
+			<div class="bouton">
+				<input type="submit" name="modifier" value="Modifier">
+				<a href="index.php?uc=gestionEcran"><input type="button" value="Retour"></a>
+
+
+			</div>
 
 		</div>
 	</div>

@@ -22,7 +22,7 @@
 	}
 
 	.search input {
-		width: 170px;
+		width: 150px;
 		border: none;
 	}
 
@@ -90,61 +90,71 @@
 		background: #006102;
 		transition: .7s;
 
+
 	}
 
 	.search__btn__moins input {
 		background: red;
 		color: #fff;
+
+
 	}
 
 	.search__btn__moins input:hover {
 		background: #A00C00;
 		transition: .7s;
+
 	}
 
 	.search__btn__Reportable input {
-		background: #76448a;
+		background: #582900;
 		color: #fff;
+
+
 	}
 
 	.search__btn__Reportable input:hover {
-		background: #670070;
+		background: #591A00;
 		transition: .7s;
 	}
 
 	.search__btn__Code__Dev input {
-		background: #405a73;
+		background: #76448a;
 		color: #fff;
+
+
 	}
 
 	.search__btn__Code__Dev input:hover {
-		background: #395066;
+		background: #670070;
 		transition: .7s;
 
 	}
 
 	.search__btn__icloud input {
-		background: #3389c2;
+		background: #405a73;
 		color: #fff;
+
+
 	}
 
 	.search__btn__icloud input:hover {
+		background: #395066;
+		transition: .7s;
+	}
+
+	.search__btn__taille input {
+		background: #3389c2;
+		color: #fff;
+
+
+	}
+
+	.search__btn__taille input:hover {
 		background: #266894;
 		transition: .7s;
 	}
 
-	.search__btn__modif input {
-		background: pink;
-		color: #fff;
-	}
-
-	input {
-		padding: 10px;
-		border-radius: 10px;
-		font-size: 1em;
-		border: none;
-		cursor: pointer;
-	}
 
 	input {
 		padding: 10px;
@@ -203,14 +213,17 @@
 				<div class="search__nSerie">
 					<input type="text" name="text" id="tags" class="search-input" placeholder="nSerie...">
 				</div>
+				<div class="search__btn__taille">
+					<a href="index.php?uc=gestionPC&action=gestionPC&tri=marque&ordre=<?= ($tri === 'marque') ? $prochainOrdre : 'asc'; ?>"><input type="button" value="Marque" /></a>
+				</div>
 				<div class="search__btn__icloud">
-					<input type="button" value="Marque" />
+					<a href="index.php?uc=gestionPC&action=gestionPC&tri=nSerie&ordre=<?= ($tri === 'nSerie') ? $prochainOrdre : 'asc'; ?>"><input type="button" value="nSerie" /></a>
 				</div>
 				<div class="search__btn__Code__Dev">
-					<input type="button" value="nSerie" />
+					<a href="index.php?uc=gestionPC&action=gestionPC&tri=modele&ordre=<?= ($tri === 'modele') ? $prochainOrdre : 'asc'; ?>"><input type="button" value="modele" /></a>
 				</div>
 				<div class="search__btn__Reportable">
-					<input type="button" value="modele" />
+					<a href="index.php?uc=gestionPC&action=gestionPC&tri=quantite&ordre=<?= ($tri === 'quantite') ? $prochainOrdre : 'asc'; ?>"><input type="button" value="Quantite" /></a>
 				</div>
 
 				<div class="search__btn__moins">

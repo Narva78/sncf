@@ -16,6 +16,72 @@
 		color: white;
 		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 	}
+
+
+
+	.container__card__info {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.container__card__description {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.container__card__description h3 {
+		background: purple;
+	}
+
+	.container__card__identification {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.container__card__identification h3 {
+		background: purple;
+	}
+
+	input[type=submit] {
+		height: 40px;
+		width: 130px;
+		background: #3498DB;
+		color: #fff;
+		border: none;
+		font-size: 1rem;
+		border-radius: 10px;
+		margin: 5px;
+
+	}
+
+	input[type=button] {
+		height: 40px;
+		width: 130px;
+		background: red;
+		color: #fff;
+		border: none;
+		font-size: 1rem;
+		border-radius: 10px;
+		margin: 5px;
+	}
+
+	.bouton {
+		margin: 30px;
+	}
+
+	input[type=text],
+	input[type=date],
+	select {
+		height: 30px;
+		width: 300px;
+		border-radius: 10px;
+	}
 </style>
 
 <title>Formulaire D'ajout D'Ipad</title>
@@ -75,8 +141,9 @@
 				</div>
 
 			</div>
-
+			<br>
 			<div class="container__card__description">
+				<h3>Description de la demande</h3>
 				<div>
 					<label for="typeDemande">Type Demande :</label>
 					<select id="typeDemande" name="typeDemande" required>
@@ -135,10 +202,11 @@
 					<input type="text" name="observation" id="observation">
 				</div>
 			</div>
-
+			<br>
 
 			<div class="container__card__identification">
 				<!-- Checkbox si l'Ipad est tjr lié a un comte ICloud -->
+				<h3>Identification du matériel</h3>
 				<div>
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" id="icloud" name="icloud">
@@ -150,16 +218,20 @@
 
 				<!-- Checkbox si l'Ipad possède un code de Déverouillage -->
 				<div>
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" id="codeDev" name="codeDev">
-						<label class="form-check-label" for="codeDev">
+					<div>
+						<input type="checkbox" id="codeDev" name="codeDev">
+						<label for="codeDev">
 							Cochez si l'iPad possède un code de dévérouillage
 						</label>
 					</div>
 				</div>
 			</div>
 
-			<button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
 		</form>
+		<div class="bouton">
+			<input type="submit" name="ajouter" value="Ajouter">
+			<a href="index.php?uc=historique"><input type="button" value="Retour"></a>
+		</div>
+
 	</div>
 </div>

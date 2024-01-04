@@ -11,7 +11,18 @@ $action = $_REQUEST['action'];
 switch ($action) {
 	case 'gestionPC':
 
-		$lesPC = $pdo->getInfosPC();
+
+		$tri = isset($_GET['tri']) ? $_GET['tri'] : '';
+		$ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
+
+		// Inverser l'ordre pour le prochain clic
+		$prochainOrdre = ($ordre === 'asc') ? 'desc' : 'asc';
+
+		if ($tri === 'marque' || $tri === 'nSerie' || $tri === 'modele' || $tri === 'quantite') {
+			$lesPC = $pdo->getInfoPCByVariable($tri, $ordre);
+		} else {
+			$lesPC = $pdo->getInfoPCByVariable('', $ordre); // Ordre par défaut
+		}
 
 
 

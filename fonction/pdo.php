@@ -173,6 +173,32 @@ class PdoIpad
 		return $lesLignes;
 	}
 
+	public function getInfoPCByVariable($variable, $ordre)
+	{
+		$requete = "SELECT * FROM pc";
+
+		switch ($variable) {
+			case 'marque':
+				$requete .= " ORDER BY marque $ordre";
+				break;
+			case 'nSerie':
+				$requete .= " ORDER BY nSerie $ordre";
+				break;
+			case 'modele':
+				$requete .= " ORDER BY modele $ordre";
+				break;
+			case 'quantite':
+				$requete .= " ORDER BY quantite $ordre";
+				break;
+			default:
+				break;
+		}
+
+		$res = PdoIpad::$monPdo->query($requete);
+		$lesLignes = $res->fetchAll();
+		return $lesLignes;
+	}
+
 
 	public function getInfosPC()
 	{
