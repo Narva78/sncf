@@ -2,13 +2,13 @@
 	.container {
 		display: flex;
 		flex-direction: column;
-		height: 80vh;
+		height: 120vh;
 		margin: 2.5em;
 	}
 
 	.container__card {
-		width: 520px;
-		height: 650px;
+		width: 620px;
+		height: 850px;
 		border: 1px solid #404040;
 		border-radius: 10px;
 		background: #405a73;
@@ -17,36 +17,59 @@
 		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 	}
 
+	@media screen and (max-width: 620px) {
+
+		.container__card {
+			height: 900px;
+		}
+	}
+
 
 
 	.container__card__info {
 		display: flex;
 		justify-content: center;
-		flex-direction: column;
-		gap: 10px;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+
+	@media screen and (max-width: 620px) {
+		.container__card__info {
+			display: block;
+
+		}
 	}
 
 	.container__card__description {
 		display: flex;
 		justify-content: center;
-		flex-direction: column;
+		flex-direction: row;
+		flex-wrap: wrap;
 		gap: 10px;
 	}
 
-	.container__card__description h3 {
+	h1 {
+		margin: 20px;
+		color: red;
+	}
+
+	h3 {
 		background: purple;
+		display: flex;
+		justify-content: center;
+		margin: 20px;
+
 	}
 
 	.container__card__identification {
 		display: flex;
 		justify-content: center;
-		flex-direction: column;
+		flex-direction: row;
+		flex-wrap: wrap;
 		gap: 10px;
 	}
 
-	.container__card__identification h3 {
-		background: purple;
-	}
+
 
 	input[type=submit] {
 		height: 40px;
@@ -57,7 +80,12 @@
 		font-size: 1rem;
 		border-radius: 10px;
 		margin: 5px;
+		cursor: pointer;
 
+	}
+
+	input[type=submit]:hover {
+		background: #215f91;
 	}
 
 	input[type=button] {
@@ -69,18 +97,58 @@
 		font-size: 1rem;
 		border-radius: 10px;
 		margin: 5px;
+		cursor: pointer;
+	}
+
+	input[type=button]:hover {
+		background: #A00C00;
 	}
 
 	.bouton {
 		margin: 30px;
 	}
 
+	input[type=date] {
+		height: 30px;
+		width: 160px;
+		border-radius: 10px;
+	}
+
 	input[type=text],
-	input[type=date],
 	select {
 		height: 30px;
-		width: 300px;
+		width: 160px;
 		border-radius: 10px;
+	}
+
+	.container__card__description input[type=text] input[type=date] select {
+		height: 30px;
+		width: 200px;
+		border-radius: 10px;
+	}
+
+	.container__card__identification input[type=text] {
+		height: 30px;
+		width: 140px;
+		border-radius: 10px;
+	}
+
+	input {
+		border: none;
+	}
+
+	input:focus {
+		outline: none;
+	}
+
+	textarea:focus {
+		outline: none;
+	}
+
+
+
+	label {
+		display: block;
 	}
 </style>
 
@@ -90,7 +158,7 @@
 <div class="container">
 	<div class="container__card">
 		<h1>SAV </h1>
-		<form action="index.php?uc=historique&action=ajouterIpad" method="POST">
+		<form action="index.php?uc=historique&action=modifierIpad" method="POST">
 
 			<div class="container__card__info">
 				<!-- Cp de l'agent Obligatoire-->
@@ -141,6 +209,8 @@
 				</div>
 
 			</div>
+			<br>
+			<h3>Description de la demande</h3>
 
 			<div class="container__card__description">
 				<div>
@@ -161,7 +231,7 @@
 
 					<div>
 						<label for="panne">Panne :</label>
-						<select id="panne" name="panne" required>
+						<select id="panne" name="panne" required style="display:none;">
 
 							<option value="casse ecran" <?php if ($ifPanne == 'casse ecran') echo ' selected'; ?>>Casse écran</option> <!-- 0707 -->
 
@@ -201,43 +271,81 @@
 				</div>
 
 				<div>
-					<input type="text" name="observation" id="observation" value="<?php echo $observation; ?>">
+					<textarea name="observation" id="observation" value="<?php echo $observation; ?>" style="width:600px; height:100px; margin-top:30px; border:none; border-radius:5px" placeholder="observation"></textarea>
+
 				</div>
 			</div>
 
+			<br>
+			<h3>Identification du matériel</h3>
 
 			<div class="container__card__identification">
 				<!-- Checkbox si l'Ipad est tjr lié a un comte ICloud -->
 				<div>
+					<label for="icloud">
+						Icloud
+					</label>
 					<div>
-						<input type="checkbox" id="icloud" name="icloud" <?php if ($icloud == 1) echo 'checked'; ?>>
-						<label for="icloud">
-							Cochez si l'iPad est lié à un compte iCloud
-						</label>
+						<input type="text" id="icloud" name="icloud">
+
 					</div>
 				</div>
 
 				<!-- Checkbox si l'Ipad possède un code de Déverouillage -->
 				<div>
 					<div>
-						<input type="checkbox" id="codeDev" name="codeDev" <?php if ($codeDev == 1) echo 'checked'; ?>>
-						<label for="codeDev">
-							Cochez si l'iPad possède un code de dévérouillage
+						<label for="code Deverouillage">
+							code de dévérouillage
 						</label>
+						<input type="text" id="codeDev" name="codeDev">
+
 					</div>
 				</div>
+
+
 				<div>
+					<label for="imei">
+						IMEI
+					</label>
 					<input type="text" name="imei_mat_defec" id="imei_mat_defec">
 				</div>
 				<div>
+					<label for="imei_remp">
+						IMEI de remplacement
+					</label>
 					<input type="checkbox" id="imei">
-					<input type="text" name="imei_remp" id="imei_remp">
+					<input type="text" name="imei_remp" id="imei_remp" style="display:none;">
 				</div>
 			</div>
-			<div>
+
+			<div class="bouton">
 				<input type="submit" name="modifier" value="Modifier">
 				<a href="index.php?uc=historique"><input type="button" value="Retour"></a>
 			</div>
 		</form>
 	</div>
 </div>
+
+<script type=text/javascript>
+	document.getElementById('typeDemande').addEventListener('change', function() {
+		var deuxiemeListe = document.getElementById('panne');
+
+		// Afficher la deuxième liste si la sélection est égale à 'selection2'
+		if (this.value === 'panne') {
+			deuxiemeListe.style.display = 'block';
+		} else {
+			deuxiemeListe.style.display = 'none';
+		}
+	});
+
+	document.getElementById('imei').addEventListener('change', function() {
+		var listeDeroulante = document.getElementById('imei_remp');
+
+		// Afficher la liste déroulante si la case à cocher est cochée
+		if (this.checked) {
+			listeDeroulante.style.display = 'block';
+		} else {
+			listeDeroulante.style.display = 'none';
+		}
+	});
+</script>

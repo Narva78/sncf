@@ -12,8 +12,43 @@ switch ($action) {
 	case 'historique':
 
 
+		if (isset($_GET['page']) && !empty($_GET['page'])) {
+			$currentPage = (int) strip_tags($_GET['page']); //strip_tags() supprime les balises HTML et PHP d'une chaîne
+		} else {
+			$currentPage = 1; // Par défaut, on se trouve sur la page 1
+		}
+
+		// On détermine le nombre total d'Ipad
+		$nbIpad = $pdo->getNbIpad();
+
+
+		// On détermine le nombre d'iPads par page
+		// Définition de la valeur par défaut
+		$default_ipp = 20;
+
+		// Récupération de la valeur postée
+		if (isset($_POST['ipp']) && is_numeric($_POST['ipp'])) {
+			$_SESSION['ipp'] = intval($_POST['ipp']);
+			$ipp = $_SESSION['ipp'];
+		}
+		// Récupération de la valeur de la session
+		elseif (isset($_SESSION['ipp'])) {
+			$ipp = $_SESSION['ipp'];
+		}
+		// Utilisation de la valeur par défaut
+		else {
+			$ipp = $default_ipp;
+		}
+
+		$parPage = $ipp;
+
+		// On calcule le nombre de pages total
+		$pages = ceil($nbIpad / $parPage); // ceil() arrondit au nombre supérieur
+		// Calcul du 1er ipad de la page
+		$premier = ($currentPage * $parPage) - $parPage;
+
 		// Récupération de la liste des iPads
-		$lesIpad = $pdo->getInfosIpad();
+		$lesIpad = $pdo->getInfosIpad($premier, $parPage);
 
 		// Inclusion de la vue
 		include("views/historique.php");
@@ -54,40 +89,40 @@ switch ($action) {
 			}
 
 			//Récupération des données du formulaire
-			$cp = $_POST['cp']; // Récupère la valeur du champ cp
-			$nom = $_POST['nom']; // Récupère la valeur du champ nom
+			$cp = $_POST['cp'];
+			$nom = $_POST['nom'];
 			$inc = $_POST['inc'];
-			$Code_RG = $_POST['codeRG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
+			$Code_RG = $_POST['codeRG'];
 			$dateDemande = $_POST['dateDemande'];
-
 			$typeD = $_POST['typeDemande'];
 			$typeM = $_POST['typeMateriel'];
 			$ifPanne = $_POST['panne'];
 			$observation = $_POST['observation'] ? $_POST['observation'] : 0;
+			$icloud = $_POST['icloud'];
+			$codeDev = $_POST['codeDev'];
+			$imei = $_POST['imei_mat_defec'];
+			$imei_r = $_POST['imei_remp'];
 
-
-			$icloud = isset($_POST['icloud']) ? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
-			$codeDev = isset($_POST['codeDev']) ? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
+			// var_dump() des variables - à commenter ou supprimer pour éviter l'envoi de contenu inattendu
+			// var_dump($cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r);
 
 			// Ajout de l'iPad
-			$pdo->ajouterIpad($cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev);
+			$pdo->ajouterIpad($cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r);
 
-			//Affichage de la notification popup avec SweetAlert2
-			//Pop-up de notification d'ajout
+			// Redirection après l'ajout
 			echo "
-                <script src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-                <script>
-                    Swal.fire({
-                        title: 'Succès',
-                        text: 'Ipad ajouté avec succès. CP: $cp, Nom: $nom,
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 3000
-                    }).then(() => {
-                        window.location.href = 'index.php?uc=historique&action=historique';
-                    });
-                </script>";
-
+                    <script src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                    <script>
+                        Swal.fire({
+                            title: 'Succès',
+                            text: 'Ipad ajouté avec succès. CP: $cp, Nom: $nom',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        }).then(() => {
+                            window.location.href = 'index.php?uc=historique&action=historique';
+                        });
+                    </script>";
 			exit;
 		} else {
 			// Formulaire non envoyé : affichage de la page d'ajout d'iPad
@@ -95,6 +130,7 @@ switch ($action) {
 			exit;
 		}
 		break;
+
 
 	case 'modifierIpad':
 		if (isset($_POST['modifier'])) {
@@ -120,8 +156,10 @@ switch ($action) {
 
 			$icloud = isset($_POST['icloud']) ? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
 			$codeDev = isset($_POST['codeDev']) ? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
+			$imei = $_POST['imei_mat_defec'];
+			$imei_r = $_POST['imei_remp'];
 
-			$pdo->modifierIpad($cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $id_form);
+			$pdo->modifierIpad($cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $id_form, $imei, $imei_r);
 
 			//pop-up de confirmation de modification
 			echo "
@@ -157,9 +195,10 @@ switch ($action) {
 				$observation = $unIpad['observation'];
 
 
-				$icloud = isset($_POST['icloud']) ? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
-				$codeDev = isset($_POST['codeDev']) ? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
-
+				$icloud = $unIpad['Icloud']; //? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
+				$codeDev = $unIpad['CodeDev']; //? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
+				$imei = $unIpad['imei'];
+				$imei_r = $unIpad['imei_remp'];
 			}
 			include("views/modifierIpad.php");
 			exit;

@@ -260,12 +260,12 @@ class PdoIpad
 	}
 
 	//Fonction qui permet d'ajouter un ipad dans la table ipad en fonction des paramètres
-	public function ajouterIpad($cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev)
+	public function ajouterIpad($cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r)
 	{
-		$req = "INSERT INTO ipad (cp_Agent, nom, inc, Code_RG, mytem, date_demande, type_demande, type_materiel, type_panne, observation,  icloud, codeDev) 
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$req = "INSERT INTO ipad (cp_Agent, nom, inc, Code_RG, mytem, date_demande, type_demande, type_materiel, type_panne, observation,  icloud, codeDev,imei,imei_remp) 
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev]);
+		$stmt->execute([$cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r]);
 		$nombreLignesAffectees = $stmt->rowCount();
 		if ($nombreLignesAffectees > 0) {
 			echo "L'insertion a été effectuée avec succès.";
@@ -312,12 +312,12 @@ class PdoIpad
 
 	//Fonction qui permet de modifier un ipad dans la table ipad en fonction des paramètres
 	//modifierIpad($cp, $affectation, $icloud, $codeDev, $dateDemande, $dateAttribution, $debutRep, $finRep, $nonReparable)
-	public function modifierIpad($cp, $nom, $prenom, $icloud, $codeDev, $dateDemande, $dateAttribution, $debutRep, $finRep, $nonReparable, $id)
+	public function modifierIpad($cp, $nom, $prenom, $icloud, $codeDev, $dateDemande, $dateAttribution, $debutRep, $finRep, $nonReparable, $id, $imei, $imei_r)
 	{
-		$req = "UPDATE ipad SET cp_Agent = ?, nom = ?, prenom = ?, Icloud = ?, CodeDev = ?, date_Reception = ?, date_Attribution = ?, debut_Rep = ?, fin_Rep = ?, non_reparable = ? 
+		$req = "UPDATE ipad SET cp_Agent = ?, nom = ?, INC = ?, Icloud = ?, Code_RG = ?, type_demande = ?, type_matériel = ?, type_panne = ?, observation = ?, imei = ?, imei_remp = ? 
         WHERE id_ipad = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$cp, $nom, $prenom, $icloud, $codeDev, $dateDemande, $dateAttribution, $debutRep, $finRep, $nonReparable, $id]);
+		$stmt->execute([$cp, $nom, $prenom, $icloud, $codeDev, $dateDemande, $dateAttribution, $debutRep, $finRep, $nonReparable, $id, $imei, $imei_r]);
 	}
 
 

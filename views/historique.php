@@ -45,7 +45,7 @@
 	}
 
 	.checkbox__ligne {
-		width: 90%;
+		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
 		font-size: 0.9rem;
@@ -190,6 +190,47 @@
 		box-sizing: border-box;
 		align-items: center;
 	}
+
+	nav ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.page-item {
+		margin: 0 5px;
+	}
+
+	.page-link {
+		display: block;
+		padding: 8px 12px;
+		text-decoration: none;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		color: #333;
+	}
+
+	.page-link:hover {
+		background-color: #f0f0f0;
+	}
+
+	/* Style pour les éléments désactivés */
+	.page-item.disabled .page-link {
+		pointer-events: none;
+		background-color: #eee;
+		color: #999;
+		border-color: #ddd;
+	}
+
+	/* Style pour l'élément actif */
+	.page-item.active .page-link {
+		background-color: #007bff;
+		color: #fff;
+		border-color: #007bff;
+	}
 </style>
 
 <!-- Section 1 -->
@@ -282,6 +323,32 @@
 				<?php endforeach; ?>
 		</form>
 	</section>
+
+
+
+	<nav>
+		<ul>
+			<!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
+			<li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
+				<a href="./?<?= http_build_query(array_merge($_GET, array("page" => $currentPage - 1))) ?>" class="page-link">Précédente</a>
+			</li>
+
+			<?php for ($page = 1; $page <= $pages; $page++) : ?>
+				<!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
+				<li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+					<a href="./?<?= http_build_query(array_merge($_GET, array("page" => $page))) ?>" class="page-link"><?= $page ?></a>
+				</li>
+			<?php endfor ?>
+
+
+			<!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
+			<li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+				<a href="./?<?= http_build_query(array_merge($_GET, array("page" => min($currentPage + 1, $pages)))) ?>" class="page-link">Suivante</a>
+			</li>
+
+
+		</ul>
+	</nav>
 </div>
 
 
