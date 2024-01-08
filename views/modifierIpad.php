@@ -159,6 +159,8 @@
 	<div class="container__card">
 		<h1>SAV </h1>
 		<form action="index.php?uc=historique&action=modifierIpad" method="POST">
+			<input type="hidden" name="id" value="<?php echo $id; ?>"> <!-- Champ caché pour l'ID -->
+
 
 			<div class="container__card__info">
 				<!-- Cp de l'agent Obligatoire-->

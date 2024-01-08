@@ -12,43 +12,36 @@ switch ($action) {
 	case 'historique':
 
 
-		if (isset($_GET['page']) && !empty($_GET['page'])) {
-			$currentPage = (int) strip_tags($_GET['page']); //strip_tags() supprime les balises HTML et PHP d'une chaîne
-		} else {
-			$currentPage = 1; // Par défaut, on se trouve sur la page 1
-		}
+		// Constantes pour les valeurs par défaut
+		define('DEFAULT_PAGE', 1);
+		define('DEFAULT_IPP', 10);
 
-		// On détermine le nombre total d'Ipad
+		// Récupération et validation du numéro de page
+		$currentPage = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : DEFAULT_PAGE;
+		$currentPage = max(1, $currentPage); // Assure que currentPage est au moins égal à 1
+
+		// Récupération du nombre total d'iPads
 		$nbIpad = $pdo->getNbIpad();
 
-
-		// On détermine le nombre d'iPads par page
-		// Définition de la valeur par défaut
-		$default_ipp = 20;
-
-		// Récupération de la valeur postée
+		// Gestion du nombre d'iPads par page (ipp)
 		if (isset($_POST['ipp']) && is_numeric($_POST['ipp'])) {
 			$_SESSION['ipp'] = intval($_POST['ipp']);
-			$ipp = $_SESSION['ipp'];
 		}
-		// Récupération de la valeur de la session
-		elseif (isset($_SESSION['ipp'])) {
-			$ipp = $_SESSION['ipp'];
-		}
-		// Utilisation de la valeur par défaut
-		else {
-			$ipp = $default_ipp;
-		}
+
+		// Détermination de la valeur de ipp à utiliser
+		$ipp = isset($_SESSION['ipp']) ? max(1, intval($_SESSION['ipp'])) : DEFAULT_IPP;
 
 		$parPage = $ipp;
 
-		// On calcule le nombre de pages total
-		$pages = ceil($nbIpad / $parPage); // ceil() arrondit au nombre supérieur
-		// Calcul du 1er ipad de la page
+		// Calcul du nombre total de pages
+		$pages = ceil($nbIpad / $parPage);
+
+		// Calcul du premier iPad de la page actuelle
 		$premier = ($currentPage * $parPage) - $parPage;
 
-		// Récupération de la liste des iPads
+		// Récupération de la liste des iPads pour la page actuelle
 		$lesIpad = $pdo->getInfosIpad($premier, $parPage);
+
 
 		// Inclusion de la vue
 		include("views/historique.php");
@@ -142,20 +135,21 @@ switch ($action) {
 			}
 
 			//Récupération des données du formulaire
-			$cp = $_POST['cp_Agent']; // Récupère la valeur du champ cp
+			$id_form = $_POST['id'];
+			$cp = $_POST['cp']; // Récupère la valeur du champ cp
 			$nom = $_POST['nom']; // Récupère la valeur du champ nom
 			$inc = $_POST['inc'];
-			$Code_RG = $_POST['code_RG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
-			$dateDemande = $_POST['date_demande'];
+			$Code_RG = $_POST['codeRG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
+			$dateDemande = $_POST['dateDemande'];
 
-			$typeD = $_POST['type_demande'];
-			$typeM = $_POST['materiel'];
-			$ifPanne = $_POST['type_panne'];
+			$typeD = $_POST['typeDemande'];
+			$typeM = $_POST['typeMateriel'];
+			$ifPanne = $_POST['panne'];
 			$observation = $_POST['observation'] ? $_POST['observation'] : 0;
 
 
-			$icloud = isset($_POST['icloud']) ? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
-			$codeDev = isset($_POST['codeDev']) ? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
+			$icloud = $_POST['icloud']; //? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
+			$codeDev = $_POST['codeDev']; //? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
 			$imei = $_POST['imei_mat_defec'];
 			$imei_r = $_POST['imei_remp'];
 

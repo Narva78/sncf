@@ -217,9 +217,9 @@
 					<label for="typeDemande">Type Demande :</label>
 					<select id="typeDemande" name="typeDemande" required>
 
-						<option value="panne">Panne</option>
-
 						<option value="casse">Casse</option>
+
+						<option value="panne">Panne</option>
 
 						<option value="perte">Perte</option>
 
