@@ -75,6 +75,14 @@
 		border-radius: 10px;
 		font-size: 1.2rem;
 	}
+
+	input[type=submit]:hover {
+		background: #215f91;
+	}
+
+	input[type=button]:hover {
+		background: #A00C00;
+	}
 </style>
 
 <h2>ModifierEcran</h2>
@@ -82,7 +90,7 @@
 	<div class="container__card">
 		<div class="ajout__ecran">
 			<form action="index.php?uc=gestionPC&action=modifierPC" method="post">
-				<input type="hidden" name="id" value="<?php echo '$id'; ?>"> <!-- Champ caché pour l'ID -->
+				<input type="hidden" name="id" value="<?php echo $id; ?>"> <!-- Champ caché pour l'ID -->
 
 				<input type="text" name="nSerie" value="  <?php echo $unPC['nSerie']; ?>">
 
@@ -96,17 +104,17 @@
 				<input type="text" name="modele" id="modele" placeholder="modele" value="  <?php echo $unPC['modele']; ?>">
 
 
-				<input type="text" id="quantite" name="quantite" value="  <?php echo $unPC['quantite']; ?>">
+				<input type="number" id="quantite" name="quantite" value="  <?php echo $unPC['quantite']; ?>">
 
 
+				<div class="bouton">
+					<input type="submit" name="modifier" value="Modifier">
+					<a href="index.php?uc=gestionPC"><input type="button" value="Retour"></a>
 
+				</div>
 
 			</form>
-			<div class="bouton">
-				<input type="submit" name="modifier" value="Modifier">
-				<a href="index.php?uc=gestionPC"><input type="button" value="Retour"></a>
 
-			</div>
 
 
 		</div>

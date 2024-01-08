@@ -74,6 +74,14 @@
 		border-radius: 10px;
 		font-size: 1.2rem;
 	}
+
+	input[type=submit]:hover {
+		background: #215f91;
+	}
+
+	input[type=button]:hover {
+		background: #A00C00;
+	}
 </style>
 <h2>AjoutEcran</h2>
 <div class="container">
@@ -93,15 +101,15 @@
 
 				<input type="text" name="quantite" required placeholder="  Quantité">
 
+				<div class="bouton">
+					<input type="submit" name="ajouter" value="Ajouter">
+					<a href="index.php?uc=gestionPC"><input type="button" value="Retour"></a>
 
+				</div>
 
 			</form>
 
-			<div class="bouton">
-				<input type="submit" name="ajouter" value="Ajouter">
-				<a href="index.php?uc=gestionPC"><input type="button" value="Retour"></a>
 
-			</div>
 
 		</div>
 	</div>

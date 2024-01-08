@@ -75,6 +75,14 @@
 		border-radius: 10px;
 		font-size: 1.2rem;
 	}
+
+	input[type=submit]:hover {
+		background: #215f91;
+	}
+
+	input[type=button]:hover {
+		background: #A00C00;
+	}
 </style>
 <h2>AjoutEcran</h2>
 <div class="container">
@@ -90,22 +98,23 @@
 				</select>
 
 
-				<select name="marque" id="marque">
+				<select name="types" id="types">
 					<option value="plat">plat</option>
 					<option value="incurvé">incurvé</option>
 				</select>
 
 				<input type="number" name="quantite" required placeholder="Quantité">
 
+				<div class="bouton">
+					<input type="submit" name="ajouter" value="Ajouter">
+					<a href="index.php?uc=gestionEcran"><input type="button" value="Retour"></a>
+
+
+				</div>
+
 
 			</form>
 
-			<div class="bouton">
-				<input type="submit" name="ajouter" value="Ajouter">
-				<a href="index.php?uc=gestionEcran"><input type="button" value="Retour"></a>
-
-
-			</div>
 
 		</div>
 	</div>

@@ -363,11 +363,13 @@
 			const searchString = e.target.value.toLowerCase();
 
 			pcList.forEach(pc => {
-				const nSerie = pc.children[1].innerText.toLowerCase();
-				const marque = pc.children[2].innerText.toLowerCase();
-				const modele = pc.children[3].innerText.toLowerCase();
+				const nSerie = pc.children[4].innerText.toLowerCase();
+				const cp = pc.children[1].innerText.toLowerCase();
+				const nom = pc.children[2].innerText.toLowerCase();
+				const imei = pc.children[3].innerText.toLowerCase();
 
-				if (nSerie.includes(searchString) || marque.includes(searchString) || modele.includes(searchString)) {
+
+				if (nSerie.includes(searchString) || cp.includes(searchString) || nom.includes(searchString) || imei.includes(searchString)) {
 					pc.style.display = 'row';
 				} else {
 					pc.style.display = 'none';

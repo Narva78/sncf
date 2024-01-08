@@ -80,6 +80,14 @@
 		border-radius: 10px;
 		font-size: 1.2rem;
 	}
+
+	input[type=submit]:hover {
+		background: #215f91;
+	}
+
+	input[type=button]:hover {
+		background: #A00C00;
+	}
 </style>
 
 <h2>ModifierEcran</h2>
@@ -105,15 +113,15 @@
 
 				<input type="number" id="quantite" name="quantite" value="<?php echo $unEcran['quantite']; ?>">
 
+				<div class="bouton">
+					<input type="submit" name="modifier" value="Modifier">
+					<a href="index.php?uc=gestionEcran"><input type="button" value="Retour"></a>
 
+
+				</div>
 			</form>
 
-			<div class="bouton">
-				<input type="submit" name="modifier" value="Modifier">
-				<a href="index.php?uc=gestionEcran"><input type="button" value="Retour"></a>
 
-
-			</div>
 
 		</div>
 	</div>

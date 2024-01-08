@@ -88,6 +88,10 @@
 		background: #215f91;
 	}
 
+	input[type=button]:hover {
+		background: #A00C00;
+	}
+
 	input[type=button] {
 		height: 40px;
 		width: 130px;
@@ -100,9 +104,7 @@
 		cursor: pointer;
 	}
 
-	input[type=button]:hover {
-		background: #A00C00;
-	}
+
 
 	.bouton {
 		margin: 30px;
