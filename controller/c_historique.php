@@ -145,7 +145,7 @@ switch ($action) {
 			$typeD = $_POST['typeDemande'];
 			$typeM = $_POST['typeMateriel'];
 			$ifPanne = $_POST['panne'];
-			$observation = $_POST['observation'] ? $_POST['observation'] : 0;
+			$observation = $_POST['observation'];
 
 
 			$icloud = $_POST['icloud']; //? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
@@ -161,7 +161,7 @@ switch ($action) {
                     <script>
                         Swal.fire({
                             title: 'Succès',
-                            text: 'Ipad ajouté avec succès. CP: $cp, Nom: $nom',
+                            text: 'Ipad ajouté avec succès. CP: $cp, Nom: $nom', IMEI: $imei,
                             icon: 'success',
                             showConfirmButton: false,
                             timer: 3000

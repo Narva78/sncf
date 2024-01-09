@@ -273,7 +273,7 @@
 						</li>
 
 						<li>
-							<p>INC</p>
+							<p>IMEI</p>
 						</li>
 						<li>
 							<p>Code RG</p>
@@ -285,7 +285,7 @@
 							<p>Type demande</p>
 						</li>
 						<li>
-							<p>Type matériel</p>
+							<p>Nom</p>
 						</li>
 
 
@@ -306,11 +306,11 @@
 							<ul class="pcList">
 								<li><input type="checkbox" class="check-ipad" name="idsIpad[]" value="<?= $ipad['id_ipad'] ?>"></li>
 								<li class="cp_Agent"><?= $ipad['cp_Agent'] ?></li>
-								<li><?php echo $ipad['inc']; ?></li>
+								<li><?php echo $ipad['imei']; ?></li>
 								<li><?php echo $ipad['Code_RG']; ?></li>
 								<li><?= $ipad['date_demande'] ?></li>
 								<li><?= $ipad['type_demande'] ?></li>
-								<li><?= $ipad['type_materiel'] ?></li>
+								<li><?= $ipad['nom'] ?></li>
 
 								<li>
 									<a class="checkbox__ligne1__modif" href="index.php?uc=historique&action=modifierIpad&id=<?= $ipad['id_ipad'] ?>"></a>
@@ -363,20 +363,26 @@
 			const searchString = e.target.value.toLowerCase();
 
 			pcList.forEach(pc => {
-				const nSerie = pc.children[4].innerText.toLowerCase();
 				const cp = pc.children[1].innerText.toLowerCase();
 				const nom = pc.children[2].innerText.toLowerCase();
 				const imei = pc.children[3].innerText.toLowerCase();
 
-
-				if (nSerie.includes(searchString) || cp.includes(searchString) || nom.includes(searchString) || imei.includes(searchString)) {
-					pc.style.display = 'row';
+				if (cp.includes(searchString) || nom.includes(searchString) || imei.includes(searchString)) {
+					pc.style.display = 'row'; // Changer 'row' à 'block' pour l'affichage d'un élément
 				} else {
 					pc.style.display = 'none';
 				}
 			});
+
+			// Réafficher tous les éléments lorsque la recherche est vide
+			if (searchString === '') {
+				pcList.forEach(pc => {
+					pc.style.display = 'block'; // Changer 'row' à 'block' pour l'affichage d'un élément
+				});
+			}
 		});
 	});
+
 
 	// Cocher/décocher toutes les checkbox, JS vanilla
 	const checkAll = document.querySelector("#check-all");

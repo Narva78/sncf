@@ -290,7 +290,7 @@
 						Icloud
 					</label>
 					<div>
-						<input type="text" id="icloud" name="icloud">
+						<input type="text" id="icloud" name="icloud" value="<?php echo $icloud; ?>">
 
 					</div>
 				</div>
@@ -301,7 +301,7 @@
 						<label for="code Deverouillage">
 							code de dévérouillage
 						</label>
-						<input type="text" id="codeDev" name="codeDev">
+						<input type="text" id="codeDev" name="codeDev" value="<?php echo $codeDev; ?>">
 
 					</div>
 				</div>
@@ -311,14 +311,14 @@
 					<label for="imei">
 						IMEI
 					</label>
-					<input type="text" name="imei_mat_defec" id="imei_mat_defec">
+					<input type="text" name="imei_mat_defec" id="imei_mat_defec" value="<?php echo $imei; ?>" maxlength="15" minlength="15" required>
 				</div>
 				<div>
 					<label for="imei_remp">
 						IMEI de remplacement
 					</label>
 					<input type="checkbox" id="imei">
-					<input type="text" name="imei_remp" id="imei_remp" style="display:none;">
+					<input type="text" name="imei_remp" id="imei_remp" style="display:none;" value="<?php echo $imei_r; ?>" maxlength="15" minlength="15" required>
 				</div>
 			</div>
 
