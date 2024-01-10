@@ -233,9 +233,9 @@
 
 					</select>
 
-					<div>
+					<div style="display:none;" name="panne1" id="panne1">
 						<label for="panne">Panne :</label>
-						<select id="panne" name="panne" required style="display:none;">
+						<select id="panne" name="panne" required>
 
 							<option value="casse ecran" <?php if ($ifPanne == 'casse ecran') echo ' selected'; ?>>Casse écran</option> <!-- 0707 -->
 
@@ -332,7 +332,7 @@
 
 <script type=text/javascript>
 	document.getElementById('typeDemande').addEventListener('change', function() {
-		var deuxiemeListe = document.getElementById('panne');
+		var deuxiemeListe = document.getElementById('panne1');
 
 		// Afficher la deuxième liste si la sélection est égale à 'selection2'
 		if (this.value === 'panne') {

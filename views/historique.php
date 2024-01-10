@@ -364,24 +364,24 @@
 
 			pcList.forEach(pc => {
 				const cp = pc.children[1].innerText.toLowerCase();
-				const nom = pc.children[2].innerText.toLowerCase();
-				const imei = pc.children[3].innerText.toLowerCase();
+				const imei = pc.children[2].innerText.toLowerCase();
+				const nom = pc.children[3].innerText.toLowerCase();
 
-				if (cp.includes(searchString) || nom.includes(searchString) || imei.includes(searchString)) {
-					pc.style.display = 'row'; // Changer 'row' à 'block' pour l'affichage d'un élément
+
+				if (cp.includes(searchString) || imei.includes(searchString) || nom.includes(searchString)) {
+					pc.style.display = 'grid'; // Changer 'row' à 'block' pour l'affichage d'un élément
 				} else {
 					pc.style.display = 'none';
 				}
 			});
 
 			// Réafficher tous les éléments lorsque la recherche est vide
-			if (searchString === '') {
-				pcList.forEach(pc => {
-					pc.style.display = 'block'; // Changer 'row' à 'block' pour l'affichage d'un élément
-				});
-			}
 		});
 	});
+
+
+
+
 
 
 	// Cocher/décocher toutes les checkbox, JS vanilla

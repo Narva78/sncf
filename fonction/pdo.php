@@ -327,11 +327,11 @@ class PdoIpad
 		$stmt->execute([$taille, $marque, $types, $quantite, $id_ecran]);
 	}
 
-	public function modifierPC($id_pc, $nSerie, $marque, $modele, $quantite)
+	public function modifierPC($marque, $nSerie, $modele, $quantite, $id_pc)
 	{
 		$req = "UPDATE pc SET nSerie = ?, marque = ?, modele = ?, quantite = ? WHERE id_pc = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$nSerie, $marque, $modele, $quantite, $id_pc]);
+		$stmt->execute([$marque, $nSerie, $modele, $quantite, $id_pc]);
 	}
 
 
