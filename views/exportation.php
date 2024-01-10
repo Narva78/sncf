@@ -18,7 +18,7 @@ foreach ($data as $d) {
 	echo "\n" . '"' . $d->id_ipad . '";"' . $d->cp_Agent . '";"' . $d->nom . '";"' . $d->inc . '";"' . $d->Code_RG . '";"' . $d->mytem . '";"' . $d->date_demande . '";"' . $d->type_demande . '";"' . $d->type_materiel . '";"' . $d->type_panne . '";"' . $d->observation . '";"' . $d->Icloud . '";"' . $d->CodeDev . '"; "' . $d->imei . '";"' . $d->imei_remp . '"';
 }
 
-require('vendor/autoload.php');
+/*require('vendor/autoload.php');
 $con = mysqli_connect('localhost', 'root', '', 'ipad');
 $res = mysqli_query($con, "select * from ipad");
 if (mysqli_num_rows($res) > 0) {
@@ -28,4 +28,4 @@ if (mysqli_num_rows($res) > 0) {
 		$html .= '<tr><td>' . $row['id_ipad'] . '</td><td>' . $row['cp_Agent'] . '</td><td>' . $row['nom'] . '</td><td>' . $row['inc'] . '</td><td>' . $row['Code_RG'] . '</td><td>' . $row['mytem'] . '</td><td>' . $row['date_demande'] . '</td><td>' . $row['type_demande'] . '</td><td>' . $row['type_materiel'] . '</td><td>' . $row['type_panne'] . '</td><td>' . $row['observation'] . '</td><td>' . $row['Icloud'] . '</td><td>' . $row['CodeDev'] . '</td><td>' . $row['imei'] . '</td><td>' . $row['imei_remp'] . '</td></tr>';
 	}
 	$html .= '</table>';
-}
+}*/
