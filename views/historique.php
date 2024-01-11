@@ -365,7 +365,7 @@
 			pcList.forEach(pc => {
 				const cp = pc.children[1].innerText.toLowerCase();
 				const imei = pc.children[2].innerText.toLowerCase();
-				const nom = pc.children[3].innerText.toLowerCase();
+				const nom = pc.children[6].innerText.toLowerCase();
 
 
 				if (cp.includes(searchString) || imei.includes(searchString) || nom.includes(searchString)) {

@@ -35,7 +35,7 @@
 		font-size: 1.2rem;
 	}
 
-	input[type=submit] {
+	form input[type=submit] {
 		height: 40px;
 		width: 130px;
 		background: #3498DB;
@@ -47,7 +47,7 @@
 
 	}
 
-	input[type=button] {
+	form input[type=button] {
 		height: 40px;
 		width: 130px;
 		background: red;
@@ -59,7 +59,7 @@
 	}
 
 	.bouton {
-		margin: 30px;
+		margin: 10px;
 	}
 
 	h2 {

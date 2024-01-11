@@ -51,6 +51,10 @@ switch ($uc) {
 			include("controller/c_deconnexion.php");
 			break;
 		}
+	case 'pdf': {
+			//include("views/genePdf.php");
+			break;
+		}
 	default: {
 			include("views/404.php"); // Page d'erreur 404
 			break;

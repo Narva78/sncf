@@ -107,7 +107,7 @@
 
 
 	.bouton {
-		margin: 30px;
+		margin: 10px;
 	}
 
 	input[type=date] {
