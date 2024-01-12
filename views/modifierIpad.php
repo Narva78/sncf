@@ -178,6 +178,11 @@
 				</div>
 
 				<div>
+					<label for="residence">Résidence :</label>
+					<input type="text" id="residence" name="residence" required value="<?php echo $residense; ?>">
+				</div>
+
+				<div>
 					<label for="INC">INC :</label>
 					<input type="text" id="inc" name="inc" placeholder="INC78956" required value="<?php echo $inc; ?>">
 				</div>

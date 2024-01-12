@@ -20,8 +20,33 @@
 	}
 
 	.search input {
-		width: 190px;
+		max-width: 100%;
 		border: none;
+		width: 183px;
+	}
+
+	@media screen and (max-width: 1300px) {
+		.search input {
+			width: 180px;
+		}
+	}
+
+	@media screen and (max-width: 1200px) {
+		.search input {
+			width: 160px;
+		}
+	}
+
+	@media screen and (max-width: 1060px) {
+		.search input {
+			width: 130px;
+		}
+	}
+
+	@media screen and (max-width: 882px) {
+		.search input {
+			width: 100px;
+		}
 	}
 
 	h1 {
@@ -45,10 +70,11 @@
 	}
 
 	.checkbox__ligne {
-		width: 100%;
+		max-width: 100%;
 		margin-left: auto;
 		margin-right: auto;
 		font-size: 0.9rem;
+		width: 93%;
 	}
 
 	.checkbox__ligne li {
@@ -310,7 +336,7 @@
 								<li><?php echo $ipad['Code_RG']; ?></li>
 								<li><?= $ipad['date_demande'] ?></li>
 								<li><?= $ipad['type_demande'] ?></li>
-								<li><?= $ipad['nom'] ?></li>
+								<li><?= $ipad['nom/prenom'] ?></li>
 
 								<li>
 									<a class="checkbox__ligne1__modif" href="index.php?uc=historique&action=modifierIpad&id=<?= $ipad['id_ipad'] ?>"></a>

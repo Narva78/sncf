@@ -28,7 +28,7 @@ require_once 'C:/wamp64/www/sncf/views/dompdf/dompdf/autoload.inc.php';
 $dompdf = new Dompdf();
 
 $dompdf->loadHtml($html);
-$dompdf->setPaper('A4', 'portrait');
+$dompdf->setPaper('A2', 'paysages');
 
 $dompdf->render();
 

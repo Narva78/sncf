@@ -52,7 +52,7 @@ switch ($uc) {
 			break;
 		}
 	case 'pdf': {
-			//include("views/genePdf.php");
+			include("views/genePdf.php");
 			break;
 		}
 	default: {

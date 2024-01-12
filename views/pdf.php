@@ -1,12 +1,17 @@
 	<style>
-		table,
 		th,
 		tr,
 		td {
 			max-width: 100%;
 			border: solid 2px black;
 			margin-left: 1px;
+			text-align: center;
 		}
+
+		td {
+			color: green;
+		}
+
 
 		h1 {
 			text-align: center;
@@ -19,6 +24,7 @@
 			<th>ID</th>
 			<th>CP</th>
 			<th>NOM</th>
+			<th>Résidence</th>
 			<th>inc</th>
 			<th>code RG</th>
 			<th>Mytem</th>
@@ -37,7 +43,8 @@
 				<tr>
 					<td><?= $ipad['id_ipad'] ?></td>
 					<td><?= $ipad['cp_Agent'] ?></td>
-					<td><?= $ipad['nom'] ?></td>
+					<td><?= $ipad['nom/prenom'] ?></td>
+					<td><?= $ipad['residence'] ?></td>
 					<td><?= $ipad['inc'] ?></td>
 					<td><?= $ipad['Code_RG'] ?></td>
 					<td><?= $ipad['mytem'] ?></td>

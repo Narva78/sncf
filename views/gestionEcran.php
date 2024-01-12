@@ -50,9 +50,11 @@
 	}
 
 	.checkbox__ligne {
-		width: 80%;
+		max-width: 100%;
 		margin-left: auto;
 		margin-right: auto;
+		width: 1200px;
+
 	}
 
 	.checkbox ul {
@@ -98,7 +100,7 @@
 	.search__btn__plus input {
 		background: green;
 		color: #fff;
-		width: 170px;
+		width: 183px;
 	}
 
 	.search__btn__plus input:hover {
@@ -111,7 +113,7 @@
 	.search__btn__moins input {
 		background: red;
 		color: #fff;
-		width: 170px;
+		width: 183px;
 
 
 	}
@@ -125,7 +127,7 @@
 	.search__btn__Reportable input {
 		background: #582900;
 		color: #fff;
-		width: 170px;
+		width: 183px;
 
 
 	}
@@ -138,7 +140,7 @@
 	.search__btn__Code__Dev input {
 		background: #76448a;
 		color: #fff;
-		width: 170px;
+		width: 183px;
 
 
 	}
@@ -152,7 +154,7 @@
 	.search__btn__icloud input {
 		background: #405a73;
 		color: #fff;
-		width: 170px;
+		width: 183px;
 
 
 	}
@@ -165,7 +167,7 @@
 	.search__btn__taille input {
 		background: #3389c2;
 		color: #fff;
-		width: 170px;
+		width: 183px;
 
 
 	}

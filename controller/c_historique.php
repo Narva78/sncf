@@ -99,6 +99,7 @@ switch ($action) {
 					//Récupération des données du formulaire
 					$cp = $_POST['cp'];
 					$nom = $_POST['nom'];
+					$residence = $_POST['residence'];
 					$inc = $_POST['inc'];
 					$Code_RG = $_POST['codeRG'];
 					$dateDemande = $_POST['dateDemande'];
@@ -153,6 +154,7 @@ switch ($action) {
 					$id_form = $_POST['id'];
 					$cp = $_POST['cp']; // Récupère la valeur du champ cp
 					$nom = $_POST['nom']; // Récupère la valeur du champ nom
+					$residence = $_POST['residence'];
 					$inc = $_POST['inc'];
 					$Code_RG = $_POST['codeRG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
 					$dateDemande = $_POST['dateDemande'];
@@ -192,7 +194,8 @@ switch ($action) {
 					foreach ($lesIpad as $unIpad) {
 						$id_true = $unIpad['id_ipad'];
 						$cp = $unIpad['cp_Agent']; // Récupère la valeur du champ cp
-						$nom = $unIpad['nom']; // Récupère la valeur du champ nom
+						$nom = $unIpad['nom/prenom']; // Récupère la valeur du champ nom
+						$residence = $_POST['residence'];
 						$inc = $unIpad['inc'];
 						$Code_RG = $unIpad['Code_RG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
 						$mytem = $unIpad['mytem'];

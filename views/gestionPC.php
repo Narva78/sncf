@@ -19,10 +19,11 @@
 		justify-content: center;
 		gap: 20px;
 		margin-bottom: 20px;
+		margin-left: 20px;
 	}
 
 	.search input {
-		width: 150px;
+		width: 153px;
 		border: none;
 	}
 
@@ -51,9 +52,11 @@
 	}
 
 	.checkbox__ligne {
-		width: 80%;
+		max-width: 100%;
 		margin-left: auto;
 		margin-right: auto;
+		width: 1200px;
+
 	}
 
 	.checkbox ul {
