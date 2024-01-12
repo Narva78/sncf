@@ -43,7 +43,7 @@
 				<tr>
 					<td><?= $ipad['id_ipad'] ?></td>
 					<td><?= $ipad['cp_Agent'] ?></td>
-					<td><?= $ipad['nom/prenom'] ?></td>
+					<td><?= $ipad['nom'] ?></td>
 					<td><?= $ipad['residence'] ?></td>
 					<td><?= $ipad['inc'] ?></td>
 					<td><?= $ipad['Code_RG'] ?></td>

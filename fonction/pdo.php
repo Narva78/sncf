@@ -263,7 +263,7 @@ class PdoIpad
 	public function ajouterIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r)
 	{
 		$req = "INSERT INTO ipad (cp_Agent, nom, residence, inc, Code_RG, mytem, date_demande, type_demande, type_materiel, type_panne, observation,  icloud, codeDev,imei,imei_remp) 
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		$stmt = PdoIpad::$monPdo->prepare($req);
 		$stmt->execute([$cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r]);
 		$nombreLignesAffectees = $stmt->rowCount();

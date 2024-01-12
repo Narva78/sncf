@@ -179,7 +179,7 @@
 
 				<div>
 					<label for="residence">Résidence :</label>
-					<input type="text" id="residence" name="residence" required value="<?php echo $residense; ?>">
+					<input type="text" id="residence" name="residence" required value="<?php echo $residence; ?>">
 				</div>
 
 				<div>

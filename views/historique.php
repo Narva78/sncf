@@ -336,7 +336,7 @@
 								<li><?php echo $ipad['Code_RG']; ?></li>
 								<li><?= $ipad['date_demande'] ?></li>
 								<li><?= $ipad['type_demande'] ?></li>
-								<li><?= $ipad['nom/prenom'] ?></li>
+								<li><?= $ipad['nom'] ?></li>
 
 								<li>
 									<a class="checkbox__ligne1__modif" href="index.php?uc=historique&action=modifierIpad&id=<?= $ipad['id_ipad'] ?>"></a>
