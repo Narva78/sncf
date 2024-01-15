@@ -11,7 +11,7 @@ class PdoIpad
 	private static $serveur = 'mysql:host=localhost';
 	private static $bdd = 'dbname=ipad';
 	private static $user = 'root';
-	private static $mdp = '';
+	private static $mdp = 'root';
 	private static $monPdo;
 	private static $monPdoIpad = null;
 
@@ -183,7 +183,7 @@ class PdoIpad
 		return $lesLignes;
 	}
 
-	public function getInfoIpadByVariable($variable, $ordre)
+	public function getInfoIpadByVariable($variable, $ordre, $premier, $parpage)
 	{
 		$requete = "SELECT * FROM ipad";
 
@@ -194,19 +194,19 @@ class PdoIpad
 			case 'Code_RG':
 				$requete .= " ORDER BY Code_RG $ordre";
 				break;
-
 			case 'date_demande':
 				$requete .= " ORDER BY date_demande $ordre";
 				break;
-
 			default:
 				break;
 		}
+		$requete .= " LIMIT $premier, $parpage";
 
 		$res = PdoIpad::$monPdo->query($requete);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
 	}
+
 
 
 	public function getInfosPC()
