@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 09 jan. 2024 à 10:39
+-- Généré le : lun. 15 jan. 2024 à 10:26
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -58,21 +58,21 @@ CREATE TABLE IF NOT EXISTS `ecran` (
   `types` varchar(100) NOT NULL,
   `quantite` int NOT NULL,
   PRIMARY KEY (`id_ecran`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `ecran`
 --
 
 INSERT INTO `ecran` (`id_ecran`, `taille`, `marque`, `types`, `quantite`) VALUES
-(6, 45, 'Mac', 'incurvé', 5),
+(6, 45, 'samsung', 'incurvé', 5),
 (2, 55, 'Philips', 'incurvé', 20),
-(13, 155, 'dell', 'plat', 2),
+(13, 155, 'dell', 'incurvé', 2),
 (5, 95, 'lenovo', 'incurvé', 56),
 (7, 90, 'dell', 'incurvé', 14),
-(8, 90, 'hp', 'incurvé', 100),
-(10, 64, 'huawei', 'plat', 17),
-(14, 64, 'samsung', 'incurvé', 47);
+(10, 64, 'samsung', 'incurvé', 17),
+(14, 64, 'samsung', 'incurvé', 47),
+(15, 120, 'samsung', 'plat', 10);
 
 -- --------------------------------------------------------
 
@@ -84,8 +84,8 @@ DROP TABLE IF EXISTS `ipad`;
 CREATE TABLE IF NOT EXISTS `ipad` (
   `id_ipad` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `cp_Agent` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nom` varchar(30) NOT NULL,
-  `prenom` varchar(30) NOT NULL,
+  `nom` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `residence` varchar(50) NOT NULL,
   `inc` varchar(50) NOT NULL,
   `Code_RG` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `mytem` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -99,17 +99,18 @@ CREATE TABLE IF NOT EXISTS `ipad` (
   `imei` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `imei_remp` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_ipad`)
-) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `ipad`
 --
 
-INSERT INTO `ipad` (`id_ipad`, `cp_Agent`, `nom`, `prenom`, `inc`, `Code_RG`, `mytem`, `date_demande`, `type_demande`, `type_materiel`, `type_panne`, `observation`, `Icloud`, `CodeDev`, `imei`, `imei_remp`) VALUES
-(71, '9508900L', 'cora', '', 'INC58652565114', 'ETPNU', 'TRACTION78786', '2024-01-30', 'panne', 'Ipad2020', 'casse ecran', '0', 0, 0, '', ''),
-(73, '97139', 'kiting leyla', '', 'INC58652561', 'ETPNU', 'TRACTION825452', '2024-01-12', 'casse', 'Ipad2020', 'casse ecran', '0', 26, 127, '256696232620316', '69594941'),
-(72, '97129', 'cyrille', '', 'INC39655', 'ETPLC', 'TRACTION825452', '2024-02-09', 'panne', 'Ipad2020', 'Panne tactile', 'lors du passage de m a', 127, 0, '126226326952169', '484454955958499'),
-(63, '9962963', 'cora', '', 'INC5865256', 'ETPNU', 'TRACTION78786', '2024-01-21', 'panne', 'Ipad2020', 'ne s\'allume plus', 'ecran noir', 1, 0, '94632152654', '69594941');
+INSERT INTO `ipad` (`id_ipad`, `cp_Agent`, `nom`, `residence`, `inc`, `Code_RG`, `mytem`, `date_demande`, `type_demande`, `type_materiel`, `type_panne`, `observation`, `Icloud`, `CodeDev`, `imei`, `imei_remp`) VALUES
+(71, '9508900L', 'cora', 'Trappe', 'INC58652565114', 'ETPNU', NULL, '2024-01-30', 'casse', 'Ipad2020', 'casse ecran', '', 0, 0, '456971236548658', '655236987835648'),
+(73, '97139', 'kiting leyla', 'Dreux', 'INC58652561', 'ETPNU', 'TRACTION825452', '2024-01-12', 'casse', 'Ipad2020', 'casse ecran', '0', 26, 127, '256696232620316', '69594941'),
+(72, '97129', 'cyrille', 'Versaille', 'INC39655', 'ETPLC', 'TRACTION825452', '2024-02-09', 'panne', 'Ipad2020', 'Panne tactile', 'lors du passage de m a', 127, 0, '126226326952169', '484454955958499'),
+(83, '4646148912M', 'Bell MT', 'Versailles ', 'INC39654', 'ETPNU', 'TRACTION78478', '2024-01-29', 'casse', 'Ipad2020', 'probleme connexion wifi', '', 127, 127, '777777777777777', '333333333333333'),
+(82, '58912M', 'ertyu', 'vanves', 'INC5865', 'ETPNU', NULL, '2024-01-31', 'perte', 'Ipad2020', 'casse ecran', '', 55, 0, '444444444444444', '622222222222222');
 
 -- --------------------------------------------------------
 
@@ -132,13 +133,7 @@ CREATE TABLE IF NOT EXISTS `pc` (
 --
 
 INSERT INTO `pc` (`id_pc`, `marque`, `nSerie`, `modele`, `quantite`) VALUES
-(4, 'samsung', '4848gfyfiyf7', 'Galaxy book', 55),
-(3, 'MacBook', '28LvBT22', 'Pro', 0),
-(5, 'samsung', '295237', 'pass', 5),
-(6, 'samsung', '04092004', 'Galaxy book', 56),
-(7, 'samsung', '12051969', 'Galaxy book pro', 2),
 (8, ' dell', '523459', 'pro', 22),
-(9, 'lenovo', '263145', 'prod', 65),
 (10, ' dell', '848454694', 'torax', 4);
 
 -- --------------------------------------------------------
