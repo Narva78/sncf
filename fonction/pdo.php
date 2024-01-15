@@ -121,14 +121,7 @@ class PdoIpad
 	}
 
 
-	//fonction qui permet de récupérer les informations de la Table ipad en fonction de la premiere ligne et du nombre de ligne par page
-	public function getInfosIpad()
-	{
-		$req = "SELECT * FROM ipad";
-		$res = PdoIpad::$monPdo->query($req);
-		$lesLignes = $res->fetchall();
-		return $lesLignes;
-	}
+
 
 	public function getInfosEcran()
 	{
@@ -190,6 +183,31 @@ class PdoIpad
 		return $lesLignes;
 	}
 
+	public function getInfoIpadByVariable($variable, $ordre)
+	{
+		$requete = "SELECT * FROM ipad";
+
+		switch ($variable) {
+			case 'nom':
+				$requete .= " ORDER BY nom $ordre";
+				break;
+			case 'Code_RG':
+				$requete .= " ORDER BY Code_RG $ordre";
+				break;
+
+			case 'date_demande':
+				$requete .= " ORDER BY date_demande $ordre";
+				break;
+
+			default:
+				break;
+		}
+
+		$res = PdoIpad::$monPdo->query($requete);
+		$lesLignes = $res->fetchAll();
+		return $lesLignes;
+	}
+
 
 	public function getInfosPC()
 	{
@@ -203,6 +221,14 @@ class PdoIpad
 	public function getInfosIpadById($id)
 	{
 		$req = "SELECT * FROM ipad WHERE id_ipad = '$id'";
+		$res = PdoIpad::$monPdo->query($req);
+		$lesLignes = $res->fetchall();
+		return $lesLignes;
+	}
+
+	public function getInfosIpad($premier, $parpage)
+	{
+		$req = "SELECT * FROM ipad ORDER BY  date_demande, nom DESC LIMIT $premier, $parpage";
 		$res = PdoIpad::$monPdo->query($req);
 		$lesLignes = $res->fetchall();
 		return $lesLignes;
@@ -267,11 +293,6 @@ class PdoIpad
 		$stmt = PdoIpad::$monPdo->prepare($req);
 		$stmt->execute([$cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r]);
 		$nombreLignesAffectees = $stmt->rowCount();
-		if ($nombreLignesAffectees > 0) {
-			echo "L'insertion a été effectuée avec succès.";
-		} else {
-			echo "Échec de l'insertion.";
-		}
 	}
 
 	public function ajouterEcran($taille, $marque, $types, $quantite)
@@ -285,11 +306,6 @@ class PdoIpad
 		$stmt->execute();
 
 		$nombreLignesAffectees = $stmt->rowCount();
-		if ($nombreLignesAffectees > 0) {
-			echo "L'insertion a été effectuée avec succès.";
-		} else {
-			echo "Échec de l'insertion.";
-		}
 	}
 
 	public function ajouterPC($nSerie, $marque, $modele, $quantite)
@@ -303,11 +319,6 @@ class PdoIpad
 		$stmt->execute();
 
 		$nombreLignesAffectees = $stmt->rowCount();
-		if ($nombreLignesAffectees > 0) {
-			echo "L'insertion a été effectuée avec succès.";
-		} else {
-			echo "Échec de l'insertion.";
-		}
 	}
 
 	//Fonction qui permet de modifier un ipad dans la table ipad en fonction des paramètres

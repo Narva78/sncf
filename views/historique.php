@@ -236,11 +236,13 @@
 		text-decoration: none;
 		border: 1px solid #ccc;
 		border-radius: 4px;
-		color: #333;
+		background-color: white;
+		color: black;
 	}
 
 	.page-link:hover {
 		background-color: #f0f0f0;
+		color: black;
 	}
 
 	/* Style pour les éléments désactivés */
@@ -270,14 +272,12 @@
 						<input type="text" name="text" id="tags" class="search-input" placeholder="CP...">
 					</div>
 					<div class="search__btn__icloud">
-						<input type="button" value="icloud">
+						<a href="index.php?uc=historique&action=historique&tri=nom&ordre=<?= ($tri === 'nom') ? $prochainOrdre : 'asc'; ?>"><input type="button" value="Nom" /></a>
 					</div>
 					<div class="search__btn__Code__Dev">
 						<input type="button" value="Code Dev">
 					</div>
-					<div class="search__btn__Reportable">
-						<input type="button" value="Reportable">
-					</div>
+
 					<div class="search__btn__moins">
 						<input type="submit" name="supprimer" value="Supprimer">
 					</div>
@@ -299,6 +299,10 @@
 						</li>
 
 						<li>
+							<p>Nom</p>
+						</li>
+
+						<li>
 							<p>IMEI</p>
 						</li>
 						<li>
@@ -310,9 +314,7 @@
 						<li>
 							<p>Type demande</p>
 						</li>
-						<li>
-							<p>Nom</p>
-						</li>
+
 
 
 
@@ -332,11 +334,11 @@
 							<ul class="pcList">
 								<li><input type="checkbox" class="check-ipad" name="idsIpad[]" value="<?= $ipad['id_ipad'] ?>"></li>
 								<li class="cp_Agent"><?= $ipad['cp_Agent'] ?></li>
+								<li><?= $ipad['nom'] ?></li>
 								<li><?php echo $ipad['imei']; ?></li>
 								<li><?php echo $ipad['Code_RG']; ?></li>
 								<li><?= $ipad['date_demande'] ?></li>
 								<li><?= $ipad['type_demande'] ?></li>
-								<li><?= $ipad['nom'] ?></li>
 
 								<li>
 									<a class="checkbox__ligne1__modif" href="index.php?uc=historique&action=modifierIpad&id=<?= $ipad['id_ipad'] ?>"></a>
@@ -361,7 +363,7 @@
 
 			<?php for ($page = 1; $page <= $pages; $page++) : ?>
 				<!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
-				<li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+				<li class="pagination page-item <?= ($currentPage == $page) ? "active" : "" ?>">
 					<a href="./?<?= http_build_query(array_merge($_GET, array("page" => $page))) ?>" class="page-link"><?= $page ?></a>
 				</li>
 			<?php endfor ?>

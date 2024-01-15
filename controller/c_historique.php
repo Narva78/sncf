@@ -12,9 +12,10 @@ switch ($action) {
 	case 'historique':
 
 
+
 		// Constantes pour les valeurs par défaut
 		define('DEFAULT_PAGE', 1);
-		define('DEFAULT_IPP', 10);
+		define('DEFAULT_IPP', 2);
 
 		// Récupération et validation du numéro de page
 		$currentPage = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : DEFAULT_PAGE;
@@ -42,6 +43,23 @@ switch ($action) {
 		// Récupération de la liste des iPads pour la page actuelle
 		$lesIpad = $pdo->getInfosIpad($premier, $parPage);
 
+		$tri = isset($_GET['tri']) ? $_GET['tri'] : '';
+		$ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
+
+		// Inverser l'ordre pour le prochain clic
+		$prochainOrdre = ($ordre === 'asc') ? 'desc' : 'asc';
+
+		$tri = isset($_GET['tri']) ? $_GET['tri'] : '';
+		$ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
+
+		// Inverser l'ordre pour le prochain clic
+		$prochainOrdre = ($ordre === 'asc') ? 'desc' : 'asc';
+
+		if ($tri === 'nom' || $tri === 'Code_RG' || $tri === 'date_demande') {
+			$lesIpad = $pdo->getInfoIpadByVariable($tri, $ordre);
+		} else {
+			$lesIpad = $pdo->getInfoIpadByVariable('', $ordre); // Ordre par défaut
+		}
 
 		// Inclusion de la vue
 		include("views/historique.php");

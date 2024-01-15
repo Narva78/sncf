@@ -21,7 +21,6 @@
 	<h1>Récapitulatif des ipad</h1>
 	<table>
 		<thead>
-			<th>ID</th>
 			<th>CP</th>
 			<th>NOM</th>
 			<th>Résidence</th>
@@ -41,7 +40,6 @@
 		<tbody>
 			<?php foreach ($ipads as $ipad) : ?>
 				<tr>
-					<td><?= $ipad['id_ipad'] ?></td>
 					<td><?= $ipad['cp_Agent'] ?></td>
 					<td><?= $ipad['nom'] ?></td>
 					<td><?= $ipad['residence'] ?></td>
