@@ -152,6 +152,13 @@
 	label {
 		display: block;
 	}
+
+	.reparable {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		gap: 20px;
+	}
 </style>
 
 
@@ -325,6 +332,14 @@
 					<input type="checkbox" id="imei">
 					<input type="text" name="imei_remp" id="imei_remp" style="display:none;" value="<?php echo $imei_r; ?>" maxlength="15" minlength="15" required>
 				</div>
+			</div>
+			<br>
+			<div class="reparable">
+				<input type="radio" id="contactChoice1" name="rep" value="Réparable" required />
+				<label for="contactChoice1">Réparable</label>
+
+				<input type="radio" id="contactChoice2" name="rep" value="Rebus" required />
+				<label for="contactChoice2">Rebus</label>
 			</div>
 
 			<div class="bouton">

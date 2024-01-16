@@ -22,32 +22,22 @@
 	.search input {
 		max-width: 100%;
 		border: none;
-		width: 183px;
+		width: 224px;
 	}
 
-	@media screen and (max-width: 1300px) {
+	@media screen and (max-width: 1200px) {
+		.search input {
+			width: 200px;
+		}
+	}
+
+	@media screen and (max-width: 1082px) {
 		.search input {
 			width: 180px;
 		}
 	}
 
-	@media screen and (max-width: 1200px) {
-		.search input {
-			width: 160px;
-		}
-	}
 
-	@media screen and (max-width: 1060px) {
-		.search input {
-			width: 130px;
-		}
-	}
-
-	@media screen and (max-width: 882px) {
-		.search input {
-			width: 100px;
-		}
-	}
 
 	h1 {
 		text-align: center;
@@ -277,10 +267,18 @@
 					<div class="search__btn__Code__Dev">
 						<input type="button" value="Code Dev">
 					</div>
+					<?php
+					if (isset($_SESSION['id'])) {
+						$userID = $pdo->getInfoUSerById($_SESSION['id']);
+						$is_admin = $userID['is_admin'] == 1;
+					}
+					if ($is_admin) {
+					?>
+						<div class="search__btn__moins">
+							<input type="submit" name="supprimer" value="Supprimer">
+						</div>
+					<?php } ?>
 
-					<div class="search__btn__moins">
-						<input type="submit" name="supprimer" value="Supprimer">
-					</div>
 					<div class="search__btn__plus">
 						<a href="index.php?uc=historique&action=ajouterIpad"><input type="button" value="Ajouter" /></a>
 					</div>

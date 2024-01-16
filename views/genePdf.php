@@ -18,7 +18,7 @@ $query = $PDO->query($sql);
 $ipads = $query->fetchAll();
 
 ob_start();
-require_once 'pdf.php';
+require_once 'pdf2.php';
 
 $html = ob_get_contents();
 

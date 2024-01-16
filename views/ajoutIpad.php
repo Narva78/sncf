@@ -150,6 +150,13 @@
 	label {
 		display: block;
 	}
+
+	.reparable {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		gap: 20px;
+	}
 </style>
 
 <title>Formulaire D'ajout D'Ipad</title>
@@ -306,16 +313,26 @@
 					<label for="imei">
 						IMEI
 					</label>
-					<input type="text" name="imei_mat_defec" id="imei_mat_defec">
+					<input type="text" name="imei_mat_defec" id="imei_mat_defec" maxlength="15" minlength="15">
 				</div>
 				<div>
 					<label for="imei_remp">
 						IMEI de remplacement
 					</label>
 					<input type="checkbox" id="imei">
-					<input type="text" name="imei_remp" id="imei_remp" style="display:none;">
+					<input type="text" name="imei_remp" id="imei_remp" style="display:none;" maxlength="15" minlength="15">
 				</div>
 			</div>
+
+			<br>
+			<div class="reparable">
+				<input type="radio" id="contactChoice1" name="rep" value="Reparable" />
+				<label for="contactChoice1">Réparable</label>
+
+				<input type="radio" id="contactChoice2" name="rep" value="Rebus" />
+				<label for="contactChoice2">Rebus</label>
+			</div>
+
 
 
 			<div class="bouton">

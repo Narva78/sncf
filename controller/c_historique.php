@@ -113,12 +113,13 @@ switch ($action) {
 			$codeDev = $_POST['codeDev'];
 			$imei = $_POST['imei_mat_defec'];
 			$imei_r = $_POST['imei_remp'];
+			$rep = $_POST['rep'];
 
 			// var_dump() des variables - à commenter ou supprimer pour éviter l'envoi de contenu inattendu
 			// var_dump($cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r);
 
 			// Ajout de l'iPad
-			$pdo->ajouterIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r);
+			$pdo->ajouterIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep);
 
 			// Redirection après l'ajout
 			echo "
@@ -171,8 +172,9 @@ switch ($action) {
 			$codeDev = $_POST['codeDev']; //? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
 			$imei = $_POST['imei_mat_defec'];
 			$imei_r = $_POST['imei_remp'];
+			$rep = $_POST['rep'];
 
-			$pdo->modifierIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $id_form, $imei, $imei_r);
+			$pdo->modifierIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $id_form, $imei, $imei_r, $rep);
 
 			//pop-up de confirmation de modification
 			echo "
@@ -213,6 +215,7 @@ switch ($action) {
 				$codeDev = $unIpad['CodeDev']; //? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
 				$imei = $unIpad['imei'];
 				$imei_r = $unIpad['imei_remp'];
+				$rep = $unIpad['reparable'];
 			}
 			include("views/modifierIpad.php");
 			exit;
