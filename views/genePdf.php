@@ -11,7 +11,7 @@ try {
 
 require_once 'C:/wamp64/www/sncf/fonction/pdo.php';
 
-$sql = 'SELECT * FROM `ipad`';
+$sql = "SELECT * FROM `ipad`";
 
 $query = $PDO->query($sql);
 
@@ -28,7 +28,7 @@ require_once 'C:/wamp64/www/sncf/views/dompdf/dompdf/autoload.inc.php';
 $dompdf = new Dompdf();
 
 $dompdf->loadHtml($html);
-$dompdf->setPaper('A2', 'paysages');
+$dompdf->setPaper('A4', 'portrait');
 
 $dompdf->render();
 
