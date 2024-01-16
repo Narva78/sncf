@@ -123,33 +123,33 @@
 		transition: .7s;
 	}
 
-	.search__btn__Reportable input {
+	.search__btn__date input {
 		background: #76448a;
 		color: #fff;
 	}
 
-	.search__btn__Reportable input:hover {
+	.search__btn__date input:hover {
 		background: #670070;
 		transition: .7s;
 	}
 
-	.search__btn__Code__Dev input {
+	.search__btn__Code__RG input {
 		background: #405a73;
 		color: #fff;
 	}
 
-	.search__btn__Code__Dev input:hover {
+	.search__btn__Code__RG input:hover {
 		background: #395066;
 		transition: .7s;
 
 	}
 
-	.search__btn__icloud input {
+	.search__btn__nom input {
 		background: #3389c2;
 		color: #fff;
 	}
 
-	.search__btn__icloud input:hover {
+	.search__btn__nom input:hover {
 		background: #266894;
 		transition: .7s;
 	}
@@ -261,11 +261,14 @@
 					<div class="search__nSerie">
 						<input type="text" name="text" id="tags" class="search-input" placeholder="CP...">
 					</div>
-					<div class="search__btn__icloud">
-						<a href="index.php?uc=historique&action=historique&tri=nom&ordre=<?= ($tri === 'nom') ? $prochainOrdre : 'asc'; ?>"><input type="button" value="Nom" /></a>
+					<div class="search__btn__nom">
+						<a href="index.php?uc=historique&action=historique&tri=nom&ordre=<?= ($tri === 'nom') ? $prochainOrdre : 'asc' ?>&page=<?= $currentPage ?>"><input type="button" value="Nom" /></a>
 					</div>
-					<div class="search__btn__Code__Dev">
-						<input type="button" value="Code Dev">
+					<div class="search__btn__Code__RG">
+						<a href="index.php?uc=historique&action=historique&tri=Code_RG&ordre=<?= ($tri === 'Code_RG') ? $prochainOrdre : 'asc' ?>&page=<?= $currentPage ?>"><input type="button" value="Code RG" /></a>
+					</div>
+					<div class="search__btn__date">
+						<a href="index.php?uc=historique&action=historique&tri=date_demande&ordre=<?= ($tri === 'date_demande') ? $prochainOrdre : 'asc' ?>&page=<?= $currentPage ?>"><input type="button" value="Date" /></a>
 					</div>
 					<?php
 					if (isset($_SESSION['id'])) {

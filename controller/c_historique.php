@@ -15,7 +15,7 @@ switch ($action) {
 
 		// Constantes pour les valeurs par défaut
 		define('DEFAULT_PAGE', 1);
-		define('DEFAULT_IPP', 2);
+		define('DEFAULT_IPP', 3);
 
 		// Récupération et validation du numéro de page
 		$currentPage = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : DEFAULT_PAGE;
@@ -43,9 +43,6 @@ switch ($action) {
 		// Récupération de la liste des iPads pour la page actuelle
 		$lesIpad = $pdo->getInfosIpad($premier, $parPage);
 
-		$tri = isset($_GET['tri']) ? $_GET['tri'] : '';
-		$ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
-
 		// Inverser l'ordre pour le prochain clic
 		$prochainOrdre = ($ordre === 'asc') ? 'desc' : 'asc';
 
@@ -56,9 +53,9 @@ switch ($action) {
 		$prochainOrdre = ($ordre === 'asc') ? 'desc' : 'asc';
 
 		if ($tri === 'nom' || $tri === 'Code_RG' || $tri === 'date_demande') {
-			$lesIpad = $pdo->getInfoIpadByVariable($tri, $ordre);
+			$lesIpad = $pdo->getInfoIpadByVariable($tri, $ordre, $premier, $parPage);
 		} else {
-			$lesIpad = $pdo->getInfoIpadByVariable('', $ordre); // Ordre par défaut
+			$lesIpad = $pdo->getInfoIpadByVariable('', $ordre, $premier, $parPage); // Ordre par défaut
 		}
 
 		// Inclusion de la vue
