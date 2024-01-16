@@ -335,11 +335,11 @@
 			</div>
 			<br>
 			<div class="reparable">
-				<input type="radio" id="contactChoice1" name="rep" value="Réparable" required />
-				<label for="contactChoice1">Réparable</label>
+				<input type="radio" id="rep1" name="rep" value="1" <?php if ($rep == 1) echo ' checked'; ?> required />
+				<label for="rep1">Réparable</label>
 
-				<input type="radio" id="contactChoice2" name="rep" value="Rebus" required />
-				<label for="contactChoice2">Rebus</label>
+				<input type="radio" id="rep2" name="rep" value="0" <?php if ($rep == 0) echo ' checked'; ?> />
+				<label for="rep2">Rebus</label>
 			</div>
 
 			<div class="bouton">

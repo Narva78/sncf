@@ -43,8 +43,7 @@ switch ($action) {
 		// Récupération de la liste des iPads pour la page actuelle
 		$lesIpad = $pdo->getInfosIpad($premier, $parPage);
 
-		// Inverser l'ordre pour le prochain clic
-		$prochainOrdre = ($ordre === 'asc') ? 'desc' : 'asc';
+
 
 		$tri = isset($_GET['tri']) ? $_GET['tri'] : '';
 		$ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
@@ -184,7 +183,7 @@ switch ($action) {
                             showConfirmButton: false,
                             timer: 3000
                         }).then(() => {
-                            window.location.href = 'index.php?uc=historique&action=historique';
+													window.location.href = 'index.php?uc=historique&action=historique';
                         });
                     </script>";
 			exit;

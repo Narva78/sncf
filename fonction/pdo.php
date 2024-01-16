@@ -11,7 +11,7 @@ class PdoIpad
 	private static $serveur = 'mysql:host=localhost';
 	private static $bdd = 'dbname=ipad';
 	private static $user = 'root';
-	private static $mdp = 'root';
+	private static $mdp = '';
 	private static $monPdo;
 	private static $monPdoIpad = null;
 
