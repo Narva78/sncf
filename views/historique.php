@@ -133,15 +133,14 @@
 		transition: .7s;
 	}
 
-	.search__btn__Code__RG input {
+	.search__btn__etat input {
 		background: #405a73;
 		color: #fff;
 	}
 
-	.search__btn__Code__RG input:hover {
+	.search__btn__etat input:hover {
 		background: #395066;
 		transition: .7s;
-
 	}
 
 	.search__btn__nom input {
@@ -249,10 +248,60 @@
 		color: #fff;
 		border-color: #007bff;
 	}
+
+
+	.pcList.en-cours {
+		background-color: #ffeb3b;
+	}
+
+
+	.pcList.traite {
+		background-color: #4caf50;
+	}
+
+	.legend {
+		position: absolute;
+		/* Utilisez 'fixed' si vous voulez que la légende reste en place lors du défilement */
+		top: 0;
+		right: 0;
+		margin: 50px;
+		margin-top: 150px;
+		color: #fff;
+		background-color: rgba(255, 255, 255, 0.1);
+		border-radius: 10px;
+		padding: 10px;
+		text-align: left;
+	}
+
+	.legend-item {
+		display: block;
+		padding: 5px 10px;
+		margin-bottom: 5px;
+		color: #000;
+		font-weight: bold;
+		border-radius: 5px;
+	}
+
+	.legend-item.en-cours {
+		background-color: #ffeb3b;
+		/* Couleur jaune pour 'en cours' */
+	}
+
+	.legend-item.traite {
+		background-color: #4caf50;
+		/* Couleur verte pour 'traité' */
+	}
 </style>
 
 <!-- Section 1 -->
 <h1>Historique Ipad</h1>
+<div class="legend">
+	<div>
+		<span class="legend-item en-cours">En cours (Jaune)</span>
+		<span class="legend-item traite">Traité (Vert)</span>
+	</div>
+</div>
+
 <div class="historique">
 	<section class="checkbox">
 		<form action="index.php?uc=historique&action=supprimerIpad" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer les Ipads sélectionnés ?');">
@@ -264,8 +313,27 @@
 					<div class="search__btn__nom">
 						<a href="index.php?uc=historique&action=historique&tri=nom&ordre=<?= ($tri === 'nom') ? $prochainOrdre : 'asc' ?>&page=<?= $currentPage ?>"><input type="button" value="Nom" /></a>
 					</div>
-					<div class="search__btn__Code__RG">
-						<a href="index.php?uc=historique&action=historique&tri=Code_RG&ordre=<?= ($tri === 'Code_RG') ? $prochainOrdre : 'asc' ?>&page=<?= $currentPage ?>"><input type="button" value="Code RG" /></a>
+					<div class="search__btn__etat">
+						<?php
+						// Déterminer l'état actuel du tri
+						$etatActuel = isset($_GET['etat']) ? $_GET['etat'] : 'tous';
+
+						// Déterminer le label et l'état suivant pour le bouton
+						switch ($etatActuel) {
+							case 'en-cours':
+								$labelEtat = 'Voir Traité';
+								$etatSuivant = 'traite';
+								break;
+							case 'traite':
+								$labelEtat = 'Voir Tous';
+								$etatSuivant = 'tous';
+								break;
+							default:
+								$labelEtat = 'Voir En cours';
+								$etatSuivant = 'en-cours';
+						}
+						?>
+						<a href="index.php?uc=historique&action=historique&tri=etat&etat=<?= $etatSuivant ?>"><input type="button" value="<?= $labelEtat ?>" /></a>
 					</div>
 					<div class="search__btn__date">
 						<a href="index.php?uc=historique&action=historique&tri=date_demande&ordre=<?= ($tri === 'date_demande') ? $prochainOrdre : 'asc' ?>&page=<?= $currentPage ?>"><input type="button" value="Date" /></a>
@@ -327,12 +395,15 @@
 				if (!isset($lesIpad) || empty($lesIpad))
 					// Définissez $lesPC ou gérez le cas où il n'est pas défini ou vide
 					$lesPC = [];
+				$etatFiltre = isset($_GET['etat']) ? $_GET['etat'] : 'tous';
 
-				foreach ($lesIpad as $ipad) : ?>
+				foreach ($lesIpad as $ipad) :
+					$cellClass = empty($ipad['mytem']) ? 'en-cours' : 'traite'; // Définir si une cellule est en cours ou traité en fonction de mytem
+					if ($etatFiltre !== 'tous' && $etatFiltre !== $cellClass) continue;
+				?>
 					<div class="checkbox__ligne">
-
 						<div class="checkbox_ligne1">
-							<ul class="pcList">
+							<ul class="pcList <?= $cellClass ?>">
 								<li><input type="checkbox" class="check-ipad" name="idsIpad[]" value="<?= $ipad['id_ipad'] ?>"></li>
 								<li class="cp_Agent"><?= $ipad['cp_Agent'] ?></li>
 								<li><?= $ipad['nom'] ?></li>

@@ -11,10 +11,9 @@ class PdoIpad
 	private static $serveur = 'mysql:host=localhost';
 	private static $bdd = 'dbname=ipad';
 	private static $user = 'root';
-	private static $mdp = '';
+	private static $mdp = 'root';
 	private static $monPdo;
 	private static $monPdoIpad = null;
-
 
 	// Constructeur privé, crée l'instance de PDO qui sera sollicitée
 	// pour toutes les méthodes de la classe
