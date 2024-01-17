@@ -414,6 +414,8 @@
 
 								<li>
 									<a class="checkbox__ligne1__modif" href="index.php?uc=historique&action=modifierIpad&id=<?= $ipad['id_ipad'] ?>"></a>
+									<a class="checkbox__ligne1__modif" href="index.php?uc=historique&action=telecharger&id=<?= $ipad['id_ipad'] ?>"></a>
+
 								</li>
 							</ul>
 						</div>

@@ -2,6 +2,7 @@
 
 </style>
 <!-- Formulaire d'ajout d'un iPad -->
+<form action="index.php?uc=historique&action=telecharger" method="post"></form>
 <div class="container">
 	<div class="container__card">
 		<h1>SAV </h1>
