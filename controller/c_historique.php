@@ -219,61 +219,34 @@ switch ($action) {
 		break;
 
 	case 'telecharger':
-		if (isset($_POST['id'])) {
+		// Affichage de la page de modification de l'iPad
+		$id = $_GET['id'];
+		$lesIpad = $pdo->getInfosIpadById($id);
+		foreach ($lesIpad as $unIpad) {
+			$id_true = $unIpad['id_ipad'];
+			$cp = $unIpad['cp_Agent']; // Récupère la valeur du champ cp
+			$nom = $unIpad['nom']; // Récupère la valeur du champ nom
+			$residence = $unIpad['residence'];
+			$inc = $unIpad['inc'];
+			$Code_RG = $unIpad['Code_RG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
+			$mytem = $unIpad['mytem'];
+			$dateDemande = $unIpad['date_demande'];
+
+			$typeD = $unIpad['type_demande'];
+			$typeM = $unIpad['type_materiel'];
+			$ifPanne = $unIpad['type_panne'];
+			$observation = $unIpad['observation'];
 
 
-			//Récupération des données du formulaire
-			$id_form = $_POST['id'];
-			$cp = $_POST['cp']; // Récupère la valeur du champ cp
-			$nom = $_POST['nom']; // Récupère la valeur du champ nom
-			$residence = $_POST['residence'];
-			$inc = $_POST['inc'];
-			$Code_RG = $_POST['codeRG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
-			$dateDemande = $_POST['dateDemande'];
-
-			$typeD = $_POST['typeDemande'];
-			$typeM = $_POST['typeMateriel'];
-			$ifPanne = $_POST['panne'];
-			$observation = $_POST['observation'];
-
-
-			$icloud = $_POST['icloud']; //? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
-			$codeDev = $_POST['codeDev']; //? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
-			$imei = $_POST['imei_mat_defec'];
-			$imei_r = $_POST['imei_remp'];
-			$rep = $_POST['rep'];
-
-			$pdo->getInfosIpadById($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $id_form, $imei, $imei_r, $rep);
-		} else {
-			// Affichage de la page de modification de l'iPad
-			$id = $_GET['id'];
-			$lesIpad = $pdo->getInfosIpadById($id);
-			foreach ($lesIpad as $unIpad) {
-				$id_true = $unIpad['id_ipad'];
-				$cp = $unIpad['cp_Agent']; // Récupère la valeur du champ cp
-				$nom = $unIpad['nom']; // Récupère la valeur du champ nom
-				$residence = $unIpad['residence'];
-				$inc = $unIpad['inc'];
-				$Code_RG = $unIpad['Code_RG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
-				$mytem = $unIpad['mytem'];
-				$dateDemande = $unIpad['date_demande'];
-
-				$typeD = $unIpad['type_demande'];
-				$typeM = $unIpad['type_materiel'];
-				$ifPanne = $unIpad['type_panne'];
-				$observation = $unIpad['observation'];
-
-
-				$icloud = $unIpad['Icloud']; //? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
-				$codeDev = $unIpad['CodeDev']; //? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
-				$imei = $unIpad['imei'];
-				$imei_r = $unIpad['imei_remp'];
-				$rep = $unIpad['reparable'];
-			}
-
-			include("views/genePdf.php");
-			exit;
+			$icloud = $unIpad['Icloud']; //? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
+			$codeDev = $unIpad['CodeDev']; //? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
+			$imei = $unIpad['imei'];
+			$imei_r = $unIpad['imei_remp'];
+			$rep = $unIpad['reparable'];
 		}
+
+		include("views/genePdf.php");
+		exit;
 		break;
 
 
