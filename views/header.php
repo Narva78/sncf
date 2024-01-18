@@ -120,7 +120,6 @@ if (isset($_SESSION['id'])) {
 					</li>
 					<li class="menu__item"><a class="menu__link" href="index.php?uc=stat">Statistiques</a></li>
 					<li class="menu__item"><a class="menu__link" href="views/exportation.php">Exportation</a></li>
-					<li class="menu__item"><a class="menu__link" href="views/genePdf.php">PDF</a></li>
 					<li class="menu__item menu__deco"><a class="menu__link" href="index.php?uc=deconnexion">Se déconnecter</a></li>
 				</ul>
 			</div>

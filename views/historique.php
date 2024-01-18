@@ -284,12 +284,21 @@
 
 	.legend-item.en-cours {
 		background-color: #ffeb3b;
-		/* Couleur jaune pour 'en cours' */
+
 	}
 
 	.legend-item.traite {
 		background-color: #4caf50;
-		/* Couleur verte pour 'traité' */
+
+	}
+
+	.generate-pdf-button {
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		font-size: 1rem;
+		text-decoration: none;
 	}
 </style>
 
@@ -414,7 +423,7 @@
 
 								<li>
 									<a class="checkbox__ligne1__modif" href="index.php?uc=historique&action=modifierIpad&id=<?= $ipad['id_ipad'] ?>"></a>
-									<a class="checkbox__ligne1__modif" href="index.php?uc=historique&action=telecharger&id=<?= $ipad['id_ipad'] ?>"></a>
+									<a class="generate-pdf-button" href="index.php?uc=historique&action=telecharger&id=<?= $ipad['id_ipad'] ?>">PDF</a>
 
 								</li>
 							</ul>

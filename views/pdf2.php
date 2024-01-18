@@ -1,129 +1,164 @@
 <style>
+	.container {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		margin: 2.5em;
+	}
 
+	.container__card {
+		width: 620px;
+		height: 780px;
+		border: 1px solid #404040;
+		border-radius: 10px;
+		background: #405a73;
+		text-align: center;
+		color: white;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+		margin-bottom: 20px;
+		page-break-inside: avoid;
+	}
+
+	.row {
+		display: flex;
+		justify-content: space-between;
+		padding: 10px;
+		align-items: center;
+	}
+
+	.column {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		flex: 1;
+		padding: 0 10px;
+	}
+
+	h1 {
+		margin: 20px;
+		color: red;
+	}
+
+	h3 {
+		background: purple;
+		color: white;
+		display: flex;
+		justify-content: center;
+		margin: 20px;
+		width: 100%;
+	}
+
+	label {
+		font-weight: bold;
+		color: #fff;
+	}
+
+	p {
+		margin: 5px 0;
+		color: #fff;
+	}
 </style>
-<!-- Formulaire d'ajout d'un iPad -->
-<form action="index.php?uc=historique&action=telecharger" method="post"></form>
+
+
 <div class="container">
 	<div class="container__card">
-		<h1>SAV </h1>
+		<h1>SAV</h1>
 
 		<div class="container__card__info">
-			<!-- Cp de l'agent Obligatoire-->
-			<?php foreach ($ipads as $ipad) : ?>
-
-				<div>
-					<label for="cp">CP :</label>
-					<li><?= $ipad['cp_Agent'] ?></li>
+			<div class="row">
+				<div class="column">
+					<label>CP :</label>
+					<p><?= htmlspecialchars($cp); ?></p>
 				</div>
-
-				<!-- Nom de l'agent Obligatoire-->
-				<div>
-					<label for="nom">Nom :</label>
-					<li><?= $ipad['nom'] ?></li>
+				<div class="column">
+					<label>Nom :</label>
+					<p><?= htmlspecialchars($nom); ?></p>
 				</div>
-
-				<div>
-					<label for="residence">Résidence :</label>
-					<li><?= $ipad['residence'] ?></li>
+				<div class="column">
+					<label>Résidence :</label>
+					<p><?= htmlspecialchars($residence); ?></p>
 				</div>
+			</div>
 
-				<div>
-					<label for="INC">INC :</label>
-					<li><?= $ipad['inc'] ?></li>
+			<div class="row">
+				<div class="column">
+					<label>INC :</label>
+					<p><?= htmlspecialchars($inc); ?></p>
 				</div>
-
-
-				<!-- Affectation de l'Agent Obligatoire -->
-				<div>
-					<label for="codeRG">Code RG :</label>
-					<li><?= $ipad['Code_RG'] ?></li>
+				<div class="column">
+					<label>Code RG :</label>
+					<p><?= htmlspecialchars($Code_RG); ?></p>
 				</div>
-
-				<div>
-					<label for="mytem">N° Mytem :</label>
-					<li><?= $ipad['mytem'] ?></li>
+				<div class="column">
+					<label>N° Mytem :</label>
+					<p><?= htmlspecialchars($mytem); ?></p>
 				</div>
+			</div>
 
-				<div>
-					<label for="dateDemande">Date demande :</label>
-					<li><?= $ipad['date_demande'] ?></li>
+			<div class="row">
+				<div class="column">
+					<label>Date Demande :</label>
+					<p><?= htmlspecialchars($dateDemande); ?></p>
 				</div>
-
+			</div>
 		</div>
-		<br>
+
 		<h3>Description de la demande</h3>
-
 		<div class="container__card__description">
-			<div>
-				<label for="typeDemande">Type Demande :</label>
-				<li><?= $ipad['type_demande'] ?></li>
+			<div class="row">
+				<div class="column">
+					<label>Type Demande :</label>
+					<p><?= htmlspecialchars($typeD); ?></p>
+				</div>
+				<div class="column">
+					<label>Type de matériel :</label>
+					<p><?= htmlspecialchars($typeM); ?></p>
+				</div>
 			</div>
-			<div>
-				<label for="typeMateriel">Type de matériel :</label>
-				<li><?= $ipad['type_materiel'] ?></li>
+
+			<div class="row">
+				<div class="column">
+					<label>Panne :</label>
+					<p><?= htmlspecialchars($ifPanne); ?></p>
+				</div>
 			</div>
-			<div style="display:none;" id="panne1">
-				<label for="panne">Panne :</label>
-				<li><?= $ipad['type_panne'] ?></li>
+
+			<div class="row">
+				<div class="column">
+					<label>Observation :</label>
+					<p><?= htmlspecialchars($observation); ?></p>
+				</div>
 			</div>
-		</div>
-		<div>
-			<textarea name="observation" id="observation" style="width:600px; height:100px; margin-top:30px; border:none; border-radius:5px" placeholder="observation"></textarea>
 		</div>
 
 		<h3>Identification du matériel</h3>
-
 		<div class="container__card__identification">
-			<!-- Checkbox si l'Ipad est tjr lié a un comte ICloud -->
-			<div>
-				<label for="icloud">
-					Icloud
-				</label>
-				<div>
-					<li><?= $ipad['Icloud'] ?></li>
+			<div class="row">
+				<div class="column">
+					<label>Icloud :</label>
+					<p><?= htmlspecialchars($icloud); ?></p>
+				</div>
+				<div class="column">
+					<label>Code de déverrouillage :</label>
+					<p><?= htmlspecialchars($codeDev); ?></p>
+				</div>
+				<div class="column">
+					<label>IMEI :</label>
+					<p><?= htmlspecialchars($imei); ?></p>
 				</div>
 			</div>
 
-			<!-- Checkbox si l'Ipad possède un code de Déverouillage -->
-			<div>
-				<div>
-					<label for="code Deverouillage">
-						code de dévérouillage
-					</label>
-					<li><?= $ipad['CodeDev'] ?></li>
+			<div class="row">
+				<div class="column">
+					<label>IMEI de remplacement :</label>
+					<p><?= htmlspecialchars($imei_r); ?></p>
 				</div>
-			</div>
-
-
-			<div>
-				<label for="imei">
-					IMEI
-				</label>
-				<li><?= $ipad['imei'] ?></li>
-			</div>
-			<div>
-				<label for="imei_remp">
-					IMEI de remplacement
-				</label>
-				<input type="checkbox" id="imei">
-				<li><?= $ipad['imei_remp'] ?></li>
 			</div>
 		</div>
 
-		<br>
 		<div class="reparable">
-			<input type="radio" id="contactChoice1" name="rep" value="Réparable" required />
-			<label for="contactChoice1">Réparable</label>
-
-			<input type="radio" id="contactChoice2" name="rep" value="Rebus" required />
-			<label for="contactChoice2">Rebus</label>
+			<label>État de réparation :</label>
+			<p><?= ($rep == 1) ? "Réparable" : "Rebus"; ?></p>
 		</div>
-
-
-	<?php endforeach;  ?>
-
-
-
-
-	<div>
 	</div>
+</div>

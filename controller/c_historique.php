@@ -1,4 +1,7 @@
 <?php
+
+use Dompdf\Dompdf;
+
 include("views/header.php");
 // Si aucune action n'est spécifiée, on affiche la liste des iPads
 if (!isset($_REQUEST['action'])) {
@@ -219,63 +222,53 @@ switch ($action) {
 		break;
 
 	case 'telecharger':
-		if (isset($_POST['id'])) {
+		ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
+		error_reporting(E_ALL);
 
+		// Affichage de la page de modification de l'iPad
+		$id = $_GET['id'];
+		$unIpad = $pdo->getInfosIpadById($id)[0]; // Assurez-vous que cette ligne renvoie le tableau correct
 
-			//Récupération des données du formulaire
-			$id_form = $_POST['id'];
-			$cp = $_POST['cp']; // Récupère la valeur du champ cp
-			$nom = $_POST['nom']; // Récupère la valeur du champ nom
-			$residence = $_POST['residence'];
-			$inc = $_POST['inc'];
-			$Code_RG = $_POST['codeRG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
-			$dateDemande = $_POST['dateDemande'];
+		$cp = isset($unIpad['cp_Agent']) ? $unIpad['cp_Agent'] : 'Non défini';
+		$nom = isset($unIpad['nom']) ? $unIpad['nom'] : 'Non défini';
+		$residence = isset($unIpad['residence']) ? $unIpad['residence'] : 'Non défini';
+		$inc = isset($unIpad['inc']) ? $unIpad['inc'] : 'Non défini';
+		$Code_RG = isset($unIpad['Code_RG']) ? $unIpad['Code_RG'] : 'Non défini';
+		$mytem = isset($unIpad['mytem']) ? $unIpad['mytem'] : 'Non défini';
+		$dateDemande = isset($unIpad['date_demande']) ? $unIpad['date_demande'] : 'Non défini';
 
-			$typeD = $_POST['typeDemande'];
-			$typeM = $_POST['typeMateriel'];
-			$ifPanne = $_POST['panne'];
-			$observation = $_POST['observation'];
+		$typeD = isset($unIpad['type_demande']) ? $unIpad['type_demande'] : 'Non défini';
+		$typeM = isset($unIpad['type_materiel']) ? $unIpad['type_materiel'] : 'Non défini';
+		$ifPanne = isset($unIpad['type_panne']) ? $unIpad['type_panne'] : 'Non défini';
+		$observation = isset($unIpad['observation']) ? $unIpad['observation'] : 'Non défini';
 
+		$icloud = isset($unIpad['Icloud']) ? $unIpad['Icloud'] : 'Non défini';
+		$codeDev = isset($unIpad['CodeDev']) ? $unIpad['CodeDev'] : 'Non défini';
+		$imei = isset($unIpad['imei']) ? $unIpad['imei'] : 'Non défini';
+		$imei_r = isset($unIpad['imei_remp']) ? $unIpad['imei_remp'] : 'Non défini';
+		$rep = isset($unIpad['reparable']) ? $unIpad['reparable'] : 'Non défini';
 
-			$icloud = $_POST['icloud']; //? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
-			$codeDev = $_POST['codeDev']; //? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
-			$imei = $_POST['imei_mat_defec'];
-			$imei_r = $_POST['imei_remp'];
-			$rep = $_POST['rep'];
+		ob_clean();
 
-			$pdo->getInfosIpadById($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $id_form, $imei, $imei_r, $rep);
-		} else {
-			// Affichage de la page de modification de l'iPad
-			$id = $_GET['id'];
-			$lesIpad = $pdo->getInfosIpadById($id);
-			foreach ($lesIpad as $unIpad) {
-				$id_true = $unIpad['id_ipad'];
-				$cp = $unIpad['cp_Agent']; // Récupère la valeur du champ cp
-				$nom = $unIpad['nom']; // Récupère la valeur du champ nom
-				$residence = $unIpad['residence'];
-				$inc = $unIpad['inc'];
-				$Code_RG = $unIpad['Code_RG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
-				$mytem = $unIpad['mytem'];
-				$dateDemande = $unIpad['date_demande'];
+		ob_start();
 
-				$typeD = $unIpad['type_demande'];
-				$typeM = $unIpad['type_materiel'];
-				$ifPanne = $unIpad['type_panne'];
-				$observation = $unIpad['observation'];
+		include("views/pdf2.php");
 
+		$html = ob_get_contents();
 
-				$icloud = $unIpad['Icloud']; //? 1 : 0; // Si icloud est coché, icloud = 1, sinon icloud = 0
-				$codeDev = $unIpad['CodeDev']; //? 1 : 0; // Si codeDev est coché, codeDev = 1, sinon codeDev = 0
-				$imei = $unIpad['imei'];
-				$imei_r = $unIpad['imei_remp'];
-				$rep = $unIpad['reparable'];
-			}
+		ob_end_clean();
 
-			include("views/genePdf.php");
-			exit;
-		}
-		break;
+		require_once __DIR__ . '/../views/dompdf/dompdf/autoload.inc.php';
+		$dompdf = new Dompdf();
+		$dompdf->loadHtml($html);
+		$dompdf->setPaper('A4', 'portrait');
+		$dompdf->render();
 
+		$fichier = 'iPad_Info_' . $id . '.pdf';
+		$dompdf->stream($fichier);
+
+		exit;
 
 	default:
 		// Action non reconnue : affichage de la page d'erreur 404
