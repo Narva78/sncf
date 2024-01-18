@@ -222,10 +222,6 @@ switch ($action) {
 		break;
 
 	case 'telecharger':
-		ini_set('display_errors', 1);
-		ini_set('display_startup_errors', 1);
-		error_reporting(E_ALL);
-
 		// Affichage de la page de modification de l'iPad
 		$id = $_GET['id'];
 		$unIpad = $pdo->getInfosIpadById($id)[0]; // Assurez-vous que cette ligne renvoie le tableau correct
