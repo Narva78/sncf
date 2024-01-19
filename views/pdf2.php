@@ -1,51 +1,47 @@
 <style>
+	/* styles.css */
+
+	body {
+		font-family: Arial, sans-serif;
+		margin: 0;
+	}
+
 	.container {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-		margin: 2.5em;
+
+		height: 100vh;
 	}
 
 	.container__card {
-		width: 620px;
-		height: 780px;
+
 		border: 1px solid #404040;
 		border-radius: 10px;
-		background: #405a73;
 		text-align: center;
 		color: white;
-		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 		margin-bottom: 20px;
 		page-break-inside: avoid;
 	}
 
-	.row {
-		display: flex;
-		justify-content: space-between;
-		padding: 10px;
-		align-items: center;
-	}
-
-	.column {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		flex: 1;
-		padding: 0 10px;
-	}
-
-	h1 {
+	.container__card h1 {
 		margin: 20px;
 		color: red;
 	}
 
-	h3 {
+	.container__card h3 {
 		background: purple;
 		color: white;
-		display: flex;
-		justify-content: center;
 		margin: 20px;
-		width: 100%;
+	}
+
+
+
+	.row {
+		background-color: #34495e;
+		margin-bottom: 25px;
+	}
+
+	.column {
+		text-align: left;
+		margin-left: 30px;
 	}
 
 	label {
@@ -56,6 +52,19 @@
 	p {
 		margin: 5px 0;
 		color: #fff;
+	}
+
+	.reparable {
+		background-color: #34495e;
+		margin-top: 20px;
+	}
+
+	.container__card__info p,
+	.container__card__description p,
+	.container__card__identification p,
+	.reparable p {
+		padding: 11px;
+		border-radius: 5px;
 	}
 </style>
 
@@ -68,37 +77,39 @@
 			<div class="row">
 				<div class="column">
 					<label>CP :</label>
-					<p><?= htmlspecialchars($cp); ?></p>
+					<p style="margin-left: 35px; margin-top: -30px;"><?= htmlspecialchars($cp); ?></p>
 				</div>
 				<div class="column">
 					<label>Nom :</label>
-					<p><?= htmlspecialchars($nom); ?></p>
+					<p style="margin-left: 45px; margin-top: -30px;"><?= htmlspecialchars($nom); ?></p>
 				</div>
+
 				<div class="column">
 					<label>Résidence :</label>
-					<p><?= htmlspecialchars($residence); ?></p>
+					<p style="margin-left: 90px; margin-top: -30px;"><?= htmlspecialchars($residence); ?></p>
 				</div>
+
 			</div>
 
 			<div class="row">
 				<div class="column">
 					<label>INC :</label>
-					<p><?= htmlspecialchars($inc); ?></p>
+					<p style="margin-left: 45px; margin-top: -30px;"><?= htmlspecialchars($inc); ?></p>
 				</div>
 				<div class="column">
 					<label>Code RG :</label>
-					<p><?= htmlspecialchars($Code_RG); ?></p>
+					<p style="margin-left: 85px; margin-top: -30px;"><?= htmlspecialchars($Code_RG); ?></p>
 				</div>
 				<div class="column">
 					<label>N° Mytem :</label>
-					<p><?= htmlspecialchars($mytem); ?></p>
+					<p style="margin-left: 85px; margin-top: -30px;"><?= htmlspecialchars($mytem); ?></p>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="column">
 					<label>Date Demande :</label>
-					<p><?= htmlspecialchars($dateDemande); ?></p>
+					<p style="margin-left: 125px; margin-top: -30px;"><?= htmlspecialchars($dateDemande); ?></p>
 				</div>
 			</div>
 		</div>
@@ -108,25 +119,25 @@
 			<div class="row">
 				<div class="column">
 					<label>Type Demande :</label>
-					<p><?= htmlspecialchars($typeD); ?></p>
+					<p style="margin-left: 127px; margin-top: -30px;"><?= htmlspecialchars($typeD); ?></p>
 				</div>
 				<div class="column">
 					<label>Type de matériel :</label>
-					<p><?= htmlspecialchars($typeM); ?></p>
+					<p style="margin-left: 135px; margin-top: -30px;"><?= htmlspecialchars($typeM); ?></p>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="column">
 					<label>Panne :</label>
-					<p><?= htmlspecialchars($ifPanne); ?></p>
+					<p style="margin-left: 55px; margin-top: -30px;"><?= htmlspecialchars($ifPanne); ?></p>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="column">
 					<label>Observation :</label>
-					<p><?= htmlspecialchars($observation); ?></p>
+					<p style="margin-left: 105px; margin-top: -30px;"><?= htmlspecialchars($observation); ?></p>
 				</div>
 			</div>
 		</div>
@@ -136,22 +147,22 @@
 			<div class="row">
 				<div class="column">
 					<label>Icloud :</label>
-					<p><?= htmlspecialchars($icloud); ?></p>
+					<p style="margin-left: 55px; margin-top: -30px;"><?= htmlspecialchars($icloud); ?></p>
 				</div>
 				<div class="column">
 					<label>Code de déverrouillage :</label>
-					<p><?= htmlspecialchars($codeDev); ?></p>
+					<p style="margin-left: 185px; margin-top: -30px;"><?= htmlspecialchars($codeDev); ?></p>
 				</div>
 				<div class="column">
 					<label>IMEI :</label>
-					<p><?= htmlspecialchars($imei); ?></p>
+					<p style="margin-left: 45px; margin-top: -30px;"><?= htmlspecialchars($imei); ?></p>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="column">
 					<label>IMEI de remplacement :</label>
-					<p><?= htmlspecialchars($imei_r); ?></p>
+					<p style="margin-left: 180px; margin-top: -30px;"><?= htmlspecialchars($imei_r); ?></p>
 				</div>
 			</div>
 		</div>

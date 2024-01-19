@@ -1,4 +1,8 @@
 <style>
+	body {
+		background-color: #273746;
+	}
+
 	.container {
 		display: flex;
 		flex-direction: column;
@@ -287,7 +291,7 @@
 				</div>
 
 				<div>
-					<textarea name="observation" id="observation" value="<?php echo $observation; ?>" style="width:600px; height:100px; margin-top:30px; border:none; border-radius:5px" placeholder="observation"></textarea>
+					<textarea name="observation" id="observation" value="<?php echo $observation; ?>" style="width:600px; height:100px; margin-top:30px; border:none; border-radius:5px" placeholder="observation" maxlength="100"></textarea>
 
 				</div>
 			</div>

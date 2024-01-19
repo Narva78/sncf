@@ -1,4 +1,8 @@
 <style>
+	body {
+		background-color: #273746;
+	}
+
 	.container {
 		display: flex;
 		flex-direction: column;
