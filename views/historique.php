@@ -292,7 +292,7 @@
 
 	}
 
-	.legend-item-declearer {
+	.legend-item.declarer {
 		background-color: red;
 	}
 
@@ -310,7 +310,7 @@
 <h1>Historique Ipad</h1>
 <div class="legend">
 	<div>
-		<span class="legend-item-declearer">Déclérer (Rouge)</span>
+		<span class="legend-item declarer">Déclarer (Rouge)</span>
 		<span class="legend-item en-cours">En cours (Jaune)</span>
 		<span class="legend-item traite">Traité (Vert)</span>
 	</div>

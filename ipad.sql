@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `agent` (
   `prenom` varchar(30) NOT NULL,
   `cp_Agent` varchar(30) NOT NULL,
   PRIMARY KEY (`id_Agent`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 
 --
 -- Déchargement des données de la table `agent`
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `ecran` (
   `types` varchar(100) NOT NULL,
   `quantite` int NOT NULL,
   PRIMARY KEY (`id_ecran`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16;
 
 --
 -- Déchargement des données de la table `ecran`
@@ -83,24 +83,24 @@ INSERT INTO `ecran` (`id_ecran`, `taille`, `marque`, `types`, `quantite`) VALUES
 DROP TABLE IF EXISTS `ipad`;
 CREATE TABLE IF NOT EXISTS `ipad` (
   `id_ipad` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `cp_Agent` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nom` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `cp_Agent` varchar(15) ,
+  `nom` varchar(60) ,
   `residence` varchar(50) NOT NULL,
   `inc` varchar(50) NOT NULL,
-  `Code_RG` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `mytem` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Code_RG` varchar(30) ,
+  `mytem` varchar(40),
   `date_demande` date NOT NULL,
   `type_demande` varchar(40) NOT NULL,
   `type_materiel` varchar(40) NOT NULL,
   `type_panne` varchar(40) NOT NULL,
-  `observation` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `observation` text,
   `Icloud` tinyint NOT NULL,
   `CodeDev` tinyint NOT NULL,
-  `imei` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `imei_remp` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `imei` varchar(15) ,
+  `imei_remp` varchar(15) ,
   `reparable` tinyint NOT NULL,
   PRIMARY KEY (`id_ipad`)
-) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=89;
 
 --
 -- Déchargement des données de la table `ipad`
@@ -126,11 +126,11 @@ DROP TABLE IF EXISTS `pc`;
 CREATE TABLE IF NOT EXISTS `pc` (
   `id_pc` int NOT NULL AUTO_INCREMENT,
   `marque` varchar(200) NOT NULL,
-  `nSerie` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nSerie` varchar(50) ,
   `modele` varchar(100) NOT NULL,
   `quantite` int NOT NULL,
   PRIMARY KEY (`id_pc`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11;
 
 --
 -- Déchargement des données de la table `pc`
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `prenom` varchar(30) NOT NULL,
   `is_admin` tinyint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=50;
 
 --
 -- Déchargement des données de la table `user`

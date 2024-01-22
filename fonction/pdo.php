@@ -9,9 +9,9 @@ class PdoIpad
 {
 
 	private static $serveur = 'mysql:host=localhost';
-	private static $bdd = 'dbname=ipad';
+	private static $bdd = 'dbname=osdm';
 	private static $user = 'root';
-	private static $mdp = '';
+	private static $mdp = 'root';
 	private static $monPdo;
 	private static $monPdoIpad = null;
 
@@ -261,6 +261,25 @@ class PdoIpad
 		return $nb;
 	}
 
+	public function getNbIpadByUser($userID)
+	{
+		$req = "SELECT COUNT(*) FROM ipad WHERE id_user = :userID";
+		$stmt = PdoIpad::$monPdo->prepare($req);
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();
+
+		return $stmt->fetchColumn();
+	}
+
+	public function getInfosIpadByUserId($userID, $premier, $parPage)
+	{
+		$req = "SELECT * FROM ipad WHERE id_user = :userID ORDER BY date_demande DESC LIMIT $premier, $parPage";
+		$res = PdoIpad::$monPdo->prepare($req);
+		$res->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$res->execute();
+		return $res->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 
 	//Fonction qui permet de supprimer un ipad de la table ipad en fonction de son id
 	public function supprimerIpad($id)
@@ -284,15 +303,26 @@ class PdoIpad
 		$stmt->execute([$id]);
 	}
 
-	//Fonction qui permet d'ajouter un ipad dans la table ipad en fonction des paramètres
-	public function ajouterIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep)
+	public function ajouterIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep, $id)
 	{
-		$req = "INSERT INTO ipad (cp_Agent, nom, residence, inc, Code_RG, mytem, date_demande, type_demande, type_materiel, type_panne, observation,  icloud, codeDev, imei, imei_remp, reparable) 
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep]);
-		$nombreLignesAffectees = $stmt->rowCount();
+		try {
+			$req = "INSERT INTO ipad (cp_Agent, nom, residence, inc, Code_RG, mytem, date_demande, type_demande, type_materiel, type_panne, observation, Icloud, codeDev, imei, imei_remp, reparable, id_user) 
+									VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			$stmt = PdoIpad::$monPdo->prepare($req);
+
+			// Debugging
+			var_dump([$cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep, $id]);
+
+			$stmt->execute([$cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep, $id]);
+			return $stmt->rowCount();
+		} catch (PDOException $e) {
+			// Afficher le message d'erreur
+			echo "Erreur lors de l'insertion : " . $e->getMessage();
+			return 0;
+		}
 	}
+
+
 
 	public function ajouterEcran($taille, $marque, $types, $quantite)
 	{

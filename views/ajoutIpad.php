@@ -186,7 +186,7 @@
 
 				<div>
 					<label for="residence">Résidence :</label>
-					<input type="text" id="residence" name="residence" required>
+					<input type="text" id="residence" name="residence" readonly value="<?php echo $_SESSION['residence']; ?>">
 				</div>
 
 				<div>
@@ -256,8 +256,8 @@
 				</div>
 				<div style="display:none;" id="panne1">
 					<label for="panne">Panne :</label>
-					<select id="panne" name="panne" required>
-
+					<select id="panne" name="panne">
+						<option value="">Choisissez le Type :</option>
 						<option value="casse ecran">Casse écran</option> <!-- 0707 -->
 
 						<option value="oxydation">Oxydation</option> <!-- 64 682 -->
@@ -330,10 +330,10 @@
 
 			<br>
 			<div class="reparable">
-				<input type="radio" id="contactChoice1" name="rep" value="Reparable" />
+				<input type="radio" id="contactChoice1" name="rep" value="1" />
 				<label for="contactChoice1">Réparable</label>
 
-				<input type="radio" id="contactChoice2" name="rep" value="Rebus" />
+				<input type="radio" id="contactChoice2" name="rep" value="0" />
 				<label for="contactChoice2">Rebus</label>
 			</div>
 
@@ -351,15 +351,23 @@
 	</div>
 
 
-	<script type=text/javascript>
+	<script type="text/javascript">
 		document.getElementById('typeDemande').addEventListener('change', function() {
 			var deuxiemeListe = document.getElementById('panne1');
 
-			// Afficher la deuxième liste si la sélection est égale à 'selection2'
+			// Afficher la deuxième liste si la sélection est égale à 'panne'
 			if (this.value === 'panne') {
 				deuxiemeListe.style.display = 'block';
 			} else {
 				deuxiemeListe.style.display = 'none';
+			}
+
+			// Rendre le champ "Panne" requis si "Panne" est sélectionné
+			var panneSelect = document.getElementById('panne');
+			if (this.value === 'panne') {
+				panneSelect.required = true;
+			} else {
+				panneSelect.required = false;
 			}
 		});
 

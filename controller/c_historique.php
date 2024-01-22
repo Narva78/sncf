@@ -13,8 +13,7 @@ $action = $_REQUEST['action'];
 
 switch ($action) {
 	case 'historique':
-
-
+		// var_dump($_SESSION); // Utilisé pour le débogage, peut être commenté ou supprimé dans la version finale
 
 		// Constantes pour les valeurs par défaut
 		define('DEFAULT_PAGE', 1);
@@ -22,43 +21,42 @@ switch ($action) {
 
 		// Récupération et validation du numéro de page
 		$currentPage = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : DEFAULT_PAGE;
-		$currentPage = max(1, $currentPage); // Assure que currentPage est au moins égal à 1
+		$currentPage = max(1, $currentPage);
 
-		// Récupération du nombre total d'iPads
-		$nbIpad = $pdo->getNbIpad();
-
-		// Gestion du nombre d'iPads par page (ipp)
-		if (isset($_POST['ipp']) && is_numeric($_POST['ipp'])) {
-			$_SESSION['ipp'] = intval($_POST['ipp']);
-		}
-
-		// Détermination de la valeur de ipp à utiliser
+		// Récupération du nombre total d'iPads et de la valeur de ipp à utiliser
 		$ipp = isset($_SESSION['ipp']) ? max(1, intval($_SESSION['ipp'])) : DEFAULT_IPP;
-
 		$parPage = $ipp;
-
-		// Calcul du nombre total de pages
-		$pages = ceil($nbIpad / $parPage);
 
 		// Calcul du premier iPad de la page actuelle
 		$premier = ($currentPage * $parPage) - $parPage;
 
-		// Récupération de la liste des iPads pour la page actuelle
-		$lesIpad = $pdo->getInfosIpad($premier, $parPage);
+		// Vérifier si l'utilisateur est un administrateur
+		$is_admin = $_SESSION['is_admin']; // Assurez-vous que cette information est stockée dans la session lors de la connexion
 
+		// Filtrer les iPads en fonction de l'utilisateur connecté
+		if ($is_admin) {
+			// Si l'utilisateur est administrateur, récupérez tous les iPads
+			$nbIpad = $pdo->getNbIpad(); // Récupération du nombre total d'iPads pour l'admin
+			$lesIpad = $pdo->getInfosIpad($premier, $parPage);
+		} else {
+			// Sinon, récupérez uniquement les iPads liés à cet utilisateur
+			$userID = $_SESSION['id'];
+			$nbIpad = $pdo->getNbIpadByUser($userID);
+			$lesIpad = $pdo->getInfosIpadByUserId($userID, $premier, $parPage);
+		}
 
-
+		// Gestion du tri
 		$tri = isset($_GET['tri']) ? $_GET['tri'] : '';
 		$ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
-
-		// Inverser l'ordre pour le prochain clic
 		$prochainOrdre = ($ordre === 'asc') ? 'desc' : 'asc';
 
+		// Appliquer le tri si nécessaire
 		if ($tri === 'nom' || $tri === 'Code_RG' || $tri === 'date_demande') {
 			$lesIpad = $pdo->getInfoIpadByVariable($tri, $ordre, $premier, $parPage);
-		} else {
-			$lesIpad = $pdo->getInfoIpadByVariable('', $ordre, $premier, $parPage); // Ordre par défaut
 		}
+
+		// Calcul du nombre total de pages
+		$pages = ceil($nbIpad / $parPage);
 
 		// Inclusion de la vue
 		include("views/historique.php");
@@ -106,20 +104,22 @@ switch ($action) {
 			$dateDemande = $_POST['dateDemande'];
 			$typeD = $_POST['typeDemande'];
 			$typeM = $_POST['typeMateriel'];
-			$ifPanne = $_POST['panne'];
-			$observation = $_POST['observation'] ? $_POST['observation'] : 0;
+			$ifPanne = $_POST['panne'] ? $_POST['panne'] : NULL;
+			$observation = $_POST['observation'] ? $_POST['observation'] : null;
 			$icloud = $_POST['icloud'];
 			$codeDev = $_POST['codeDev'];
 			$imei = $_POST['imei_mat_defec'];
 			$imei_r = $_POST['imei_remp'];
 			$rep = $_POST['rep'];
-
-			// var_dump() des variables - à commenter ou supprimer pour éviter l'envoi de contenu inattendu
-			// var_dump($cp, $nom, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r);
-
+			$id = $_SESSION['id'];
+			/*
+			echo '<pre>';
+			var_dump($_POST);
+			var_dump($pdo->ajouterIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep, $id));;
+			echo '</pre>';
+*/
 			// Ajout de l'iPad
-			$pdo->ajouterIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep);
-
+			$pdo->ajouterIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep, $id);
 			// Redirection après l'ajout
 			echo "
                     <script src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
@@ -131,7 +131,7 @@ switch ($action) {
                             showConfirmButton: false,
                             timer: 3000
                         }).then(() => {
-                            window.location.href = 'index.php?uc=historique&action=historique';
+													
                         });
                     </script>";
 			exit;
@@ -141,7 +141,6 @@ switch ($action) {
 			exit;
 		}
 		break;
-
 
 	case 'modifierIpad':
 		if (isset($_POST['modifier'])) {

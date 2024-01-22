@@ -190,7 +190,7 @@
 
 				<div>
 					<label for="residence">Résidence :</label>
-					<input type="text" id="residence" name="residence" required value="<?php echo $residence; ?>">
+					<input type="text" id="residence" name="residence" readonly value="<?php echo $_SESSION['residence']; ?>">
 				</div>
 
 				<div>
@@ -251,7 +251,7 @@
 
 					<div style="display:none;" name="panne1" id="panne1">
 						<label for="panne">Panne :</label>
-						<select id="panne" name="panne" required>
+						<select id="panne" name="panne">
 
 							<option value="casse ecran" <?php if ($ifPanne == 'casse ecran') echo ' selected'; ?>>Casse écran</option> <!-- 0707 -->
 
@@ -363,6 +363,14 @@
 			deuxiemeListe.style.display = 'block';
 		} else {
 			deuxiemeListe.style.display = 'none';
+		}
+
+		// Rendre le champ "Panne" requis si "Panne" est sélectionné
+		var panneSelect = document.getElementById('panne');
+		if (this.value === 'panne') {
+			panneSelect.required = true;
+		} else {
+			panneSelect.required = false;
 		}
 	});
 

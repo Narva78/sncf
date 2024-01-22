@@ -2,7 +2,7 @@
 header('Content-Type: text/csv');
 header('Content-Disposition: attachment; filename="Export Ipad.csv');
 try {
-	$PDO = new PDO('mysql:host=localhost;dbname=ipad', 'root', '');
+	$PDO = new PDO('mysql:host=localhost;dbname=ipad', 'root', 'root');
 	$PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 	$PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 } catch (PDOException $e) {
