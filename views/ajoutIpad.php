@@ -237,7 +237,7 @@
 
 						<option value="panne">Panne</option>
 
-						<option value="perte">Perte</option>
+						<option value="perte">Perte/Vol</option>
 
 						<option value="retraite ou changement de fonction - Hors SAV xxx">Retraite ou Changement de Fonction</option>
 						<option value="autre Hors SAV xxx">Autre</option>

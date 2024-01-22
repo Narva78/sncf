@@ -241,7 +241,7 @@
 
 						<option value="casse" <?php if ($typeD == 'casse') echo ' selected'; ?>>Casse</option>
 
-						<option value="perte" <?php if ($typeD == 'perte') echo ' selected'; ?>>Perte</option>
+						<option value="perte" <?php if ($typeD == 'perte') echo ' selected'; ?>>Perte/Vol</option>
 
 						<option value="retraite ou changement de fonction - Hors SAV xxx" <?php if ($typeD == 'retraite ou changement de fonction - Hors SAV xxx') echo ' selected'; ?>>Retraite ou Changement de Fonction</option>
 

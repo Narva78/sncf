@@ -292,6 +292,10 @@
 
 	}
 
+	.legend-item-declearer {
+		background-color: red;
+	}
+
 	.generate-pdf-button {
 		padding: 10px 20px;
 		border: none;
@@ -306,6 +310,7 @@
 <h1>Historique Ipad</h1>
 <div class="legend">
 	<div>
+		<span class="legend-item-declearer">Déclérer (Rouge)</span>
 		<span class="legend-item en-cours">En cours (Jaune)</span>
 		<span class="legend-item traite">Traité (Vert)</span>
 	</div>
@@ -387,7 +392,7 @@
 							<p>Code RG</p>
 						</li>
 						<li>
-							<p style="border-right:none;">Date demande</p>
+							<p style="border-right:none;">Résidence</p>
 						</li>
 						<li>
 							<p>Type demande</p>
@@ -418,12 +423,20 @@
 								<li><?= $ipad['nom'] ?></li>
 								<li><?php echo $ipad['imei']; ?></li>
 								<li><?php echo $ipad['Code_RG']; ?></li>
-								<li><?= $ipad['date_demande'] ?></li>
+								<li><?= $ipad['residence'] ?></li>
 								<li><?= $ipad['type_demande'] ?></li>
 
 								<li>
 									<a class="checkbox__ligne1__modif" href="index.php?uc=historique&action=modifierIpad&id=<?= $ipad['id_ipad'] ?>"></a>
-									<a class="generate-pdf-button" href="index.php?uc=historique&action=telecharger&id=<?= $ipad['id_ipad'] ?>">PDF</a>
+									<?php
+									if (isset($_SESSION['id'])) {
+										$userID = $pdo->getInfoUSerById($_SESSION['id']);
+										$is_admin = $userID['is_admin'] == 1;
+									}
+									if ($is_admin) {
+									?>
+										<a class="generate-pdf-button" href="index.php?uc=historique&action=telecharger&id=<?= $ipad['id_ipad'] ?>">PDF</a>
+									<?php } ?>
 
 								</li>
 							</ul>

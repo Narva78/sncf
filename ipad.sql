@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 15 jan. 2024 à 10:26
+-- Généré le : lun. 22 jan. 2024 à 08:38
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `agent` (
   `prenom` varchar(30) NOT NULL,
   `cp_Agent` varchar(30) NOT NULL,
   PRIMARY KEY (`id_Agent`)
-) ENGINE=InnoDB AUTO_INCREMENT=2;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `agent`
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `ecran` (
   `types` varchar(100) NOT NULL,
   `quantite` int NOT NULL,
   PRIMARY KEY (`id_ecran`)
-) ENGINE=MyISAM AUTO_INCREMENT=16;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `ecran`
@@ -83,34 +83,38 @@ INSERT INTO `ecran` (`id_ecran`, `taille`, `marque`, `types`, `quantite`) VALUES
 DROP TABLE IF EXISTS `ipad`;
 CREATE TABLE IF NOT EXISTS `ipad` (
   `id_ipad` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `cp_Agent` varchar(15) ,
-  `nom` varchar(60) ,
+  `cp_Agent` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nom` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `residence` varchar(50) NOT NULL,
   `inc` varchar(50) NOT NULL,
-  `Code_RG` varchar(30) ,
-  `mytem` varchar(40) ,
+  `Code_RG` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `mytem` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `date_demande` date NOT NULL,
   `type_demande` varchar(40) NOT NULL,
   `type_materiel` varchar(40) NOT NULL,
   `type_panne` varchar(40) NOT NULL,
-  `observation` text,
+  `observation` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `Icloud` tinyint NOT NULL,
   `CodeDev` tinyint NOT NULL,
-  `imei` varchar(15) ,
-  `imei_remp` varchar(15) ,
+  `imei` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `imei_remp` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `reparable` tinyint NOT NULL,
   PRIMARY KEY (`id_ipad`)
-) ENGINE=MyISAM AUTO_INCREMENT=84;
+) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `ipad`
 --
 
-INSERT INTO `ipad` (`id_ipad`, `cp_Agent`, `nom`, `residence`, `inc`, `Code_RG`, `mytem`, `date_demande`, `type_demande`, `type_materiel`, `type_panne`, `observation`, `Icloud`, `CodeDev`, `imei`, `imei_remp`) VALUES
-(71, '9508900L', 'cora', 'Trappe', 'INC58652565114', 'ETPNU', NULL, '2024-01-30', 'casse', 'Ipad2020', 'casse ecran', '', 0, 0, '456971236548658', '655236987835648'),
-(73, '97139', 'kiting leyla', 'Dreux', 'INC58652561', 'ETPNU', 'TRACTION825452', '2024-01-12', 'casse', 'Ipad2020', 'casse ecran', '0', 26, 127, '256696232620316', '69594941'),
-(72, '97129', 'cyrille', 'Versaille', 'INC39655', 'ETPLC', 'TRACTION825452', '2024-02-09', 'panne', 'Ipad2020', 'Panne tactile', 'lors du passage de m a', 127, 0, '126226326952169', '484454955958499'),
-(83, '4646148912M', 'Bell MT', 'Versailles ', 'INC39654', 'ETPNU', 'TRACTION78478', '2024-01-29', 'casse', 'Ipad2020', 'probleme connexion wifi', '', 127, 127, '777777777777777', '333333333333333'),
-(82, '58912M', 'ertyu', 'vanves', 'INC5865', 'ETPNU', NULL, '2024-01-31', 'perte', 'Ipad2020', 'casse ecran', '', 55, 0, '444444444444444', '622222222222222');
+INSERT INTO `ipad` (`id_ipad`, `cp_Agent`, `nom`, `residence`, `inc`, `Code_RG`, `mytem`, `date_demande`, `type_demande`, `type_materiel`, `type_panne`, `observation`, `Icloud`, `CodeDev`, `imei`, `imei_remp`, `reparable`) VALUES
+(71, '9508900L', 'cora', 'Trappe', 'INC58652565114', 'ETPNU', 'TRACTION78478', '2024-01-30', 'perte', 'Ipad2020', 'casse ecran', '', 0, 0, '456971236548658', '655236987835648', 1),
+(73, '97139', 'kiting leyla', 'Dreux', 'INC58652561', 'ETPNU', 'TRACTION825452', '2024-01-12', 'casse', 'Ipad2020', 'casse ecran', '', 26, 127, '256696232620316', '69594941', 0),
+(72, '97129', 'cyrille', 'Versaille', 'INC39655', 'ETPLC', 'TRACTION825452', '2024-02-09', 'panne', 'Ipad2020', 'Panne tactile', '', 127, 0, '126226326952169', '484454955958499', 1),
+(83, '4646148912M', 'Bell MT', 'Versailles ', 'INC39654', 'ETPNU', 'TRACTION78478', '2024-01-29', 'casse', 'Ipad2020', 'probleme connexion wifi', '		Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus nihil sapiente hic blanditiis', 127, 127, '777777777777777', '333333333333333', 1),
+(82, '58912M', 'ertyu', 'vanves', 'INC5865', 'ETPNU', NULL, '2024-01-31', 'perte', 'Ipad2020', 'casse ecran', '', 55, 0, '444444444444444', '622222222222222', 0),
+(84, '4646458912M', 'Bell cranel', 'Versailles ', 'INC5865', 'ETPNU', NULL, '2024-01-27', 'casse', 'Ipad2020', 'casse ecran', '0', 55, 0, '466464646464646', '236589562346784', 0),
+(85, '97139', 'kiting leyla', 'Versailles ', 'INC39655', 'ETPNU', 'TRACTION78786', '7431-03-04', 'casse', 'Ipad2020', 'casse ecran', '0', 127, 0, '789456132354788', '437435354444444', 0),
+(88, '97129', 'Etienne', 'vanves', 'INC5865', 'ETPNU', 'TRACTION546646', '2024-02-11', 'perte', 'Ipad2017', 'casse ecran', '', 127, 127, '323659848152365', '946134679845132', 1);
 
 -- --------------------------------------------------------
 
@@ -122,11 +126,11 @@ DROP TABLE IF EXISTS `pc`;
 CREATE TABLE IF NOT EXISTS `pc` (
   `id_pc` int NOT NULL AUTO_INCREMENT,
   `marque` varchar(200) NOT NULL,
-  `nSerie` varchar(50) ,
+  `nSerie` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `modele` varchar(100) NOT NULL,
   `quantite` int NOT NULL,
   PRIMARY KEY (`id_pc`)
-) ENGINE=MyISAM AUTO_INCREMENT=11;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `pc`
@@ -151,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `prenom` varchar(30) NOT NULL,
   `is_admin` tinyint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=50;
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `user`
