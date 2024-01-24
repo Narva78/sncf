@@ -9,7 +9,7 @@ function estConnecte()
 }
 
 // Enrigistre dans une variable session les infos d'un utilisateur
-function connecter($id, $nom, $prenom, $login, $isAdmin, $residence)
+function connecter($id, $nom, $prenom, $login, $isAdmin, $residence, $codeRG)
 {
 	$_SESSION['id'] = $id;
 	$_SESSION['nom'] = $nom;
@@ -17,6 +17,7 @@ function connecter($id, $nom, $prenom, $login, $isAdmin, $residence)
 	$_SESSION['login'] = $login;
 	$_SESSION['is_admin'] = $isAdmin;
 	$_SESSION['residence'] = $residence;
+	$_SESSION['code_rg'] = $codeRG;
 }
 
 // Détruit la session active

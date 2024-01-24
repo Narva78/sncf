@@ -28,8 +28,9 @@ switch ($action) {
 					$login = $user['login'];
 					$is_admin = $user['is_admin'];
 					$residence = $user['residence'];
+					$codeRG  = $user['code_rg'];
 
-					connecter($id, $nom, $prenom, $login, $is_admin, $residence);
+					connecter($id, $nom, $prenom, $login, $is_admin, $residence, $codeRG);
 					//include("views/header.php");
 					header("Location: index.php?uc=historique&action=historique");
 				} else {

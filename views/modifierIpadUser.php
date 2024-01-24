@@ -188,9 +188,11 @@
 					<input type="text" id="nom" name="nom" placeholder="Doe" required value="<?php echo $nom; ?>">
 				</div>
 
+
+
 				<div>
 					<label for="residence">Résidence :</label>
-					<input type="text" id="residence" name="residence" readonly value="<?php echo $residence; ?>">
+					<input type="text" id="residence" name="residence" readonly value="<?php echo $_SESSION['residence']; ?>">
 				</div>
 
 				<div>
@@ -200,64 +202,40 @@
 
 
 				<!-- Affectation de l'Agent Obligatoire -->
+
+
 				<div>
 					<label for="codeRG">Code RG :</label>
-					<select id="codeRG" name="codeRG" required>
-
-						<option value="ETPNU" <?php if ($Code_RG == 'ETPNU') echo ' selected'; ?>>ETPNU</option> <!-- 0707 -->
-
-						<option value="ETPLC" <?php if ($Code_RG == 'ETPLC') echo ' selected'; ?>>ETPLC</option> <!-- 64 682 -->
-
-					</select>
+					<input type="text" name="codeRG" id="codeRG" readonly value="<?php echo $_SESSION['code_rg']; ?>">
 				</div>
-				<?php
-				if (isset($_SESSION['id'])) {
-					$userID = $pdo->getInfoUSerById($_SESSION['id']);
-					$is_admin = $userID['is_admin'] == 1;
-				}
-				if ($is_admin) {
-				?>
-					<div>
-						<label for="mytem">N° Mytem :</label>
-						<input type="text" id="mytem" name="mytem" placeholder="TRACTION221123021" required value="<?php echo $mytem; ?>">
-					</div>
-				<?php } ?>
+
+
 
 				<div>
 					<label for="dateDemande">Date demande :</label>
-					<input type="date" name="dateDemande" required value="<?php echo $dateDemande; ?>">
+					<input type="date" name="dateDemande" readonly value="<?php echo $dateDemande; ?>">
 				</div>
-				<?php
-				if (isset($_SESSION['id'])) {
-					$userID = $pdo->getInfoUSerById($_SESSION['id']);
-					$is_admin = $userID['is_admin'] == 1;
-				}
-				?>
 
-				<?php if ($is_admin) : ?>
-					<div class="recu">
-						<label for="recu">
-							<span>reçu le</span>
-						</label>
-						<input type="checkbox" id="recu" value="1" name="recu" <?php if (!empty($dateR)) echo ' checked'; ?>>
+				<?php
+				if (empty($dateR)) { ?>
+
+					<span>en attente de réception</span>
+
+				<?php } else { ?>
+					<div>
+						<label for="valider">
+							Réception </label>
+						<input type="date" name="recu" id="recu" readonly value="<?php echo $dateR; ?>">
 					</div>
-				<?php endif; ?>
+				<?php  } ?>
 
 				<div class="realiser">
 					<label for="valider">
-						traité
+						A Valider
 					</label>
 					<input type="checkbox" id="valider" name="ok" <?php if (!empty($dateV)) echo ' checked'; ?> <?php if (empty($dateR)) echo ' disabled'; ?>>
+
 				</div>
-
-				<script>
-					// Ajouter un gestionnaire d'événement pour la première checkbox
-					document.getElementById('recu').addEventListener('change', function() {
-						// Désactiver la deuxième checkbox si la première n'est pas cochée
-						document.getElementById('valider').disabled = !this.checked;
-					});
-				</script>
-
 
 
 			</div>
@@ -427,4 +405,54 @@
 			listeDeroulante.style.display = 'none';
 		}
 	});
+
+	var recuCheckbox = document.getElementById('recu');
+	var validerCheckbox = document.getElementById('valider');
+	var dateRText = document.getElementById('dateRText');
+	var dateVText = document.getElementById('dateVText');
+
+	// Fonction pour mettre à jour le texte en fonction de l'état de la checkbox "Reçu"
+	function updateDateRText() {
+		dateRText.textContent = (recuCheckbox.checked) ? 'Reçu le ' + '<?php echo htmlspecialchars($dateR, ENT_QUOTES, 'UTF-8'); ?>' : '';
+
+	}
+
+	// Fonction pour mettre à jour le texte en fonction de l'état de la checkbox "Traité"
+	function updateDateVText() {
+		dateVText.textContent = (validerCheckbox.checked) ? 'Validé le ' + '<?php echo htmlspecialchars($dateV, ENT_QUOTES, 'UTF-8'); ?>' : '';
+	}
+
+	// Ajouter des gestionnaires d'événements pour les deux checkboxes
+	recuCheckbox.addEventListener('change', function() {
+		// Désactiver la deuxième checkbox si la première n'est pas cochée
+		validerCheckbox.disabled = !this.checked;
+		// Mettre à jour le texte en fonction de l'état de la première checkbox
+		updateDateRText();
+	});
+
+	validerCheckbox.addEventListener('change', function() {
+		// Mettre à jour le texte en fonction de l'état de la deuxième checkbox
+		updateDateVText();
+	});
+
+	// Appeler les fonctions au chargement de la page
+	updateDateRText();
+	updateDateVText();
+
+	function hideLabelOnCheck(checkbox, label) {
+		label.style.display = checkbox.checked ? 'none' : 'block';
+	}
+
+	// Ajouter des gestionnaires d'événements pour les deux checkboxes
+	recuCheckbox.addEventListener('change', function() {
+		hideLabelOnCheck(this, document.querySelector('label[for="recu"]'));
+	});
+
+	validerCheckbox.addEventListener('change', function() {
+		hideLabelOnCheck(this, document.querySelector('label[for="valider"]'));
+	});
+
+	// Appeler la fonction au chargement de la page
+	hideLabelOnCheck(recuCheckbox, document.querySelector('label[for="recu"]'));
+	hideLabelOnCheck(validerCheckbox, document.querySelector('label[for="valider"]'));
 </script>

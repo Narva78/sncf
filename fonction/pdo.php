@@ -182,10 +182,12 @@ class PdoIpad
 		return $lesLignes;
 	}
 
-	public function getInfoIpadByVariable($variable, $ordre, $premier, $parpage)
+	public function getInfoIpadByVariable($variable, $ordre, $premier, $parpage, $userID = null)
 	{
 		$requete = "SELECT * FROM ipad";
-
+		if ($userID != null) {
+			$requete .= " WHERE id_user = '$userID'";
+		}
 		switch ($variable) {
 			case 'nom':
 				$requete .= " ORDER BY nom $ordre";
@@ -205,6 +207,7 @@ class PdoIpad
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
 	}
+
 
 
 

@@ -165,6 +165,13 @@
 
 <title>Formulaire D'ajout D'Ipad</title>
 
+<?php
+if (isset($_SESSION['id'])) {
+	$userID = $pdo->getInfoUSerById($_SESSION['id']);
+	$is_admin = $userID['is_admin'] == 1;
+}
+?>
+
 <!-- Formulaire d'ajout d'un iPad -->
 <div class="container">
 	<div class="container__card">
@@ -183,11 +190,19 @@
 					<label for="nom">Nom :</label>
 					<input type="text" id="nom" name="nom" placeholder="Doe" required>
 				</div>
-
-				<div>
-					<label for="residence">Résidence :</label>
-					<input type="text" id="residence" name="residence" readonly value="<?php echo $_SESSION['residence']; ?>">
-				</div>
+				<?php
+				if ($is_admin) {
+				?>
+					<div>
+						<label for="residence">Résidence :</label>
+						<input type="text" name="residence" id="residence">
+					</div>
+				<?php  } else { ?>
+					<div>
+						<label for="residence">Résidence :</label>
+						<input type="text" id="residence" name="residence" readonly value="<?php echo $_SESSION['residence']; ?>">
+					</div>
+				<?php } ?>
 
 				<div>
 					<label for="INC">INC :</label>
@@ -196,26 +211,31 @@
 
 
 				<!-- Affectation de l'Agent Obligatoire -->
-				<div>
-					<label for="codeRG">Code RG :</label>
-					<select id="codeRG" name="codeRG" required>
-
-						<option value="ETPNU">ETPNU</option> <!-- 0707 -->
-
-						<option value="ETPLC">ETPLC</option> <!-- 64 682 -->
-
-					</select>
-				</div>
 				<?php
-				if (isset($_SESSION['id'])) {
-					$userID = $pdo->getInfoUSerById($_SESSION['id']);
-					$is_admin = $userID['is_admin'] == 1;
-				}
+				if ($is_admin) {
+				?>
+					<div>
+						<label for="codeRG">Code RG :</label>
+						<select id="codeRG" name="codeRG" required>
+
+							<option value="ETPNU">ETPNU</option> <!-- 0707 -->
+
+							<option value="ETPLC">ETPLC</option> <!-- 64 682 -->
+
+						</select>
+					</div>
+				<?php  } else { ?>
+					<div>
+						<label for="codeRG">Code RG :</label>
+						<input type="text" name="codeRG" id="codeRG" readonly value="<?php echo $_SESSION['code_rg']; ?>">
+					</div>
+				<?php } ?>
+				<?php
 				if ($is_admin) {
 				?>
 					<div>
 						<label for="mytem">N° Mytem :</label>
-						<input type="text" id="mytem" name="mytem" placeholder="TRACTION221123021" required>
+						<input type="text" id="mytem" name="mytem" placeholder="TRACTION221123021">
 					</div>
 				<?php } ?>
 

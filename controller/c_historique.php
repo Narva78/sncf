@@ -13,7 +13,7 @@ $action = $_REQUEST['action'];
 
 switch ($action) {
 	case 'historique':
-		// var_dump($_SESSION); // Utilisé pour le débogage, peut être commenté ou supprimé dans la version finale
+		//var_dump($_SESSION); // Utilisé pour le débogage, peut être commenté ou supprimé dans la version finale
 
 		// Constantes pour les valeurs par défaut
 		define('DEFAULT_PAGE', 1);
@@ -40,19 +40,22 @@ switch ($action) {
 			$lesIpad = $pdo->getInfosIpad($premier, $parPage);
 		} else {
 			// Sinon, récupérez uniquement les iPads liés à cet utilisateur
-			$userID = $_SESSION['id'];
-			$nbIpad = $pdo->getNbIpadByUser($userID);
-			$lesIpad = $pdo->getInfosIpadByUserId($userID, $premier, $parPage);
+			$nbIpad = $pdo->getNbIpadByUser($_SESSION['id']);
+			$lesIpad = $pdo->getInfosIpadByUserId($_SESSION['id'], $premier, $parPage);
 		}
 
-		// Gestion du tri
+		// Gestion du 
 		$tri = isset($_GET['tri']) ? $_GET['tri'] : '';
 		$ordre = isset($_GET['ordre']) ? $_GET['ordre'] : 'asc';
 		$prochainOrdre = ($ordre === 'asc') ? 'desc' : 'asc';
 
 		// Appliquer le tri si nécessaire
 		if ($tri === 'nom' || $tri === 'Code_RG' || $tri === 'date_demande') {
-			$lesIpad = $pdo->getInfoIpadByVariable($tri, $ordre, $premier, $parPage);
+			if ($is_admin) {
+				$lesIpad = $pdo->getInfoIpadByVariable($tri, $ordre, $premier, $parPage);
+			} else {
+				$lesIpad = $pdo->getInfoIpadByVariable($tri, $ordre, $premier, $parPage, $_SESSION['id']);
+			}
 		}
 
 		// Calcul du nombre total de pages
@@ -147,46 +150,43 @@ switch ($action) {
 	case 'modifierIpad':
 		//var_dump($_POST);
 		if (isset($_POST['modifier'])) {
-			$U = $pdo->getInfoUSerById($_SESSION['id']);
-			if ($U['is_admin'] == 1) {
-				$mytem = $_POST['mytem'];
-			} else {
-				$mytem = null;
-			}
-
-			$U = $pdo->getInfoUSerById($_SESSION['id']);
-			if ($U['is_admin'] == 1) {
-				$dateR = $_POST['recu'];
-			} else {
-				$dateR = null;
-			}
 
 			//Récupération des données du formulaire
 			$id_form = $_POST['id'];
+			$U = $pdo->getInfoUSerById($_SESSION['id']);
+			if ($U['is_admin'] == 1) {
+				// ADMIN
+				$mytem = $_POST['mytem'];
+				$dateR = $_POST['recu'] ? $_POST['recu'] : null;
+				$dateV = $_POST['ok'] ? $_POST['ok'] : null;
+				$dateDemande = $_POST['dateDemande'];
+				$dateBdd = $pdo->getInfosIpadById($id_form);
+			} else {
+				// USER
+				$mytem = null;
+				$dateR = $_POST['recu'] ? $_POST['recu'] : null;
+				$dateBdd = $pdo->getInfosIpadById($id_form);
+				$dateCourante = date('Y-m-d');
+				if (isset($_POST['dateDemande']) && empty($dateBdd[0]['dateDemande'])) {
+					$dateDemande = $dateCourante;
+				} else {
+					$dateDemande = $dateBdd[0]['date_validation'];
+				}
+
+				$dateBdd = $pdo->getInfosIpadById($id_form);
+				if (isset($_POST['ok']) && empty($dateBdd[0]['date_validation'])) {
+					$dateCourante = date('Y-m-d');
+					$dateV = $dateCourante;
+				} else {
+					$dateV = $dateBdd[0]['date_validation'];
+				}
+			}
 
 			$cp = $_POST['cp']; // Récupère la valeur du champ cp
 			$nom = $_POST['nom']; // Récupère la valeur du champ nom
 			$residence = $_POST['residence'];
 			$inc = $_POST['inc'];
 			$Code_RG = $_POST['codeRG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
-			$dateDemande = $_POST['dateDemande'];
-
-			$dateBdd = $pdo->getInfosIpadById($id_form);
-			if (isset($_POST['recu']) && empty($dateBdd[0]['date_reception'])) {
-				$dateCourante = date('Y-m-d');
-				$dateR = $dateCourante;
-			} else {
-				$dateR = $dateBdd[0]['date_reception'];
-			}
-
-			$dateBdd = $pdo->getInfosIpadById($id_form);
-			if (isset($_POST['ok']) && empty($dateBdd[0]['date_validation'])) {
-				$dateCourante = date('Y-m-d');
-				$dateV = $dateCourante;
-			} else {
-				$dateV = $dateBdd[0]['date_validation'];
-			}
-
 
 			$typeD = $_POST['typeDemande'];
 			$typeM = $_POST['typeMateriel'];
@@ -232,7 +232,6 @@ switch ($action) {
 				$dateDemande = $unIpad['date_demande'];
 				$dateR = $unIpad['date_reception'];
 				$dateV = $unIpad['date_validation'];
-
 				$typeD = $unIpad['type_demande'];
 				$typeM = $unIpad['type_materiel'];
 				$ifPanne = $unIpad['type_panne'];
@@ -245,7 +244,11 @@ switch ($action) {
 				$imei_r = $unIpad['imei_remp'];
 				$rep = $unIpad['reparable'];
 			}
-			include("views/modifierIpad.php");
+			if ($_SESSION['is_admin'] == 1) {
+				include("views/modifierIpadAdmin.php");
+			} else {
+				include("views/modifierIpadUser.php");
+			}
 			exit;
 		}
 		break;
