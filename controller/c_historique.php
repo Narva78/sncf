@@ -17,7 +17,7 @@ switch ($action) {
 
 		// Constantes pour les valeurs par défaut
 		define('DEFAULT_PAGE', 1);
-		define('DEFAULT_IPP', 3);
+		define('DEFAULT_IPP', 10);
 
 		// Récupération et validation du numéro de page
 		$currentPage = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : DEFAULT_PAGE;
@@ -94,7 +94,7 @@ switch ($action) {
 			} else {
 				$mytem = null;
 			}
-
+			$dateCourante = date('y-m-d');
 			//Récupération des données du formulaire
 			$cp = $_POST['cp'];
 			$nom = $_POST['nom'];
@@ -131,6 +131,8 @@ switch ($action) {
                             showConfirmButton: false,
                             timer: 3000
                         }).then(() => {
+													window.location.href = 'index.php?uc=historique&action=historique';
+
 													
                         });
                     </script>";
@@ -143,6 +145,7 @@ switch ($action) {
 		break;
 
 	case 'modifierIpad':
+		//var_dump($_POST);
 		if (isset($_POST['modifier'])) {
 			$U = $pdo->getInfoUSerById($_SESSION['id']);
 			if ($U['is_admin'] == 1) {
@@ -151,14 +154,39 @@ switch ($action) {
 				$mytem = null;
 			}
 
+			$U = $pdo->getInfoUSerById($_SESSION['id']);
+			if ($U['is_admin'] == 1) {
+				$dateR = $_POST['recu'];
+			} else {
+				$dateR = null;
+			}
+
 			//Récupération des données du formulaire
 			$id_form = $_POST['id'];
+
 			$cp = $_POST['cp']; // Récupère la valeur du champ cp
 			$nom = $_POST['nom']; // Récupère la valeur du champ nom
 			$residence = $_POST['residence'];
 			$inc = $_POST['inc'];
 			$Code_RG = $_POST['codeRG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
 			$dateDemande = $_POST['dateDemande'];
+
+			$dateBdd = $pdo->getInfosIpadById($id_form);
+			if (isset($_POST['recu']) && empty($dateBdd[0]['date_reception'])) {
+				$dateCourante = date('Y-m-d');
+				$dateR = $dateCourante;
+			} else {
+				$dateR = $dateBdd[0]['date_reception'];
+			}
+
+			$dateBdd = $pdo->getInfosIpadById($id_form);
+			if (isset($_POST['ok']) && empty($dateBdd[0]['date_validation'])) {
+				$dateCourante = date('Y-m-d');
+				$dateV = $dateCourante;
+			} else {
+				$dateV = $dateBdd[0]['date_validation'];
+			}
+
 
 			$typeD = $_POST['typeDemande'];
 			$typeM = $_POST['typeMateriel'];
@@ -172,7 +200,7 @@ switch ($action) {
 			$imei_r = $_POST['imei_remp'];
 			$rep = $_POST['rep'];
 
-			$pdo->modifierIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $id_form, $imei, $imei_r, $rep);
+			$pdo->modifierIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $dateR, $dateV, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $id_form, $imei, $imei_r, $rep);
 
 			//pop-up de confirmation de modification
 			echo "
@@ -202,6 +230,8 @@ switch ($action) {
 				$Code_RG = $unIpad['Code_RG']; // Récupère la valeur de l'option sélectionnée (Liste Déroulante)
 				$mytem = $unIpad['mytem'];
 				$dateDemande = $unIpad['date_demande'];
+				$dateR = $unIpad['date_reception'];
+				$dateV = $unIpad['date_validation'];
 
 				$typeD = $unIpad['type_demande'];
 				$typeM = $unIpad['type_materiel'];

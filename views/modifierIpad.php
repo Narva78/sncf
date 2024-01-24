@@ -190,7 +190,7 @@
 
 				<div>
 					<label for="residence">Résidence :</label>
-					<input type="text" id="residence" name="residence" readonly value="<?php echo $_SESSION['residence']; ?>">
+					<input type="text" id="residence" name="residence" readonly value="<?php echo $residence; ?>">
 				</div>
 
 				<div>
@@ -227,6 +227,38 @@
 					<label for="dateDemande">Date demande :</label>
 					<input type="date" name="dateDemande" required value="<?php echo $dateDemande; ?>">
 				</div>
+				<?php
+				if (isset($_SESSION['id'])) {
+					$userID = $pdo->getInfoUSerById($_SESSION['id']);
+					$is_admin = $userID['is_admin'] == 1;
+				}
+				?>
+
+				<?php if ($is_admin) : ?>
+					<div class="recu">
+						<label for="recu">
+							<span>reçu le</span>
+						</label>
+						<input type="checkbox" id="recu" value="1" name="recu" <?php if (!empty($dateR)) echo ' checked'; ?>>
+					</div>
+				<?php endif; ?>
+
+				<div class="realiser">
+					<label for="valider">
+						traité
+					</label>
+					<input type="checkbox" id="valider" name="ok" <?php if (!empty($dateV)) echo ' checked'; ?> <?php if (empty($dateR)) echo ' disabled'; ?>>
+				</div>
+
+				<script>
+					// Ajouter un gestionnaire d'événement pour la première checkbox
+					document.getElementById('recu').addEventListener('change', function() {
+						// Désactiver la deuxième checkbox si la première n'est pas cochée
+						document.getElementById('valider').disabled = !this.checked;
+					});
+				</script>
+
+
 
 			</div>
 			<br>
@@ -237,9 +269,9 @@
 					<label for="typeDemande">Type Demande :</label>
 					<select id="typeDemande" name="typeDemande" required>
 
-						<option value="panne" <?php if ($typeD == 'panne') echo ' selected'; ?>>Panne</option>
-
 						<option value="casse" <?php if ($typeD == 'casse') echo ' selected'; ?>>Casse</option>
+
+						<option value="panne" <?php if ($typeD == 'panne') echo ' selected'; ?>>Panne</option>
 
 						<option value="perte" <?php if ($typeD == 'perte') echo ' selected'; ?>>Perte/Vol</option>
 
@@ -355,10 +387,11 @@
 </div>
 
 <script type=text/javascript>
+	// Gestionnaire d'événement pour la liste déroulante typeDemande
 	document.getElementById('typeDemande').addEventListener('change', function() {
 		var deuxiemeListe = document.getElementById('panne1');
 
-		// Afficher la deuxième liste si la sélection est égale à 'selection2'
+		// Afficher la deuxième liste si la sélection est égale à 'panne'
 		if (this.value === 'panne') {
 			deuxiemeListe.style.display = 'block';
 		} else {
@@ -373,6 +406,16 @@
 			panneSelect.required = false;
 		}
 	});
+
+	// Sélectionner l'élément typeDemande
+	var typeDemandeSelect = document.getElementById('typeDemande');
+
+	// Vérifier l'état initial et déclencher l'événement change si nécessaire
+	if (typeDemandeSelect.value === 'panne') {
+		// Déclencher l'événement change pour simuler le changement
+		typeDemandeSelect.dispatchEvent(new Event('change'));
+	}
+
 
 	document.getElementById('imei').addEventListener('change', function() {
 		var listeDeroulante = document.getElementById('imei_remp');

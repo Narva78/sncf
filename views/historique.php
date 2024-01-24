@@ -259,6 +259,10 @@
 		background-color: #4caf50;
 	}
 
+	.pcList.declare {
+		background: #A00C00;
+	}
+
 	.legend {
 		position: absolute;
 		/* Utilisez 'fixed' si vous voulez que la légende reste en place lors du défilement */
@@ -292,8 +296,8 @@
 
 	}
 
-	.legend-item.declarer {
-		background-color: red;
+	.legend-item.declare {
+		background-color: #A00C00;
 	}
 
 	.generate-pdf-button {
@@ -310,7 +314,7 @@
 <h1>Historique Ipad</h1>
 <div class="legend">
 	<div>
-		<span class="legend-item declarer">Déclarer (Rouge)</span>
+		<span class="legend-item declare">Déclarer (Rouge)</span>
 		<span class="legend-item en-cours">En cours (Jaune)</span>
 		<span class="legend-item traite">Traité (Vert)</span>
 	</div>
@@ -334,6 +338,10 @@
 
 						// Déterminer le label et l'état suivant pour le bouton
 						switch ($etatActuel) {
+							case 'declare':
+								$labelEtat = 'Voir En cours';
+								$etatSuivant = 'en-cours';
+								break;
 							case 'en-cours':
 								$labelEtat = 'Voir Traité';
 								$etatSuivant = 'traite';
@@ -343,9 +351,11 @@
 								$etatSuivant = 'tous';
 								break;
 							default:
-								$labelEtat = 'Voir En cours';
-								$etatSuivant = 'en-cours';
+								$labelEtat = 'Voir Déclaré';
+								$etatSuivant = 'declare';
 						}
+
+
 						?>
 						<a href="index.php?uc=historique&action=historique&tri=etat&etat=<?= $etatSuivant ?>"><input type="button" value="<?= $labelEtat ?>" /></a>
 					</div>
@@ -411,8 +421,17 @@
 					$lesPC = [];
 				$etatFiltre = isset($_GET['etat']) ? $_GET['etat'] : 'tous';
 
-				foreach ($lesIpad as $ipad) :
-					$cellClass = empty($ipad['mytem']) ? 'en-cours' : 'traite'; // Définir si une cellule est en cours ou traité en fonction de mytem
+				foreach ($lesIpad as $ipad) {
+					$cellClass = '';
+					if (empty($ipad['date_reception']) && empty($ipad['date_validation'])) {
+						$cellClass = 'declare';
+					} elseif (!empty($ipad['date_reception']) && empty($ipad['date_validation'])) {
+						$cellClass = 'en-cours';
+					} elseif (!empty($ipad['date_reception']) && !empty($ipad['date_validation'])) {
+						$cellClass = 'traite';
+					}
+
+					// Si le filtre d'état est activé et ne correspond pas à la classe cellulaire, continuez à la prochaine itération
 					if ($etatFiltre !== 'tous' && $etatFiltre !== $cellClass) continue;
 				?>
 					<div class="checkbox__ligne">
@@ -444,7 +463,7 @@
 					</div>
 
 
-				<?php endforeach; ?>
+				<?php } ?>
 		</form>
 	</section>
 

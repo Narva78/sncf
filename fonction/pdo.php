@@ -11,7 +11,7 @@ class PdoIpad
 	private static $serveur = 'mysql:host=localhost';
 	private static $bdd = 'dbname=osdm';
 	private static $user = 'root';
-	private static $mdp = 'root';
+	private static $mdp = '';
 	private static $monPdo;
 	private static $monPdoIpad = null;
 
@@ -306,12 +306,12 @@ class PdoIpad
 	public function ajouterIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep, $id)
 	{
 		try {
-			$req = "INSERT INTO ipad (cp_Agent, nom, residence, inc, Code_RG, mytem, date_demande, type_demande, type_materiel, type_panne, observation, Icloud, codeDev, imei, imei_remp, reparable, id_user) 
-									VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			$req = "INSERT INTO ipad (cp_Agent, nom, residence, inc, Code_RG, mytem, date_demande, date_reception, date_validation, type_demande, type_materiel, type_panne, observation, Icloud, codeDev, imei, imei_remp, reparable, id_user) 
+									VALUES (?, ?, ?, ?, ?, ?, ?, NULL, NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			$stmt = PdoIpad::$monPdo->prepare($req);
 
 			// Debugging
-			var_dump([$cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep, $id]);
+			//var_dump([$cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $dateR, $dateV, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep, $id]);
 
 			$stmt->execute([$cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep, $id]);
 			return $stmt->rowCount();
@@ -351,12 +351,12 @@ class PdoIpad
 	}
 
 	//Fonction qui permet de modifier un ipad dans la table ipad en fonction des paramètres
-	public function modifierIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $id_form, $imei, $imei_r, $rep)
+	public function modifierIpad($cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $dateR, $dateV, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $id_form, $imei, $imei_r, $rep)
 	{
-		$req = "UPDATE ipad SET cp_Agent = ?, nom = ?, residence = ?, inc = ?, Code_RG = ?, mytem = ?,date_demande = ?, type_demande = ?, type_materiel = ?, type_panne = ?, observation = ?, icloud = ?, CodeDev = ?, imei = ?, imei_remp = ?, reparable = ?
+		$req = "UPDATE ipad SET cp_Agent = ?, nom = ?, residence = ?, inc = ?, Code_RG = ?, mytem = ?,date_demande = ?, date_reception = ?, date_validation = ?, type_demande = ?, type_materiel = ?, type_panne = ?, observation = ?, icloud = ?, CodeDev = ?, imei = ?, imei_remp = ?, reparable = ?
         WHERE id_ipad = ?";
 		$stmt = PdoIpad::$monPdo->prepare($req);
-		$stmt->execute([$cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep, $id_form]);
+		$stmt->execute([$cp, $nom, $residence, $inc, $Code_RG, $mytem, $dateDemande, $dateR, $dateV, $typeD, $typeM, $ifPanne, $observation, $icloud, $codeDev, $imei, $imei_r, $rep, $id_form]);
 	}
 
 
@@ -373,6 +373,7 @@ class PdoIpad
 		$stmt = PdoIpad::$monPdo->prepare($req);
 		$stmt->execute([$marque, $nSerie, $modele, $quantite, $id_pc]);
 	}
+
 
 
 
