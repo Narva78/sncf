@@ -8,11 +8,13 @@
 		flex-direction: column;
 		height: 120vh;
 		margin: 2.5em;
+		align-items: center;
+
 	}
 
 	.container__card {
 		width: 620px;
-		height: 850px;
+		height: 900px;
 		border: 1px solid #404040;
 		border-radius: 10px;
 		background: #405a73;
