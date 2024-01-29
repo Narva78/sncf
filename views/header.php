@@ -118,7 +118,13 @@ if (isset($_SESSION['id'])) {
 							<li><a class="menu__link" href="index.php?uc=gestionPC">PC</a></li>
 						</ul>
 					</li>
-					<li class="menu__item"><a class="menu__link" href="index.php?uc=stat">Statistiques</a></li>
+					<li class="menu__item">
+						<a class="menu__link" href="#">Statistiques</a>
+						<ul class="menu__sublist">
+							<li><a class="menu__link" href="index.php?uc=stat&action=statistiqueETPNU">ETPNU</a></li>
+							<li><a class="menu__link" href="index.php?uc=stat&action=statistiqueETPLC">ETPLC</a></li>
+						</ul>
+					</li>
 					<li class="menu__item"><a class="menu__link" href="views/exportation.php">Exportation</a></li>
 					<li class="menu__item menu__deco"><a class="menu__link" href="index.php?uc=deconnexion">Se déconnecter</a></li>
 				</ul>

@@ -11,7 +11,7 @@ class PdoIpad
 	private static $serveur = 'mysql:host=localhost';
 	private static $bdd = 'dbname=osdm';
 	private static $user = 'root';
-	private static $mdp = '';
+	private static $mdp = 'root';
 	private static $monPdo;
 	private static $monPdoIpad = null;
 
@@ -208,7 +208,50 @@ class PdoIpad
 		return $lesLignes;
 	}
 
+	public function getAverageTimeByCodeRgAndResidence($codeRg)
+	{
+		$req = "SELECT residence, AVG(DATEDIFF(date_validation, date_demande)) as average_time 
+							FROM ipad 
+							WHERE Code_RG = :codeRg AND date_demande IS NOT NULL AND date_validation IS NOT NULL
+							GROUP BY residence";
 
+		$stmt = PdoIpad::$monPdo->prepare($req);
+		$stmt->bindParam(':codeRg', $codeRg, PDO::PARAM_STR);
+		$stmt->execute();
+		$residences = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$reqGlobal = "SELECT AVG(DATEDIFF(date_validation, date_demande)) as global_average 
+										FROM ipad 
+										WHERE Code_RG = :codeRg AND date_demande IS NOT NULL AND date_validation IS NOT NULL";
+
+		$stmtGlobal = PdoIpad::$monPdo->prepare($reqGlobal);
+		$stmtGlobal->bindParam(':codeRg', $codeRg, PDO::PARAM_STR);
+		$stmtGlobal->execute();
+		$globalAverage = $stmtGlobal->fetch(PDO::FETCH_ASSOC);
+
+		return ['residences' => $residences, 'globalAverage' => $globalAverage['global_average']];
+	}
+
+	public function getResidences($codeRG)
+	{
+		$req = "SELECT DISTINCT residence FROM ipad WHERE Code_RG = '$codeRG'"; // ou une autre table appropriée
+		$stmt = PdoIpad::$monPdo->query($req);
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+
+	public function getStatsByResidence($residence)
+	{
+		$req = "SELECT cp_Agent, AVG(DATEDIFF(date_validation, date_demande)) as average_time 
+            FROM ipad 
+            WHERE residence = :residence AND date_demande IS NOT NULL AND date_validation IS NOT NULL
+            GROUP BY cp_Agent";
+
+		$stmt = PdoIpad::$monPdo->prepare($req);
+		$stmt->bindParam(':residence', $residence, PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 
 
 	public function getInfosPC()
